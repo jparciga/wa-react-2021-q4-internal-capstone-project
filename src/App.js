@@ -50,10 +50,13 @@ function App() {
       <Header></Header>
       <Content>
         <div>
-        <div className="Home-Slider">Slider Hero</div>
-        <div className="Home-Categories">Categories</div>
-        <div className="Home-FeatureProducts">
-          <ProductCard productName="Chairs"/>
+          <div className="Home-Slider">Slider Hero</div>
+          <div className="Home-Categories">Categories</div>
+          <div className="Home-FeaturedProducts">
+            <ProductCard productName="Chairs"/>
+            <ProductCard productName="Sofas"/>
+            <ProductCard productName="Desks"/>
+            <ProductCard productName="Lamps"/>
           </div>                
         </div>
       </Content>

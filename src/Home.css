@@ -1,3 +1,8 @@
+.Home-Content{
+    display: flex;
+}
+
+
 .Home-Slider{
     height: 30em;
     background-color: #6d0b9d;
@@ -10,7 +15,22 @@
 }
 .Home-FeaturedProducts{
     display: flex;
-    justify-content: flex-start;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: space-around;
     background-color: #ffffff;
     color: rgb(0, 0, 0);
+}
+.Home-ProductCard{
+    display: flex;
+    /* flex-wrap: wrap; */
+    margin: 1em;
+    height: 6em;
+    width: 6em;
+    border-radius: .5em;
+    background-color: rgb(154, 154, 154);
+    color: rgb(58, 58, 58);
+    font-size: 3em;
+    justify-content: center;
+    align-items: center;
 }
