@@ -1,0 +1,16 @@
+.Home-Slider{
+    height: 30em;
+    background-color: #6d0b9d;
+    color: white;
+}
+.Home-Categories{
+    height: 15em;
+    background-color: #0b569d;
+    color: white;
+}
+.Home-FeaturedProducts{
+    display: flex;
+    justify-content: flex-start;
+    background-color: #ffffff;
+    color: rgb(0, 0, 0);
+}
