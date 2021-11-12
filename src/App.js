@@ -1,6 +1,9 @@
-import logo from './logo.svg';
-import './App.css';
-import { useFeaturedBanners } from './utils/hooks/useFeaturedBanners';
+import logo from "./logo.svg";
+import "./App.css";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { useFeaturedBanners } from "./utils/hooks/useFeaturedBanners";
+
+import Home from "./pages/Home";
 
 function App() {
   const { data, isLoading } = useFeaturedBanners();
@@ -8,8 +11,9 @@ function App() {
 
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
+      <BrowserRouter>
+        <header className="App-header">
+          {/* <img src={logo} className="App-logo" alt="logo" />
         <p>
           Edit <code>src/App.js</code> and save to reload.
         </p>
@@ -20,8 +24,14 @@ function App() {
           rel="noopener noreferrer"
         >
           Learn React
-        </a>
-      </header>
+        </a> */}
+        </header>
+        <body>
+          <Routes>
+            <Route path="/" element={<Home />}></Route>
+          </Routes>
+        </body>
+      </BrowserRouter>
     </div>
   );
 }
