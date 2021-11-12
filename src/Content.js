@@ -1,10 +1,11 @@
-import React from 'react'
+import React from 'react';
+import Home from './Home'
 
 const Content = (props) => {
     return (
-    <content>
-        Content Component
-    </content>
+    <div id="content" style={{borderStyle: 'dashed', borderWidth:2}}>
+        <Home />
+    </div>
     );
 };
 

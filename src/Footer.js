@@ -3,7 +3,7 @@ import React from 'react'
 const Footer = (props) => {
     return (
     <footer>
-        Footer Component
+        Ecommerce created during Wizeline's Academy React Bootcamp.
     </footer>
     );
 };
