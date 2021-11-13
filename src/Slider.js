@@ -1,6 +1,6 @@
 import React from 'react';
 
-function Slider() {
+const Slider = () => {
     return ( <div>Slider Component</div> );
 }
 

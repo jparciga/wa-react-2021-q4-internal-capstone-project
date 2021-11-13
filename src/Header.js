@@ -1,38 +1,27 @@
 import React from 'react'
 import img from './image.png'
+
 import styled from 'styled-components';
 
-
-const Button = styled.button`
-    background: ${props => props.primary ? "palevioletred" : "white"};
-    color: ${props => props.primary ? "white" : "palevioletred"};
-
-    font-size: 1em;
-    margin: 1em;
-    padding: 0.25em 1em;
-    border: 2px solid palevioletred;
-    border-radius: 3px;
+const HeaderTag = styled.header`
+    grid-column: 1/4;
+    align-items: center;
+    justify-items: center;
 `;
 
-const SearchInput = styled.input`
-    width: 50%;
-    height: 10px;
-    padding: 1em 1em;
+const Logo = styled.img`
+    padding: 2em;
+    width:5%;
+    heigth:5%;
 `;
 
-const ImgLogo = styled.img`
-    width: 100px;
-    height: 100px;
-`;
-
-const Header = (props) => {
+const Header = () => {
     return (
-    <header>
-        <ImgLogo id="logo" src={img} alt="logo" disabled></ImgLogo>
-        <SearchInput id="txtSearch" disabled/>
-        <Button id="btnSearch" primary disabled>Search</Button>
-    </header>
+        <HeaderTag>
+            <Logo src={img} alt="logo" />
+        </HeaderTag>
     );
 };
+
 
 export default Header;

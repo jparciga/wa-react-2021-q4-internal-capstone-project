@@ -1,9 +1,9 @@
 import React from 'react';
 import Home from './Home'
 
-const Content = (props) => {
+const Content = () => {
     return (
-    <div id="content" style={{borderStyle: 'dashed', borderWidth:2}}>
+    <div id="content">
         <Home />
     </div>
     );
