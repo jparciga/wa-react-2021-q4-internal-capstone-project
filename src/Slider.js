@@ -75,7 +75,7 @@ const StyledSlider = styled(Slider)`
 
     .container-dots {
         place-self: end center;
-        transform: translateY(-150%);
+        transform: translateY(-250%);
         display: flex;
     }
 
