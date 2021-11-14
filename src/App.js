@@ -1,6 +1,8 @@
 import './App.css';
 import styled from 'styled-components';
 
+import Home from './Home';
+
 import LogoImg from './image.png';
 import ShoppingCartIcon from './shopping-cart.svg';
 
@@ -82,10 +84,12 @@ const App = () => {
           <input type="text" disabled></input>
         </Search>
         <ShoppingCart>
-        <img src={ShoppingCartIcon} alt="shoppingcart"></img>
+          <img src={ShoppingCartIcon} alt="shoppingcart"></img>
         </ShoppingCart>
       </Header>
-      <Content>Content</Content>
+      <Content>
+        <Home />
+      </Content>
       <Footer>Footer</Footer>
     </Container>
   );
