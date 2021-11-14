@@ -1,9 +1,27 @@
-import logo from "./logo.svg";
+import logo from "./Logo.png";
 import "./App.css";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+// import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { useFeaturedBanners } from "./utils/hooks/useFeaturedBanners";
 
-import Home from "./pages/Home";
+// import Home from "./pages/Home";
+import HomeSlider from "./components/HomeSlider";
+import Banners from "./mocks/en-us/featured-banners.json";
+import HomeCategories from "./components/HomeCategories";
+import Categories from "./mocks/en-us/product-categories.json";
+
+const Home = () => {
+  return (
+    <div className="Home">
+      <div className="featuredSlider">
+        <HomeSlider banners={Banners.results} />
+      </div>
+      <div className="Categories">
+        <HomeCategories categories={Categories.results} />
+      </div>
+      <div className="Products"></div>
+    </div>
+  );
+};
 
 function App() {
   const { data, isLoading } = useFeaturedBanners();
@@ -11,28 +29,26 @@ function App() {
 
   return (
     <div className="App">
-      <BrowserRouter>
-        <header className="App-header">
-          {/* <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a> */}
-        </header>
-        <body>
-          <Routes>
-            <Route path="/" element={<Home />}></Route>
-          </Routes>
-        </body>
-      </BrowserRouter>
+      <header className="App-header">
+        <img src={logo} alt="Logo"/>
+      </header>
+      <div className="Body">
+        <Home />
+      </div>
+      <div className="Footer"></div>
     </div>
+
+    // <div className="App">
+    //   <BrowserRouter>
+    //     <header className="App-header">
+    //     </header>
+    //     <body>
+    //       <Routes>
+    //         <Route path="/" element={<Home />}></Route>
+    //       </Routes>
+    //     </body>
+    //   </BrowserRouter>
+    // </div>
   );
 }
 
