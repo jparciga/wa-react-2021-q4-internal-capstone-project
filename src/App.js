@@ -9,7 +9,6 @@ import ShoppingCartIcon from './shopping-cart.svg';
 const Container = styled.div`
   height: 100vh;
   width: 100vw;
-  background-color: steelblue;
 
   display: grid;
   grid-template-rows: 1fr 5fr 1fr;
@@ -24,7 +23,6 @@ const Container = styled.div`
 `;
 
 const Logo = styled.div`
-  background-color: aliceblue;
   grid-area: logo;
   display: flex;
   flex-direction: column;
@@ -33,9 +31,8 @@ const Logo = styled.div`
 `;
 
 const Header = styled.header`
-  background-color: white;
+  background-color: orange;
   grid-area: header;
-
   display:grid;
   grid-template-columns: 1fr 4fr 1fr;
   grid-template-areas:
@@ -44,9 +41,7 @@ const Header = styled.header`
 `;
 
 const Search = styled.div`
-  background-color: burlywood;
   grid-area: search;
-  
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -54,7 +49,6 @@ const Search = styled.div`
 `;
 
 const ShoppingCart = styled.div`
-  background-color: forestgreen;
   grid-area: shoppingcart;
 
   display: flex;
@@ -71,6 +65,7 @@ const Content = styled.div`
 const Footer = styled.div`
   background-color: lavender;
   grid-area: footer;
+  text-align: center;
 `;
 
 const App = () => {

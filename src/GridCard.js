@@ -16,6 +16,7 @@ const GridCard = styled(GridCardComponent)`
     display:flex;
     flex-direction:column;
     padding:0.5em;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
 
     img {
         width: 100%;
