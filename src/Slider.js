@@ -66,7 +66,7 @@ const StyledSlider = styled(Slider)`
         max-width: 1000px;
     }
 
-    .image {
+    img {
         width: 100%;
         height: auto;
         aspect-ratio: 16 / 9;
