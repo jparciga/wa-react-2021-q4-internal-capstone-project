@@ -17,7 +17,7 @@ const CarouselComponent = ({className, data}) => {
 
     return (
     <div className={className}>
-        <div className="track" style={{transform: `translateX(${xPos}px)` }}>
+        <div className="track" style={{transform: `translateX(${xPos}px)`, transitionDuration: "0.5s" }}>
             {data.results.map(obj => {
                 return (
                     <div id={obj.id} className="card-container">
@@ -45,7 +45,6 @@ const Carousel = styled(CarouselComponent)`
     }
 
     .track {
-        background-color: white;
         display:grid;
         grid-template-columns 1fr 1fr 1fr 1fr 1fr;
         
