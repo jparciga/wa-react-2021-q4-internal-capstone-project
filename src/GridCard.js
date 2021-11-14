@@ -1,13 +1,13 @@
 import React from 'react'
 import styled from 'styled-components'
 
-const GridCardComponent = ({className, data}) => {
+const GridCardComponent = ({className, url, name, category, price}) => {
     return (
         <div className={className}>
-            <img src="" alt="img"></img>
-            <span>name</span>
-            <span>category</span>
-            <span>price</span>
+            <img src={url} alt="img"></img>
+            <span>{name}</span>
+            <span>{category}</span>
+            <span>{price}</span>
         </div>
     )
 };
@@ -15,6 +15,14 @@ const GridCardComponent = ({className, data}) => {
 const GridCard = styled(GridCardComponent)`
     display:flex;
     flex-direction:column;
+    padding:0.5em;
+
+    img {
+        width: 100%;
+        height: auto;
+        aspect-ratio: 4 / 3;
+        object-fit: cover;
+    }
 `;
 
 

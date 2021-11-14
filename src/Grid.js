@@ -5,7 +5,15 @@ import GridCard from './GridCard';
 const GridComponent = ({className, data}) =>  {
     return ( 
     <div className={className}>
-        {data.results.map((obj, index) => { return ( <GridCard key={obj.id} index={index} data={obj} />) })}
+        {data.results.map(obj => { return ( 
+            <GridCard 
+                key={obj.id} 
+                url={obj.data.mainimage.url}
+                name={obj.data.name}
+                category={obj.data.category.slug}
+                price={"$"+obj.data.price}
+                />) 
+        })}
     </div> );
 }
 
@@ -18,7 +26,13 @@ const Grid = styled(GridComponent)`
     padding: 2em;
 
     div {
-        background-color: violet;
+        background-color: white;
+        border: 2px solid black;
+        border-radius: 5px;
+    }
+
+    span {
+        padding: 0.5em;
     }
 `;
 

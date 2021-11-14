@@ -90,7 +90,7 @@ const App = () => {
       <Content>
         <Home />
       </Content>
-      <Footer>Footer</Footer>
+      <Footer>Ecommerce created during Wizeline’s Academy React Bootcamp.</Footer>
     </Container>
   );
 }
