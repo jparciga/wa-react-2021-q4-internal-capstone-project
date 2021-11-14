@@ -1,9 +1,11 @@
 import React from 'react';
-import StyledSlider from './Slider'
+import Slider from './Slider';
+import Carousel from './Carousel';
 
 import styled from 'styled-components';
 
 import FeaturedBanners from './featured-banners.json';
+import ProductCategories from './product-categories.json';
 
 const HomeContainer = styled.div`
     display: grid;
@@ -15,8 +17,8 @@ const HomeContainer = styled.div`
 const Home = () => {
     return (
     <HomeContainer>
-        <StyledSlider data={FeaturedBanners}/>
-        <div className="carousel">Carousel</div>
+        <Slider data={FeaturedBanners}/>
+        <Carousel data={ProductCategories}/>
         <div className="featuredProducts">Featured Products</div>
     </HomeContainer>
     );

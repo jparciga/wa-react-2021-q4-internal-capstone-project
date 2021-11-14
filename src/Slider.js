@@ -1,10 +1,10 @@
 import React, {useState } from 'react';
 
-import StyledButtonSlider from './ButtonSlider';
+import ButtonSlider from './ButtonSlider';
 import styled from 'styled-components';
-import StyledImageSlider from './ImageSlider';
+import ImageSlider from './ImageSlider';
 
-const Slider = ({className, data}) => {
+const SliderComponent = ({className, data}) => {
 
     const [slideIndex, setSlideIndex] = useState(1);
 
@@ -35,10 +35,10 @@ const Slider = ({className, data}) => {
     return ( 
     <div className={className}>
         {data.results.map( (obj, index) => {
-            return (<StyledImageSlider id={obj.id} url={obj.data.main_image.url} index={index} slideIndex={slideIndex}></StyledImageSlider>)
+            return (<ImageSlider id={obj.id} url={obj.data.main_image.url} index={index} slideIndex={slideIndex}></ImageSlider>)
         } )}
-        <StyledButtonSlider moveSlide={prevSlide} direction={"prev"} />
-        <StyledButtonSlider moveSlide={nextSlide} direction={"next"} />
+        <ButtonSlider moveSlide={prevSlide} direction={"prev"} />
+        <ButtonSlider moveSlide={nextSlide} direction={"next"} />
         
         <div className="container-dots">
             {Array.from({length: data.results.length}).map((item, index) => (
@@ -52,16 +52,16 @@ const Slider = ({className, data}) => {
     );
 }
 
-const StyledSlider = styled(Slider)`
+const Slider = styled(SliderComponent)`
     display: grid;
-    grid-template:"container"  1fr;
+    grid-template: "container" 1fr;
     place-items: center;
     place-content: center;
     overflow: hidden;
     max-height: clamp(450px, 50vh, 600px);
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
     
-    * {
+    & > * {
         grid-area: container;
         max-width: 1000px;
     }
@@ -94,5 +94,5 @@ const StyledSlider = styled(Slider)`
     
 `;
 
-export default StyledSlider;
+export default Slider;
 
