@@ -3,11 +3,11 @@ import React from 'react'
 import styled from 'styled-components';
 
 
-const ImageSliderComponent = ({className, id, url, index, slideIndex}) => {
+const ImageSliderComponent = ({className, key, url, index, slideIndex}) => {
     return (
-        <div id={id} className={className}>
-                <img id={id} src={url} alt="none"></img>    
-            </div>
+        <div key={key} className={className}>
+            <img key={key+index} src={url} alt="none"></img>    
+        </div>
     )
 }
 //style={{width: "100%", height: "100%", objectFit:"cover" }}

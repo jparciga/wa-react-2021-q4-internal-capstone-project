@@ -35,14 +35,14 @@ const SliderComponent = ({className, data}) => {
     return ( 
     <div className={className}>
         {data.results.map( (obj, index) => {
-            return (<ImageSlider id={obj.id} url={obj.data.main_image.url} index={index} slideIndex={slideIndex}></ImageSlider>)
+            return (<ImageSlider key={obj.id} url={obj.data.main_image.url} index={index} slideIndex={slideIndex}></ImageSlider>)
         } )}
         <ButtonSlider moveSlide={prevSlide} direction={"prev"} />
         <ButtonSlider moveSlide={nextSlide} direction={"next"} />
         
         <div className="container-dots">
             {Array.from({length: data.results.length}).map((item, index) => (
-                <div 
+                <div key={index}
                 onClick={() => moveDot(index + 1)}
                 className={slideIndex === index + 1 ? "dot active" : "dot"}
                 ></div>

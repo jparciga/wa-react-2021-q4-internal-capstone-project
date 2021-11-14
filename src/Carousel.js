@@ -20,7 +20,7 @@ const CarouselComponent = ({className, data}) => {
         <div className="track" style={{transform: `translateX(${xPos}px)`, transitionDuration: "0.5s" }}>
             {data.results.map(obj => {
                 return (
-                    <div id={obj.id} className="card-container">
+                    <div key={obj.id} id={obj.id} className="card-container">
                         <div className="card"><img src={obj.data.main_image.url} alt="haha"></img> </div>
                     </div>
                 );
