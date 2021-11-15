@@ -1,12 +1,22 @@
 import React from "react"
-// import { BrowserRouter, Routes, Route } from "react-router-dom";
 
-const Home = () =>{
-    return(
-        <div>
-            <h1>Sampy Sample 1234</h1>
+import HomeSlider from "./components/HomeSlider";
+import Banners from "./mocks/en-us/featured-banners.json";
+import HomeCategories from "./components/HomeCategories";
+import Categories from "./mocks/en-us/product-categories.json";
+
+const Home = () => {
+    return (
+      <div className="Home">
+        <div className="featuredSlider">
+          <HomeSlider banners={Banners.results} />
         </div>
-    )
-}
+        <div className="Categories">
+          <HomeCategories categories={Categories.results} />
+        </div>
+        <div className="Products"></div>
+      </div>
+    );
+  };
 
 export default Home;

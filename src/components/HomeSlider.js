@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { FaArrowAltCircleRight, FaArrowAltCircleLeft } from "react-icons/fa";
 
 const HomeSlider = ({ banners }) => {
   const [current, setCurrent] = useState(0);
@@ -9,17 +8,21 @@ const HomeSlider = ({ banners }) => {
     setCurrent(current === length - 1 ? 0 : current + 1);
   };
 
-  const prevSlide = () => {
-    setCurrent(current === 0 ? length - 1 : current - 1);
-  };
-
   if (!Array.isArray(banners) || banners.length <= 0) {
     return null;
   }
+
+  setTimeout(() => {
+    var slider = document.getElementById("home-carrousel");
+
+    if (!slider) {
+      return;
+    }
+    nextSlide();
+  }, 20000);
+
   return (
-    <section className="slider">
-      <FaArrowAltCircleLeft className="left-arrow" onClick={prevSlide} />
-      <FaArrowAltCircleRight className="right-arrow" onClick={nextSlide} />
+    <section className="Slider" id="home-carrousel">
       {banners.map((slide, index) => {
         return (
           <div
@@ -27,11 +30,19 @@ const HomeSlider = ({ banners }) => {
             key={index}
           >
             {index === current && (
-              <img
-                src={slide.data.main_image.url}
-                alt={"banner " + (index + 1)}
-                className="image"
-              />
+              <div>
+                <img
+                  src={slide.data.main_image.url}
+                  alt={"banner " + (index + 1)}
+                  className="Banner-image"
+                />
+                <div className="Banner-title">
+                  {slide.data.title}
+                </div>
+                <div className="Banner-description">
+                  {slide.data.description[0].text}
+                </div>
+              </div>
             )}
           </div>
         );
