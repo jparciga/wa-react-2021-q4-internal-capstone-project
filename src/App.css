@@ -54,7 +54,7 @@
 
 .Body {
   padding-top: 20px;
-  background-color: red;
+  background-color: #edeff2;
   padding-bottom: 50px;
   min-height: 100vh;
 }
@@ -121,6 +121,42 @@
 }
 .Product-info{
   float:right;
+}
+
+.Categories-list{
+  border:black solid 5px;
+  border-radius: 10px;
+  background-color: black;
+  max-width: 70%;
+  max-height: 30%;
+  margin: auto;
+  margin-top: 20px;
+  color: white;
+}
+
+.Categories-title{
+  margin-bottom: 10px;
+}
+
+.Category{
+  max-width: 25%;
+  display: inline;
+}
+
+.Category-image{
+  max-width: 20%;
+  margin-left: 3%;
+  margin-right: 3%;
+}
+
+.Left-arrow{
+  color: white;
+  margin-bottom: 5%;
+}
+
+.Right-arrow{
+  color: white;
+  margin-bottom: 5%;
 }
 
 @keyframes App-logo-spin {

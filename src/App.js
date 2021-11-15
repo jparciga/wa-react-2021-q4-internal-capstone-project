@@ -19,7 +19,7 @@ const Home = () => {
         <HomeSliderComponent banners={Banners.results} />
       </div>
       <div className="Categories">
-        {/* <HomeCategories categories={Categories.results} /> */}
+        <HomeCategoriesComponent categories={Categories.results} />
       </div>
       <div className="Products">
         <FeaturedProductsComponent products={FeaturedProducts.results}/>
