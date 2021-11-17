@@ -1,28 +1,30 @@
-import logo from './logo.svg';
 import './App.css';
-import { useFeaturedBanners } from './utils/hooks/useFeaturedBanners';
+import { Container, Logo, Header, Search, ShoppingCart, Content, Footer} from './App.style';
 
-function App() {
-  const { data, isLoading } = useFeaturedBanners();
-  console.log(data, isLoading);
+import Home from 'components/Home/Home';
 
+import LogoImg from 'images/image.png';
+import ShoppingCartIcon from 'images/shopping-cart.svg';
+
+const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Container>
+      <Header>
+        <Logo>
+          <img src={LogoImg} alt="logo" height="100%"></img>
+        </Logo>
+        <Search>
+          <input type="text" disabled></input>
+        </Search>
+        <ShoppingCart>
+          <img src={ShoppingCartIcon} alt="shoppingcart"></img>
+        </ShoppingCart>
+      </Header>
+      <Content>
+        <Home />
+      </Content>
+      <Footer>Ecommerce created during Wizeline’s Academy React Bootcamp.</Footer>
+    </Container>
   );
 }
 
