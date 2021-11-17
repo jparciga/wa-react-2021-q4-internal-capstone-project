@@ -1,7 +1,7 @@
 import React, {useState } from 'react';
 import styled from 'styled-components';
 
-import ButtonSlider from 'components/ButtonSlider/ButtonSlider';
+import ButtonSlider from 'components/ButtonSlider/ButtonSlider.style';
 import ImageSlider from 'components/ImageSlider/ImageSlider';
 
 const SliderComponent = ({className, data}) => {
