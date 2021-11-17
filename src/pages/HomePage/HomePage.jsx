@@ -25,7 +25,7 @@ const HomePage = () => {
     return(
         <Home>
             {isLoading ? "Loading slider..." : loadSlider(data)}
-            <Products />
+            <Products title="Featured Products"/>
         </Home>
     );
 };

@@ -4,7 +4,6 @@ const Items = styled.div`
     display: flex;
     flex-wrap: wrap;
     gap: 30px;
-    margin: 0 auto;
     justify-content: center;
 `;
 
@@ -13,4 +12,8 @@ const Content = styled.div`
     margin: 50px auto;
 `;
 
-export { Items, Content};
+const Title = styled.h2`
+    margin-bottom: 40px;
+`;
+
+export { Items, Content, Title};

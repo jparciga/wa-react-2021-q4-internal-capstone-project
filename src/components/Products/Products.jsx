@@ -1,15 +1,15 @@
 import ProductItem from '../ProductItem';
-import { Content, Items } from './Products.styled';
+import { Content, Items, Title } from './Products.styled';
 import featuredProducts from '../../mocks/en-us/featured-products.json';
 import { useState } from 'react';
 
-const Products = () => {
+const Products = ({title}) => {
 
     const [products] = useState(featuredProducts.results);
 
     return (
         <Content>
-            <h2>Featured Products</h2>
+            <Title>{title}</Title>
             <Items>
                 {products.map(product => <ProductItem product={product} />)}
             </Items>
