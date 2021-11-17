@@ -20,7 +20,6 @@ Link to deployed app: https://franciscojrodrigueze.github.io/wa-react-2021-q4-in
 
 ## How Has This Been Tested?
 
-```
 As per Week 1's delivery criteria, only the logo img tag has been tested. 
 
 How to run tests:
