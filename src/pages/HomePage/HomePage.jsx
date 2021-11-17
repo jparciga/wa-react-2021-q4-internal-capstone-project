@@ -3,6 +3,8 @@ import { useFeaturedBanners } from '../../utils/hooks/useFeaturedBanners';
 import AwesomeSlider from 'react-awesome-slider';
 import 'react-awesome-slider/dist/styles.css';
 import Products from "../../components/Products";
+import Footer from "../../components/Footer";
+import CategoriesGrid from "../../components/CategoriesGrid";
 
 const loadSlider = (data) => {
     return (
@@ -25,7 +27,9 @@ const HomePage = () => {
     return(
         <Home>
             {isLoading ? "Loading slider..." : loadSlider(data)}
+            <CategoriesGrid/>
             <Products title="Featured Products"/>
+            <Footer></Footer>
         </Home>
     );
 };
