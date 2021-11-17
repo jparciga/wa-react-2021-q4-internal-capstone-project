@@ -10,7 +10,7 @@ const ImageSliderComponent = ({className, key, url, index, slideIndex}) => {
         </div>
     )
 }
-//style={{width: "100%", height: "100%", objectFit:"cover" }}
+
 const ImageSlider = styled(ImageSliderComponent)`
     opacity: 1;
     transition: opacity ease-in-out 0.4s; 
