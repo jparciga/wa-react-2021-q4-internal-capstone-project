@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 
 import Slider from 'components/Slider/Slider';
-import Carousel from 'components/Carousel/Carousel';
+import Carousel from 'components/Carousel/Carousel.style';
 import Grid from 'components/Grid/Grid';
 
 import FeaturedBanners from 'mocks/featured-banners.json';
