@@ -1,6 +1,6 @@
 ## Description
 
-```
+
 Deliverable 1.
 Includes:
 
@@ -10,7 +10,6 @@ Footer (text)
 Unit test for the logo img element loading correctly.
 
 Link to deployed app: https://franciscojrodrigueze.github.io/wa-react-2021-q4-internal-capstone-project/
-```
 
 ## Type of Change
 
