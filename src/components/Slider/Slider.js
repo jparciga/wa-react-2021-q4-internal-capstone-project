@@ -14,9 +14,6 @@ const SliderComponent = ({className, data}) => {
         } else if (slideIndex === data.results.length) {
             setSlideIndex(1);
         }
-
-        console.log("Next: " + slideIndex);
-        
     };
 
     const prevSlide = () => {
@@ -25,7 +22,6 @@ const SliderComponent = ({className, data}) => {
         } else if (slideIndex === 1) {
             setSlideIndex(data.results.length);
         }
-        console.log("Prev: " + slideIndex);
     };
 
     const moveDot = index => {
