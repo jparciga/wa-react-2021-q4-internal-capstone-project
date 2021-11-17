@@ -1,68 +1,61 @@
-```
-< Delete this code block >
-
-- All code blocks must be preliminarily deleted in this page unless a block of code needs to be included.
-- Fill all the sections with plain text unless a different formatting (quote, code block, etc.) is needed.
-```
-
-<br/>
-
 ## Description
 
 ```
-< Replace with the PR description >
+Deliverable 1.
+Includes:
 
-- Include a summary of the change and which issue, if any, has been fixed.
-- Include a relevant motivation and a context.
-- List any dependencies that are required for this change.
-- Include a link to your deployed app
+Header (Logo, Search, Shopping cart icon)
+Content (Home; Slider, Carousel, Grid)
+Footer (text)
+Unit test for the logo img element loading correctly.
+
+Link to deployed app: https://franciscojrodrigueze.github.io/wa-react-2021-q4-internal-capstone-project/
 ```
 
 ## Type of Change
 
-```
-Delete options that are not relevant.
-```
-
-- [x] Bug fix (non-breaking change which fixes an issue)
 - [x] New feature (non-breaking change which adds functionality)
-- [x] Breaking change (fix or feature that would cause existing functionality to not work as expected)
 - [x] Refactor (non-breaking refactor which doesn't change functionality)
-- [x] Documentation update
 - [x] Tests (Adding missing tests or correcting existing tests)
 - [x] Styles (Changes that do not affect the meaning of the code (white-space, formatting, missing semi-colons, etc))
-- [x] Performance Improvements (A code change that improves performance)
-- [x] Builds (Changes that affect the build system or external dependencies (example scopes: gulp, broccoli, npm)
-- [x] Continuous Integrations (Changes to our CI configuration files and scripts)
-- [x] Chores (Other changes that don't modify src or test files)
-- [x] Reverts (Reverts a previous commit)
 
 ## How Has This Been Tested?
 
 ```
-< Replace with test details >
+As per Week 1's delivery criteria, only the logo img tag has been tested. 
 
-- Describe the tests that you ran to verify your changes.
-- Provide detailed instructions so that the reviewers can easily verify the PR.
-- List any relevant details for your test configuration
-- Include a screenshot or paste the test results here
+How to run tests:
+1. Pull this branch.
+2. Execute "npm run test"
+
+Test results
+```
+ PASS  src/App.test.js
+  √ renders logo (105 ms)
+
+Test Suites: 1 passed, 1 total
+Tests:       1 passed, 1 total
+Snapshots:   0 total
+Time:        3.617 s
+Ran all test suites.
 ```
 
 # Checklist:
 
-- [ ] I have performed a self-review of my own code
-- [ ] I have commented my code, particularly in hard-to-understand areas
-- [ ] My changes generate no new warnings or errors
-- [ ] I have added test instructions that prove my fix is effective or that my feature works
-- [ ] I have provided screenshots or recordings of results
-- [ ] I have added unit tests for the piece of work
+- [x] I have performed a self-review of my own code
+- [x] I have commented my code, particularly in hard-to-understand areas
+- [x] My changes generate no new warnings or errors
+- [x] I have added test instructions that prove my fix is effective or that my feature works
+- [x] I have provided screenshots or recordings of results
+- [x] I have added unit tests for the piece of work
 
 # Evaluation Criteria
-```
- Plese add here the evaluation criteria for the corresponding challenge
-```
 
-# Notes 
-```
- - Add any aditional note you want here
-```
+- The Header is rendered correctly (25 points)
+- The Featured Banners Slider is rendered correctly using the data from the mock file (20 points)
+- The Categories Carousel/Grid is rendered correctly using the data from the mock file (20 points)
+- The Featured Products Grid is rendered correctly using the data from the mock file (30 points)
+- The Footer is rendered correctly (5 points)
+
+Bonus
+- Unit Test to validate that the Ecommerce Store logo/name appears correctly in the Header. (10 points)
