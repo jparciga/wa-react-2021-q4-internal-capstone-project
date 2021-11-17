@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import GridCard from './GridCard';
+import GridCard from 'components/GridCard/GridCard';
 
 const GridComponent = ({className, data}) =>  {
     return ( 

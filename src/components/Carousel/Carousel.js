@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import styled from 'styled-components';
-import ButtonSlider from './ButtonSlider';
+import ButtonSlider from 'components/ButtonSlider/ButtonSlider';
 
 const CarouselComponent = ({className, data}) => {
     const [xPos, setXpos] = useState(0);

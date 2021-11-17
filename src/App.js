@@ -1,10 +1,10 @@
 import './App.css';
 import styled from 'styled-components';
 
-import Home from './Home';
+import Home from 'components/Home/Home';
 
-import LogoImg from './image.png';
-import ShoppingCartIcon from './shopping-cart.svg';
+import LogoImg from 'images/image.png';
+import ShoppingCartIcon from 'images/shopping-cart.svg';
 
 const Container = styled.div`
   height: 100vh;
@@ -89,11 +89,5 @@ const App = () => {
     </Container>
   );
 }
-
-  // <Container>
-  //   <Header />
-  //   <Content />
-  //   <Footer />
-  // </Container>
 
 export default App;

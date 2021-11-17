@@ -1,13 +1,13 @@
 import React from 'react';
-import Slider from './Slider';
-import Carousel from './Carousel';
-import Grid from './Grid';
-
 import styled from 'styled-components';
 
-import FeaturedBanners from './featured-banners.json';
-import ProductCategories from './product-categories.json';
-import FeaturedProducts from './featured-products.json';
+import Slider from 'components/Slider/Slider';
+import Carousel from 'components/Carousel/Carousel';
+import Grid from 'components/Grid/Grid';
+
+import FeaturedBanners from 'mocks/featured-banners.json';
+import ProductCategories from 'mocks/product-categories.json';
+import FeaturedProducts from 'mocks/featured-products.json';
 
 const HomeContainer = styled.div`
     display: grid;

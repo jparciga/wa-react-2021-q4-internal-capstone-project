@@ -1,9 +1,8 @@
 import React from 'react'
-import leftArrow from './images/left_arrow.svg';
-import rightArrow from './images/right_arrow.svg';
+import leftArrow from 'images/left_arrow.svg';
+import rightArrow from 'images/right_arrow.svg';
 
 import styled from 'styled-components';
-
 
 const ButtonSliderComponent = ({className, moveSlide, direction}) => {
     return (
@@ -14,7 +13,6 @@ const ButtonSliderComponent = ({className, moveSlide, direction}) => {
         </button>
     )
 };
-
 
 const ButtonSlider = styled(ButtonSliderComponent)`
     width: 60px;
