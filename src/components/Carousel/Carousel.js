@@ -1,22 +1,17 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import ButtonSlider from 'components/ButtonSlider/ButtonSlider.style';
 
 const CarouselComponent = ({className, data}) => {
     const [xPos, setXpos] = useState(0);
+    const [style, setStyle] = useState({transform: `translateX(0px)`, transitionDuration: "0.5s" })
 
-    const moveCarousel = (direction) => {
-        if(direction === "prev" && xPos > -600){
-            setXpos(x => x - 200);
-        }
-     
-        if(direction === "next" && xPos < 600){
-            setXpos(x => x + 200);
-        }
-    };
+    useEffect(() => {
+        setStyle(() => {return {transform: `translateX(${xPos}px)`, transitionDuration: "0.5s" }});
+    },[xPos]);
 
     return (
     <div className={className}>
-        <div className="track" style={{transform: `translateX(${xPos}px)`, transitionDuration: "0.5s" }}>
+        <div className="track" style={style}>
             {data.results.map(obj => {
                 return (
                     <div key={obj.id} id={obj.id} className="card-container">
@@ -25,44 +20,9 @@ const CarouselComponent = ({className, data}) => {
                 );
             })}      
         </div>
-        <ButtonSlider moveSlide={() => moveCarousel("prev")} direction="prev"></ButtonSlider>
-        <ButtonSlider moveSlide={() => moveCarousel("next")} direction="next"></ButtonSlider>
+        <ButtonSlider moveSlide={() => setXpos(x => x - ((xPos > -600) ? 330 : 0)) } direction="prev"></ButtonSlider>
+        <ButtonSlider moveSlide={() => setXpos(x => x + ((xPos <  600) ? 330 : 0))} direction="next"></ButtonSlider>
     </div> );
 }
-
-// const Carousel = styled(CarouselComponent)`
-//     display:grid;    
-//     grid-template: "track" 1fr;
-//     place-items: center;
-//     place-content: center;
-//     overflow: hidden;
-//     max-height: clamp(450px, 30vh, 600px);
-
-//     & > * {
-//         grid-area: track;
-//         max-width: 1000px;
-//     }
-
-//     .track {
-//         display:grid;
-//         grid-template-columns 1fr 1fr 1fr 1fr 1fr;
-        
-//         gap: 0.5em;
-//     }
-
-
-//     .card-container {
-//         justify-self: center;
-//         align-self: center;
-//     }
-//     img {
-//         width: 100%;
-//         height: auto;
-//         aspect-ratio: 16 / 9;
-//         object-fit: cover;
-//     }
-// `;
-
-
 
 export default CarouselComponent;
