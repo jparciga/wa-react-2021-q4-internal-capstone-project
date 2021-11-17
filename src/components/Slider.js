@@ -1,9 +1,9 @@
 import React, { useEffect, useState, useCallback } from 'react';
-import featuresData from '../mocks/en-us/featured-banners.json';
+import bannersData from '../mocks/en-us/featured-banners.json';
 import styles from './Slider.module.css';
 export default function Slider() {
   const [imageSelected, setImageSelected] = useState(0);
-  const length = featuresData.results.length;
+  const length = bannersData.results.length;
 
   const nextSlide = useCallback(() => {
     setImageSelected(imageSelected === length - 1 ? 0 : imageSelected + 1);
@@ -16,24 +16,17 @@ export default function Slider() {
 
     return () => clearTimeout(timer);
   }, [nextSlide, imageSelected]);
+
+  const getSlideStyles = (index) => {
+    if (index === imageSelected) return [styles.active, styles.slide];
+    return styles.slide;
+  };
   return (
     <section className={styles.slider}>
-      {featuresData.results.map((res, index) => {
+      {bannersData.results.map(({ id, data: { main_image } }, index) => {
         return (
-          <div
-            className={
-              index === imageSelected
-                ? (styles.slide, styles.active)
-                : styles.slide
-            }
-            id={res.id}
-            key={res.id}
-          >
-            <img
-              className={styles.image}
-              src={res.data.main_image.url}
-              alt={res.id}
-            />
+          <div className={getSlideStyles(index)} key={id}>
+            <img className={styles.image} src={main_image.url} alt={id} />
           </div>
         );
       })}

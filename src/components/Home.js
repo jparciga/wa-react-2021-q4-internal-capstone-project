@@ -3,11 +3,11 @@ import Categories from './Categories';
 import Products from './Products';
 import Slider from './Slider';
 
-export default function Home({ showMenu }) {
+export default function Home({ onSetShowMenu, showMenu }) {
   return (
     <>
       <Slider />
-      <Categories showMenu={showMenu} />
+      <Categories onSetShowMenu={onSetShowMenu} showMenu={showMenu} />
       <Products />
     </>
   );
