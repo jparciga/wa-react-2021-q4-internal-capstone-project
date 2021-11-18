@@ -22,6 +22,9 @@ const App = () => {
       </Header>
       <Content>
         <Home />
+        <div>
+          <button id="btnChangePage">View All Products</button>
+        </div>
       </Content>
       <Footer>Ecommerce created during Wizeline’s Academy React Bootcamp.</Footer>
     </Container>
