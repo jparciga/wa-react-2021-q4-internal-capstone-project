@@ -1,26 +1,30 @@
+import HotProductCard from "../HotProductCard";
+import { HotProductsRow } from "./HotProductsTable.styled";
+
 export default function HotProductsTable({ productsList }) {
+  let emptyProduct = { image: "", name: "", price: "", inactive: true };
+
   let rows = [];
   for (let steps = 0; steps < productsList.length; steps += 4) {
-    rows.push(productsList.slice(steps, steps + 4));
+    let row = productsList.slice(steps, steps + 4);
+    while (row.length < 4) {
+      row.push(emptyProduct);
+    }
+    rows.push(row);
   }
 
   return (
-    <table>
+    <>
       {rows.map((row, rowIndex) => (
-        <tr key={`row${rowIndex}`}>
+        <HotProductsRow key={`row${rowIndex}`}>
           {row.map((product, productIndex) => (
-            <td key={`product${rowIndex}-${productIndex}`}>
-              <img
-                src={product.image}
-                alt={product.name}
-                className="hot_item"
-              />
-              <p className="hot_name">{product.name}</p>
-              <p className="hot_price">{product.price}</p>
-            </td>
+            <HotProductCard
+              key={`product${rowIndex}-${productIndex}`}
+              {...product}
+            />
           ))}
-        </tr>
+        </HotProductsRow>
       ))}
-    </table>
+    </>
   );
 }
