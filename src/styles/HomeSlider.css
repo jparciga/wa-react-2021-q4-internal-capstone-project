@@ -1,0 +1,26 @@
+.Slider{
+    border:black solid 5px;
+    border-radius: 10px;
+    background-color: black;
+    max-width: 70%;
+    min-height: 40%;
+    max-height: 40%;
+    margin: auto;
+  }
+
+  .Banner-image{
+    max-width: 90%;
+    margin-top: 20px;
+    text-align: left !important;
+  }
+  
+  .Banner-title{
+    margin-top: 5px;
+    color: gold;
+  }
+  
+  .Banner-description{
+    margin-top: 5px;
+    color: white;
+    margin-bottom: 10px;
+  }

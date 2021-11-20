@@ -8,10 +8,6 @@ const HomeSlider = ({ banners }) => {
     setCurrent(current === length - 1 ? 0 : current + 1);
   };
 
-  if (!Array.isArray(banners) || banners.length <= 0) {
-    return null;
-  }
-
   setTimeout(() => {
     var slider = document.getElementById("home-carrousel");
 

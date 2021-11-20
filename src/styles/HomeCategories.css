@@ -1,0 +1,37 @@
+.Categories-list {
+  border: black solid 5px;
+  border-radius: 10px;
+  background-color: black;
+  max-width: 70%;
+  max-height: 30%;
+  margin: auto;
+  margin-top: 20px;
+  color: white;
+}
+
+.Categories-title {
+  margin-bottom: 10px;
+}
+
+.Category {
+  max-width: 25%;
+  display: inline;
+}
+
+.Category-image {
+  max-width: 20%;
+  margin-left: 3%;
+  margin-right: 3%;
+}
+
+.Left-arrow {
+  color: white;
+  margin-bottom: 5%;
+  cursor: pointer;
+}
+
+.Right-arrow {
+  color: white;
+  margin-bottom: 5%;
+  cursor: pointer;
+}

@@ -1,16 +1,23 @@
-import logo from "./Logo.png";
-import "./App.css";
+import "./styles/App.css";
+import "./styles/HomeSlider.css";
+import "./styles/FeaturedProducts.css";
+import "./styles/HomeCategories.css";
 // import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { useFeaturedBanners } from "./utils/hooks/useFeaturedBanners";
-import { FaShoppingCart } from "react-icons/fa";
 
 // import Home from "./pages/Home";
-import HomeSliderComponent from "./components/HomeSlider";
+
+//JSON data
 import Banners from "./mocks/en-us/featured-banners.json";
-import HomeCategoriesComponent from "./components/HomeCategories";
 import Categories from "./mocks/en-us/product-categories.json";
-import FeaturedProductsComponent from "./components/FeaturedProducts";
 import FeaturedProducts from "./mocks/en-us/featured-products.json";
+
+//Components
+import Header from "./components/Header";
+import Footer from "./components/Footer";
+import HomeSliderComponent from "./components/HomeSlider";
+import HomeCategoriesComponent from "./components/HomeCategories";
+import FeaturedProductsComponent from "./components/FeaturedProducts";
 
 const Home = () => {
   return (
@@ -22,7 +29,7 @@ const Home = () => {
         <HomeCategoriesComponent categories={Categories.results} />
       </div>
       <div className="Products">
-        <FeaturedProductsComponent products={FeaturedProducts.results}/>
+        <FeaturedProductsComponent products={FeaturedProducts.results} />
       </div>
     </div>
   );
@@ -34,24 +41,11 @@ function App() {
 
   return (
     <div className="App">
-      <div className="App-header">
-        <div>
-          <span className="Title">
-            <img className="Logo" src={logo} alt="Logo" width="25px" />
-            Muebleria Xtrema
-          </span>
-          <span className="Shopping-options">
-            <FaShoppingCart className="Shopping-cart"/>
-            <input placeholder="Search" className="Search-input"></input>
-          </span>
-        </div>
-      </div>
+      <Header />
       <div className="Body">
         <Home />
       </div>
-      <div className="Footer">
-      Ecommerce created during Wizeline’s Academy React Bootcamp
-      </div>
+      <Footer />
     </div>
 
     // <div className="App">
