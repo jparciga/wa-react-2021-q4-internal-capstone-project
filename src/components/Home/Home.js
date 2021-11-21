@@ -21,7 +21,7 @@ const Home = () => {
         <Slider data={FeaturedBanners}/>
         <Carousel data={ProductCategories}/>
         <div className="carousel"></div>
-        <Grid data={FeaturedProducts} />
+        <Grid data={FeaturedProducts.results} />
     </HomeContainer>
     );
 };

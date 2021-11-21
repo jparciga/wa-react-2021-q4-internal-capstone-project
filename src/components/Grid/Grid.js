@@ -3,9 +3,11 @@ import styled from 'styled-components';
 import GridCard from 'components/GridCard/GridCard';
 
 const GridComponent = ({className, data}) =>  {
+    console.log("Inside Grid: ", data);
+
     return ( 
     <div className={className}>
-        {data.results.map(obj => { return ( 
+        {data.map(obj => { return ( 
             <GridCard 
                 key={obj.id} 
                 url={obj.data.mainimage.url}
