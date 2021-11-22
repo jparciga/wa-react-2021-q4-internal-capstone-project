@@ -9,12 +9,18 @@ export default function Slider() {
     setImageSelected(imageSelected === length - 1 ? 0 : imageSelected + 1);
   }, [length, imageSelected]);
   useEffect(() => {
+    let mounted = true;
     let timer = null;
-    setTimeout(() => {
-      nextSlide();
-    }, 6000);
+    if (mounted) {
+      timer = setTimeout(() => {
+        nextSlide();
+      }, 6000);
+    }
 
-    return () => clearTimeout(timer);
+    return () => {
+      mounted = false;
+      clearTimeout(timer);
+    };
   }, [nextSlide, imageSelected]);
 
   const getSlideStyles = (index) => {

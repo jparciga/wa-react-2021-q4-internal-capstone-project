@@ -7,16 +7,15 @@ import Pagination from '../components/Pagination';
 export default function Products({ categoriesSelected }) {
   let [products, setProducts] = useState([]);
   useEffect(() => {
+    let mounted = true;
     const productsData =
       categoriesSelected && categoriesSelected.length > 0
         ? ProductsData.results.filter((prod) =>
             categoriesSelected.includes(prod.data.category.id)
           )
         : ProductsData.results;
-    setProducts(productsData);
-    return () => {
-      setProducts([]);
-    };
+    if (mounted) setProducts(productsData);
+    return () => (mounted = false);
   }, [categoriesSelected]);
 
   return (
