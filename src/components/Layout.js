@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
-
-import Home from './Home';
+import { Routes, Route } from 'react-router-dom';
+import Home from '../pages/HomePage';
+import Products from '../pages/ProductsPage';
 import { Footer } from './Footer.styles';
 import Header from './Header';
 import Content from './Content';
@@ -10,7 +11,18 @@ export default function Layout() {
     <>
       <Header onSetShowMenu={setShowMenu} showMenu={showMenu} />
       <Content>
-        <Home onSetShowMenu={setShowMenu} showMenu={showMenu} />
+        <Routes>
+          <Route
+            path="/"
+            element={<Home onSetShowMenu={setShowMenu} showMenu={showMenu} />}
+          />
+          <Route
+            path="/products"
+            element={
+              <Products onSetShowMenu={setShowMenu} showMenu={showMenu} />
+            }
+          />
+        </Routes>
       </Content>
       <Footer>
         Ecommerce created during Wizeline’s Academy React Bootcamp

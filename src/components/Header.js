@@ -12,7 +12,7 @@ import {
 import { GiMagnifyingGlass } from 'react-icons/gi';
 import { HiShoppingCart } from 'react-icons/hi';
 import { ImMenu } from 'react-icons/im';
-
+import { Link } from 'react-router-dom';
 export default function Header({ onSetShowMenu, showMenu }) {
   return (
     <HeaderContainer>
@@ -20,7 +20,9 @@ export default function Header({ onSetShowMenu, showMenu }) {
         <ShowMenuBtn>
           <ImMenu onClick={() => onSetShowMenu(!showMenu)} />
         </ShowMenuBtn>
-        <MenuLogo> Logo </MenuLogo>
+        <MenuLogo>
+          <Link to="/"> Logo </Link>
+        </MenuLogo>
         <MenuItem> HOME </MenuItem>
         <MenuItem>
           <SearchInput placeholder="Search Products..." />

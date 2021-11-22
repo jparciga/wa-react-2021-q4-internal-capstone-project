@@ -33,6 +33,13 @@ export const MenuItem = styled.li`
 export const MenuLogo = styled.li`
   font-size: 20px;
   padding: 7.5px 10px 7.5px 0;
+  a {
+    color: white;
+    text-decoration: none;
+  }
+  a:hover {
+    color: white;
+  }
 `;
 export const SearchInput = styled.input`
   padding: 10px;
