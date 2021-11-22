@@ -1,0 +1,79 @@
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  background-image: linear-gradient(to right, #0a0aaf, #004aff);
+  min-height: 50px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.Title{
+  float: left;
+  margin-left: 20px;
+  margin-top: 10px;
+}
+
+.Logo{
+  margin-right: 10px;
+}
+
+.Shopping-options{
+  float:right;
+  margin-right: 20px;
+  margin-top: 15px;
+}
+
+.Shopping-cart{
+  margin-right: 10px;
+}
+
+.Search-input{
+  vertical-align: top;
+    margin-top: 7px;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+.Body {
+  padding-top: 20px;
+  background-color: #edeff2;
+  padding-bottom: 50px;
+  min-height: 100vh;
+}
+
+.Footer {
+  background-color: black;
+  color: white;
+  position: relative;
+  bottom: 0;
+  width: 100%;
+  height: 40px;
+  padding-top: 15px;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}

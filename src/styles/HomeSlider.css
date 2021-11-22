@@ -1,0 +1,9 @@
+.Slider{
+    border:black solid 5px;
+    border-radius: 10px;
+    background-color: black;
+    max-width: 70%;
+    min-height: 40%;
+    max-height: 40%;
+    margin: auto;
+  }

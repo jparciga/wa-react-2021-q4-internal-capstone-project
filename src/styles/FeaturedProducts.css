@@ -1,0 +1,26 @@
+.Product{
+    border:black solid 5px;
+    border-radius: 10px;
+    background-color: black;
+    max-width: 70%;
+    max-height: 30%;
+    margin: auto;
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    color:white;
+  }
+  
+  .Container-product{
+    display: inline-block;
+  }
+
+  .Product-image{
+    float: left;
+    max-width: 15% !important;
+    max-height: 15% !important;
+  }
+  .Product-info{
+    float:right;
+  }
