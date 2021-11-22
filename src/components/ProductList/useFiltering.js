@@ -2,13 +2,15 @@ import {useState, useEffect} from 'react'
 
 const useFiltering = (data) => {
     const [filters, setFilters] = useState([]);
-    console.log("Data: ", data);
     const [filteredData, setFilteredData] = useState(data);
 
     useEffect(() => {
         if(filters.length > 0){
             setFilteredData(data.filter(x => filters.includes(x.data.category.slug)));
+        } else {
+            setFilteredData(data);
         }
+       
     }, [filters, data]);
 
     const handleCustomFilering = (newFilter) => {
@@ -19,10 +21,9 @@ const useFiltering = (data) => {
                 return prevFilter.filter(x => x !== newFilter);
             }
         });
-        console.log(newFilter + " added!");
 ;    };
     
-    return [filteredData, handleCustomFilering];
+    return [filteredData, filters, handleCustomFilering];
 }
 
 export default useFiltering;

@@ -1,0 +1,29 @@
+.disabled {
+    border: 1px solid #f8d9d0;
+    background-color:#f8d9d0;
+    color:#5a2618;
+    margin: 3px -10px -3px -15px;
+    padding : 10px 0;
+}
+
+.disabled:hover {
+    border: 1px solid white;
+    background-color:white;
+    cursor: pointer;
+}
+
+
+.enabled {
+    border: 1px solid #5a2618;
+    background-color: #5a2618;
+    color:#f8d9d0;
+    margin: 3px -10px -3px -15px;
+    padding : 10px 0;
+}
+
+
+.enabled:hover {
+    border: 1px solid #9b462e;
+    background-color: #9b462e;
+    cursor: pointer;
+}

@@ -7,15 +7,20 @@ const GridComponent = ({className, data}) =>  {
 
     return ( 
     <div className={className}>
-        {data.map(obj => { return ( 
-            <GridCard 
-                key={obj.id} 
-                url={obj.data.mainimage.url}
-                name={obj.data.name}
-                category={obj.data.category.slug}
-                price={"$"+obj.data.price}
-                />) 
-        })}
+        {
+        (data.length > 0) 
+        ?
+            data.map(obj => { return ( 
+                <GridCard 
+                    key={obj.id} 
+                    url={obj.data.mainimage.url}
+                    name={obj.data.name}
+                    category={obj.data.category.slug}
+                    price={"$"+obj.data.price}
+                    />) 
+            })
+        :   
+            <p style={{textAlign: "center"}}>Sorry! No elements.</p>}
     </div> );
 }
 
