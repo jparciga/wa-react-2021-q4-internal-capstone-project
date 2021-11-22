@@ -1,0 +1,37 @@
+.header-wrapper, .footer-wrapper {
+    background-color: #282c34;
+    width: 100%;
+    padding: 2rem 2rem;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    color: white;
+    box-sizing: border-box;
+}
+
+.page-title {
+    margin: 0;
+    text-align: left;
+    flex-grow: 1;
+}
+
+.cart-icon {
+    height: 1.7em;
+    padding: 0;
+    border: none;
+    background: none;
+    color: inherit;
+}
+
+.search-bar {
+    margin: 0;
+}
+
+@media screen and (max-width: 640px) {
+    .header-wrapper {
+        flex-direction: column;
+    }    
+}
+  
