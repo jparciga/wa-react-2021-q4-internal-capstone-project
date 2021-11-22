@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import Product from "./Product";
 import Sidebar from "./Sidebar";
+import Paging from "./Paging";
 
 const AllProducts = ({ products, categories }) => {
   const [sidebarCategories, setItems] = useState(categories);
@@ -57,6 +58,7 @@ const AllProducts = ({ products, categories }) => {
           </div>
         );
       })}
+      <Paging/>
     </div>
   );
 };

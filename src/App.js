@@ -5,7 +5,8 @@ import "./styles/HomeSlider.css";
 import "./styles/Product.css";
 import "./styles/HomeCategories.css";
 import "./styles/BannerComponent.css";
-import "./styles/Sidebar.css"
+import "./styles/Sidebar.css";
+import "./styles/Paging.css";
 // import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { useFeaturedBanners } from "./utils/hooks/useFeaturedBanners";
 
