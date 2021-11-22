@@ -12,7 +12,7 @@ const ProductListComponent = ({className, products, categories}) => {
     return (
         <div className={className}>
             <Sidebar data={categories} clickEvent={handleCustomFilering} title={`Categories`} filters={filters} />
-            <Grid data={filteredData} />
+            <Grid data={filteredData} pagination />
         </div>
     )
 };
