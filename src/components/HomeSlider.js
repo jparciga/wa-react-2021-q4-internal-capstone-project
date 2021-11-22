@@ -1,5 +1,8 @@
 import React, { useState } from "react";
 
+//Components
+import BannerComponent from "./BannerComponent";
+
 const HomeSlider = ({ banners }) => {
   const [current, setCurrent] = useState(0);
   const length = banners.length;
@@ -27,17 +30,7 @@ const HomeSlider = ({ banners }) => {
           >
             {index === current && (
               <div>
-                <img
-                  src={slide.data.main_image.url}
-                  alt={"banner " + (index + 1)}
-                  className="Banner-image"
-                />
-                <div className="Banner-title">
-                  {slide.data.title}
-                </div>
-                <div className="Banner-description">
-                  {slide.data.description[0].text}
-                </div>
+                <BannerComponent banner={slide} index={index} />
               </div>
             )}
           </div>

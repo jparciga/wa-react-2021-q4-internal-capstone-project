@@ -7,20 +7,3 @@
     max-height: 40%;
     margin: auto;
   }
-
-  .Banner-image{
-    max-width: 90%;
-    margin-top: 20px;
-    text-align: left !important;
-  }
-  
-  .Banner-title{
-    margin-top: 5px;
-    color: gold;
-  }
-  
-  .Banner-description{
-    margin-top: 5px;
-    color: white;
-    margin-bottom: 10px;
-  }
