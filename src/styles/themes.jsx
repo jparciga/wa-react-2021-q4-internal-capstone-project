@@ -6,4 +6,5 @@ export const defaultTheme = {
   dark: "#000",
   darkWeak: "#333",
   gray: "#999",
+  transition: "all 0.3s ease 0s",
 };

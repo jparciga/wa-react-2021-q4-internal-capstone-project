@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const HeroContentContainer = styled.div`
+export const BannerContainer = styled.div`
   grid-column: 2 / span 4;
   height: 32.8125rem;
   display: flex;
@@ -17,29 +17,36 @@ export const HeroContentContainer = styled.div`
   border-radius: 10px;
 `;
 
-export const HeroContentCTA = styled.div`
+export const BannerCTA = styled.div`
   margin-left: 50px;
   width: 500px;
 `;
 
-export const HeroTitle = styled.h1`
+export const BannerTitle = styled.h1`
   font-family: "Work Sans", "Lato", sans-serif;
   font-size: 2.5rem;
   font-weight: 700;
   margin-bottom: 15px;
 `;
 
-export const HeroSubtitle = styled.h2`
+export const BannerAccent = styled.span`
+  font-family: "Work Sans", "Lato", sans-serif;
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: ${({ theme }) => theme.accent};
+`;
+
+export const BannerSubtitle = styled.h2`
   font-size: 1.0625rem;
   margin-bottom: 15px;
 `;
 
-export const HeroText = styled.p`
+export const BannerText = styled.p`
   font-size: 0.8125rem;
   margin-bottom: 30px;
 `;
 
-export const HeroButton = styled.button`
+export const BannerButton = styled.button`
   font-weight: 700;
   color: ${({ theme }) => theme.light};
   background-color: ${({ theme }) => theme.accentWeak};
