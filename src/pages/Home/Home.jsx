@@ -1,5 +1,5 @@
 import Banner from "../../components/Banner";
-import HotProducts from "../../components/HotProducts";
+import ProductsGrid from "../../components/ProductsGrid/ProductsGrid";
 import Slider from "../../components/Slider";
 
 export default function Home() {
@@ -18,7 +18,7 @@ export default function Home() {
   return (
     <>
       <Slider contentList={bannerList} autoPlaySeconds={3000} />
-      <HotProducts />
+      <ProductsGrid title="Hot Products" />
     </>
   );
 }

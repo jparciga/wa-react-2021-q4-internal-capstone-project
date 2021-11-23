@@ -1,21 +1,21 @@
 import styled from "styled-components";
 
-export const HotProductsContainer = styled.div`
+export const ProductsGridContainer = styled.div`
   grid-column: 2 / span 4;
 `;
 
-export const HotHeader = styled.div`
+export const ProductsGridHeader = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
 `;
 
-export const HotTitle = styled.h1`
+export const ProductsGridTitle = styled.h1`
   font-size: 1.75rem;
   font-weight: 700;
 `;
 
-export const HotOption = styled.span`
+export const ProductsGridOption = styled.span`
   cursor: pointer;
   padding: 5px 10px;
   border-radius: 10px;
