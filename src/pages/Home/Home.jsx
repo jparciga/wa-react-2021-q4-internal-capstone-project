@@ -2,7 +2,7 @@ import Banner from "../../components/Banner";
 import ProductsGrid from "../../components/ProductsGrid";
 import Slider from "../../components/Slider";
 
-export default function Home() {
+export default function Home({ changePage }) {
   let bannerList =
     require("../../mocks/en-us/featured-banners.json").results.map(
       ({ data }) => (
@@ -40,6 +40,7 @@ export default function Home() {
         title="Hot Products"
         categories={categories}
         products={products}
+        changePage={changePage}
       />
     </>
   );

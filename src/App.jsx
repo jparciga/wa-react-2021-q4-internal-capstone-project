@@ -26,7 +26,7 @@ function App() {
   let page;
   switch (pageId) {
     case NAVIGATION.HOME:
-      page = <Home />;
+      page = <Home changePage={setPageId} />;
       break;
     case NAVIGATION.SHOP:
       page = (

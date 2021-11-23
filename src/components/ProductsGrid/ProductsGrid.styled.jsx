@@ -2,6 +2,9 @@ import styled from "styled-components";
 
 export const ProductsGridContainer = styled.div`
   grid-column: 2 / span 4;
+  display: flex;
+  flex-direction: column;
+  align-items: space-between;
 `;
 
 export const ProductsGridHeader = styled.div`
@@ -32,4 +35,18 @@ export const Grid = styled.div`
   justify-content: space-around;
   flex-wrap: wrap;
   gap: 60px;
+`;
+
+export const ViewAllButton = styled.button`
+  align-self: center;
+  margin: 30px 0px;
+  width: 300px;
+  height: 50px;
+  background: transparent;
+  color: ${({ theme }) => theme.accent};
+  border-color: ${({ theme }) => theme.accent};
+  border-style: solid;
+  border-radius: 10px;
+  font-weight: 700;
+  font-size: 1.125rem;
 `;

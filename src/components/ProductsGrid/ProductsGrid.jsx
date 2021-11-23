@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { NAVIGATION } from "../../utils/constants";
 import ProductCard from "../ProductCard";
 import {
   ProductsGridHeader,
@@ -6,12 +7,14 @@ import {
   ProductsGridContainer,
   ProductsGridTitle,
   Grid,
+  ViewAllButton,
 } from "./ProductsGrid.styled";
 
 export default function ProductsGrid({
   title,
   categories,
   products,
+  changePage,
   firstActiveCategoryId = "*",
 }) {
   const [activeCategoryId, setActiveCategoryId] = useState(
@@ -63,6 +66,9 @@ export default function ProductsGrid({
         <div>{categoryControls}</div>
       </ProductsGridHeader>
       <Grid>{productsList}</Grid>
+      <ViewAllButton onClick={() => changePage(NAVIGATION.SHOP)}>
+        View all products
+      </ViewAllButton>
     </ProductsGridContainer>
   );
 }
