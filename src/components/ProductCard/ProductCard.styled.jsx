@@ -17,6 +17,7 @@ export const ProductName = styled.p`
   font-size: 1.125rem;
   font-weight: 700;
   margin-bottom: 5px;
+  text-align: center;
 `;
 
 export const ProductPrice = styled.p`

@@ -1,5 +1,5 @@
 import Banner from "../../components/Banner";
-import ProductsGrid from "../../components/ProductsGrid/ProductsGrid";
+import ProductsGrid from "../../components/ProductsGrid";
 import Slider from "../../components/Slider";
 
 export default function Home() {
