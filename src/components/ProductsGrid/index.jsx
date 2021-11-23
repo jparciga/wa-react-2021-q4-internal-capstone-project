@@ -1,1 +1,1 @@
-export { default } from "./HotProducts";
+export { default } from "./ProductsGrid";
