@@ -1,29 +1,29 @@
-import logo from './logo.svg';
 import './App.css';
-import { useFeaturedBanners } from './utils/hooks/useFeaturedBanners';
+import Header from './components/Header';
+import Footer from "./components/Footer";
+import HomePage from './pages/HomePage';
+import ProductsList from './pages/ProductsList';
+import { useState } from 'react';
 
-function App() {
-  const { data, isLoading } = useFeaturedBanners();
-  console.log(data, isLoading);
+const App = () => {
+  const [showHomePage, setShowHomePage] = useState(true);
+
+  const toggleHomePage = () => {
+    window.scrollTo(0, 0);
+    setShowHomePage(!showHomePage);
+  }
 
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Header goToHomePage={() => setShowHomePage(true)}/>
+      {
+        showHomePage ? 
+        <HomePage toggleHomePage={toggleHomePage} /> : 
+        <ProductsList toggleHomePage={toggleHomePage}/>
+      }
+      <Footer />
     </div>
   );
-}
+};
 
 export default App;
