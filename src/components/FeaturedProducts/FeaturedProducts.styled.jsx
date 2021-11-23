@@ -30,13 +30,6 @@ export const FeaturedProductsOption = styled.span`
   }
 `;
 
-export const Grid = styled.div`
-  display: flex;
-  justify-content: space-around;
-  flex-wrap: wrap;
-  gap: 60px;
-`;
-
 export const ViewAllButton = styled.button`
   align-self: center;
   margin: 30px 0px;

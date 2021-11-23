@@ -1,12 +1,12 @@
 import { useState } from "react";
 import { NAVIGATION } from "../../utils/constants";
+import Grid from "../Grid";
 import ProductCard from "../ProductCard";
 import {
   FeaturedProductsHeader,
   FeaturedProductsOption,
   FeaturedProductsContainer,
   FeaturedProductsTitle,
-  Grid,
   ViewAllButton,
 } from "./FeaturedProducts.styled";
 
