@@ -5,6 +5,7 @@ const Items = styled.div`
     flex-wrap: wrap;
     gap: 30px;
     justify-content: center;
+    margin: 0 20px;
 `;
 
 const Content = styled.div`
@@ -14,6 +15,9 @@ const Content = styled.div`
 
 const Title = styled.h2`
     margin-bottom: 40px;
+    @media (max-width: 768px) {
+        font-size: 1.2rem;
+    }
 `;
 
 export { Items, Content, Title};

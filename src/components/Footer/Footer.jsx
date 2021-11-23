@@ -1,4 +1,4 @@
-import { Content, Message } from './Footer.styled';
+import { Content } from './Footer.styled';
 
 const Footer = () => {
     const message = "Ecommerce created during Wizeline’s Academy React Bootcamp";

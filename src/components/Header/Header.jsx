@@ -1,17 +1,16 @@
 import { Navbar, BrandName, NavLinks, NavItem, Search } from './Header.styled';
 import { GrCart } from 'react-icons/gr';
 
-const Header = () => {
+const Header = ({goToHomePage}) => {
     return (
     <Navbar>
-        <BrandName>Torii</BrandName>
+        <BrandName onClick={goToHomePage}>Torii</BrandName>
         <NavLinks>
             <NavItem>
                 <Search 
-                    placeholder=" 🔍  search your dreams..."
+                    placeholder=" 🔍 search..."
                  />
             </NavItem>
-            <NavItem>Furniture</NavItem>
             <NavItem>
                 <GrCart />
             </NavItem>

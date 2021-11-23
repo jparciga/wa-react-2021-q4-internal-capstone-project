@@ -1,17 +1,25 @@
 import styled from 'styled-components';
 
 const Navbar = styled.nav`
-    padding: 0 50px;
+    padding: 0 20px;
     display: flex;
     justify-content: space-between;
     align-items: center;
     font-size: 18px;
+    height: 80px;
 `;
 
 const BrandName = styled.div`
     font-size: 23px;
     font-weight: 900;
+    margin: 10px 15px;
     cursor: pointer;
+    @media (max-width: 768px) {
+        font-size: 20px;
+    }
+    @media (max-width: 576px) {
+        font-size: 18px;
+    }
 `;
 
 const NavLinks = styled.ul`
@@ -31,13 +39,18 @@ const NavItem = styled.li`
 `;
 
 const Search = styled.input`
-    flex: 1 0;
-    min-width: 300px;
-    min-height: 30px;
-    font-size: inherit;
+    min-height: 25px;
+    width: 300px;
     background-color: transparent;
-    padding-left: 5px;
     border: 1px solid #000;
+
+    @media (max-width: 768px) {
+        width: 200px;
+    }
+
+    @media (max-width: 576px) {
+        width: 150px;
+    }
 `;
 
 export { Navbar, BrandName, NavLinks, NavItem, Search };

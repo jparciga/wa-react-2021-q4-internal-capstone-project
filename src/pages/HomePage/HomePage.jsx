@@ -3,8 +3,9 @@ import { useFeaturedBanners } from '../../utils/hooks/useFeaturedBanners';
 import AwesomeSlider from 'react-awesome-slider';
 import 'react-awesome-slider/dist/styles.css';
 import Products from "../../components/Products";
-import Footer from "../../components/Footer";
 import CategoriesGrid from "../../components/CategoriesGrid";
+import Button from "../../components/Button";
+import featuredProducts from '../../mocks/en-us/featured-products.json';
 
 const loadSlider = (data) => {
     return (
@@ -22,14 +23,14 @@ const loadSlider = (data) => {
     );
 };
 
-const HomePage = () => {
+const HomePage = ({toggleHomePage}) => {
     const { data, isLoading } = useFeaturedBanners();
     return(
         <Home>
             {isLoading ? "Loading slider..." : loadSlider(data)}
             <CategoriesGrid/>
-            <Products title="Featured Products"/>
-            <Footer></Footer>
+            <Products items={featuredProducts.results} title="Featured Products"/>
+            <Button text="View All Products" handleOnClick={toggleHomePage}/>
         </Home>
     );
 };

@@ -6,6 +6,7 @@ const Content = styled.footer`
     text-align: center;
     font-size: 0.8rem;
     color: #666;
+    margin-top: 50px;
 `;
 
 export { Content };
