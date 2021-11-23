@@ -1,16 +1,16 @@
 import './CardProduct.css';
 
-const CardProduct = (props) => {
+const CardProduct = ({image, alt, name, category, price}) => {
   return (
     <div className='product-card-container'>
       <div className='product-card'>
         <div className='image-container'>
-          <img src={props.image} alt={props.alt}/>
+          <img src={image} alt={alt}/>
         </div>
         <div className='description-container'>
-          <p>{props.name}</p>
-          <p>Category: {props.category}</p>
-          <p>Price: {props.price}</p>
+          <p>{name}</p>
+          <p>Category: {category}</p>
+          <p>Price: {price}</p>
         </div>
       </div>
     </div>

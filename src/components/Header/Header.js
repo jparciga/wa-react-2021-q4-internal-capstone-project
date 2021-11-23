@@ -1,3 +1,4 @@
+import './Header.css'
 import {FiShoppingCart} from "react-icons/fi";
 
 const Header = () => {
