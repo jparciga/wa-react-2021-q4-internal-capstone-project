@@ -6,7 +6,7 @@ export default function Slider({
   autoPlaySeconds = 0,
   startFrom = 0,
 }) {
-  let [active, setActive] = useState(startFrom);
+  const [active, setActive] = useState(startFrom);
 
   useEffect(() => {
     if (autoPlaySeconds > 0) {

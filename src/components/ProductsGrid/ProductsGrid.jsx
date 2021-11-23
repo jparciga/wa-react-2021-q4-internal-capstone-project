@@ -14,9 +14,11 @@ export default function ProductsGrid({
   products,
   firstActiveCategoryId = "*",
 }) {
-  let [activeCategoryId, setActiveCategoryId] = useState(firstActiveCategoryId);
+  const [activeCategoryId, setActiveCategoryId] = useState(
+    firstActiveCategoryId
+  );
 
-  let categoryControlList = [{ id: "*", name: "All" }, ...categories];
+  const categoryControlList = [{ id: "*", name: "All" }, ...categories];
 
   let categoryControls = categoryControlList.map((category) => {
     if (category.id === activeCategoryId) {
