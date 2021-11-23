@@ -46,6 +46,11 @@ export default function FeaturedProducts({
     }
   });
 
+  let categoryNames = {};
+  categories.forEach(({ id, name }) => {
+    categoryNames = { ...categoryNames, [id]: name };
+  });
+
   let productsList = products
     .filter(
       ({ typeId }) => typeId === activeCategoryId || activeCategoryId === "*"
@@ -54,6 +59,7 @@ export default function FeaturedProducts({
       <ProductCard
         key={`product${index}`}
         image={product.image}
+        category={categoryNames[product.typeId]}
         name={product.name}
         price={product.price}
       />

@@ -47,10 +47,16 @@ export default function ProductFilter({ categories, products }) {
     );
   }
 
+  let categoryNames = {};
+  categories.forEach(({ id, name }) => {
+    categoryNames = { ...categoryNames, [id]: name };
+  });
+
   let productsList = filteredProducts.map((product, index) => (
     <ProductCard
       key={`product${index}`}
       image={product.image}
+      category={categoryNames[product.typeId]}
       name={product.name}
       price={product.price}
     />
