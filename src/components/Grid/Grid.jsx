@@ -1,5 +1,5 @@
 import { GridContainer } from "./Grid.styled";
 
-export default function Grid({ contentList }) {
-  return <GridContainer>{contentList}</GridContainer>;
+export default function Grid({ children }) {
+  return <GridContainer>{children}</GridContainer>;
 }

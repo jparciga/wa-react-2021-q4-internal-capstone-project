@@ -5,6 +5,7 @@ export const GlobalStyle = createGlobalStyle`
     box-sizing: border-box;
     margin: 0;
     padding: 0;
+    user-select: none;
   }
 
   h1,
@@ -15,7 +16,7 @@ export const GlobalStyle = createGlobalStyle`
     font-family: "Lato", sans-serif;
     font-size: 1rem;
     font-weight: 400;
-    color: ${({ theme }) => theme.dark}
+    color: ${({ theme }) => theme.dark};
   }
 
   main {

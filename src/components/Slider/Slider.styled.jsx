@@ -13,5 +13,4 @@ export const SliderControls = styled.div`
 export const SliderButton = styled.span`
   cursor: pointer;
   font-size: 25px;
-  user-select: none;
 `;

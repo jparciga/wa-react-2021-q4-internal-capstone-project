@@ -1,3 +1,4 @@
+import { useState } from "react";
 import Grid from "../Grid";
 import ProductCard from "../ProductCard";
 import {
@@ -7,40 +8,59 @@ import {
   ProductsGridTitle,
 } from "./ProductsGrid.styled";
 
-export default function ProductsGrid({ title }) {
-  let allProductsData = [
-    { image: "images/hot-chair.jpg", name: "Waiting Chair", price: "$80.00" },
-    { image: "images/hot-table.jpg", name: "Coffe Table", price: "$100.00" },
-    { image: "images/hot-sofa.jpg", name: "Fabric Sofa", price: "$150.00" },
-    { image: "images/hot-lamp.jpg", name: "Wooden Lamp", price: "$30.00" },
-    { image: "images/hot-sofa.jpg", name: "Fabric Sofa", price: "$150.00" },
-    { image: "images/hot-lamp.jpg", name: "Wooden Lamp", price: "$30.00" },
-    { image: "images/hot-table.jpg", name: "Coffe Table", price: "$100.00" },
-    { image: "images/hot-chair.jpg", name: "Waiting Chair", price: "$80.00" },
-  ];
+export default function ProductsGrid({
+  title,
+  categories,
+  products,
+  firstActiveCategoryId = "*",
+}) {
+  let [activeCategoryId, setActiveCategoryId] = useState(firstActiveCategoryId);
 
-  let allProductsList = allProductsData.map((product, index) => (
-    <ProductCard
-      key={`product${index}`}
-      image={product.image}
-      name={product.name}
-      price={product.price}
-    />
-  ));
+  let categoryControlList = [{ id: "*", name: "All" }, ...categories];
+
+  let categoryControls = categoryControlList.map((category) => {
+    if (category.id === activeCategoryId) {
+      return (
+        <ProductsGridOption
+          key={category.id}
+          onClick={() => setActiveCategoryId(category.id)}
+          active
+        >
+          {category.name}
+        </ProductsGridOption>
+      );
+    } else {
+      return (
+        <ProductsGridOption
+          key={category.id}
+          onClick={() => setActiveCategoryId(category.id)}
+        >
+          {category.name}
+        </ProductsGridOption>
+      );
+    }
+  });
+
+  let productsList = products
+    .filter(
+      ({ typeId }) => typeId === activeCategoryId || activeCategoryId === "*"
+    )
+    .map((product, index) => (
+      <ProductCard
+        key={`product${index}`}
+        image={product.image}
+        name={product.name}
+        price={product.price}
+      />
+    ));
 
   return (
     <ProductsGridContainer>
       <ProductsGridHeader>
         <ProductsGridTitle>{title}</ProductsGridTitle>
-        <div>
-          <ProductsGridOption active>All</ProductsGridOption>
-          <ProductsGridOption>Chair</ProductsGridOption>
-          <ProductsGridOption>Table</ProductsGridOption>
-          <ProductsGridOption>Sofa</ProductsGridOption>
-          <ProductsGridOption>Decoration</ProductsGridOption>
-        </div>
+        <div>{categoryControls}</div>
       </ProductsGridHeader>
-      <Grid contentList={allProductsList} />
+      <Grid>{productsList}</Grid>
     </ProductsGridContainer>
   );
 }

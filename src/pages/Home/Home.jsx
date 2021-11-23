@@ -15,10 +15,32 @@ export default function Home() {
       )
     );
 
+  let categories =
+    require("../../mocks/en-us/product-categories.json").results.map(
+      ({ id, data }) => ({
+        id,
+        name: data.name,
+      })
+    );
+
+  let products =
+    require("../../mocks/en-us/featured-products.json").results.map(
+      ({ data }) => ({
+        typeId: data.category.id,
+        image: data.mainimage.url,
+        name: data.name,
+        price: data.price,
+      })
+    );
+
   return (
     <>
       <Slider contentList={bannerList} autoPlaySeconds={3000} />
-      <ProductsGrid title="Hot Products" />
+      <ProductsGrid
+        title="Hot Products"
+        categories={categories}
+        products={products}
+      />
     </>
   );
 }
