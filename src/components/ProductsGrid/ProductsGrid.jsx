@@ -1,11 +1,11 @@
 import { useState } from "react";
-import Grid from "../Grid";
 import ProductCard from "../ProductCard";
 import {
   ProductsGridHeader,
   ProductsGridOption,
   ProductsGridContainer,
   ProductsGridTitle,
+  Grid,
 } from "./ProductsGrid.styled";
 
 export default function ProductsGrid({

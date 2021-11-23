@@ -26,3 +26,10 @@ export const ProductsGridOption = styled.span`
     margin-left: 10px;
   }
 `;
+
+export const Grid = styled.div`
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  gap: 60px;
+`;
