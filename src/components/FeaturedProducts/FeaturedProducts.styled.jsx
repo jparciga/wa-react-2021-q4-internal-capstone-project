@@ -1,24 +1,24 @@
 import styled from "styled-components";
 
-export const ProductsGridContainer = styled.div`
+export const FeaturedProductsContainer = styled.div`
   grid-column: 2 / span 4;
   display: flex;
   flex-direction: column;
   align-items: space-between;
 `;
 
-export const ProductsGridHeader = styled.div`
+export const FeaturedProductsHeader = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
 `;
 
-export const ProductsGridTitle = styled.h1`
+export const FeaturedProductsTitle = styled.h1`
   font-size: 1.75rem;
   font-weight: 700;
 `;
 
-export const ProductsGridOption = styled.span`
+export const FeaturedProductsOption = styled.span`
   cursor: pointer;
   padding: 5px 10px;
   border-radius: 10px;

@@ -1,5 +1,5 @@
 import Banner from "../../components/Banner";
-import ProductsGrid from "../../components/ProductsGrid";
+import FeaturedProducts from "../../components/FeaturedProducts";
 import Slider from "../../components/Slider";
 
 export default function Home({ changePage }) {
@@ -36,7 +36,7 @@ export default function Home({ changePage }) {
   return (
     <>
       <Slider contentList={bannerList} autoPlaySeconds={3000} />
-      <ProductsGrid
+      <FeaturedProducts
         title="Hot Products"
         categories={categories}
         products={products}

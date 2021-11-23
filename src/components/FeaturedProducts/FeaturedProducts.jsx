@@ -2,15 +2,15 @@ import { useState } from "react";
 import { NAVIGATION } from "../../utils/constants";
 import ProductCard from "../ProductCard";
 import {
-  ProductsGridHeader,
-  ProductsGridOption,
-  ProductsGridContainer,
-  ProductsGridTitle,
+  FeaturedProductsHeader,
+  FeaturedProductsOption,
+  FeaturedProductsContainer,
+  FeaturedProductsTitle,
   Grid,
   ViewAllButton,
-} from "./ProductsGrid.styled";
+} from "./FeaturedProducts.styled";
 
-export default function ProductsGrid({
+export default function FeaturedProducts({
   title,
   categories,
   products,
@@ -26,22 +26,22 @@ export default function ProductsGrid({
   let categoryControls = categoryControlList.map((category) => {
     if (category.id === activeCategoryId) {
       return (
-        <ProductsGridOption
+        <FeaturedProductsOption
           key={category.id}
           onClick={() => setActiveCategoryId(category.id)}
           active
         >
           {category.name}
-        </ProductsGridOption>
+        </FeaturedProductsOption>
       );
     } else {
       return (
-        <ProductsGridOption
+        <FeaturedProductsOption
           key={category.id}
           onClick={() => setActiveCategoryId(category.id)}
         >
           {category.name}
-        </ProductsGridOption>
+        </FeaturedProductsOption>
       );
     }
   });
@@ -60,15 +60,15 @@ export default function ProductsGrid({
     ));
 
   return (
-    <ProductsGridContainer>
-      <ProductsGridHeader>
-        <ProductsGridTitle>{title}</ProductsGridTitle>
+    <FeaturedProductsContainer>
+      <FeaturedProductsHeader>
+        <FeaturedProductsTitle>{title}</FeaturedProductsTitle>
         <div>{categoryControls}</div>
-      </ProductsGridHeader>
+      </FeaturedProductsHeader>
       <Grid>{productsList}</Grid>
       <ViewAllButton onClick={() => changePage(NAVIGATION.SHOP)}>
         View all products
       </ViewAllButton>
-    </ProductsGridContainer>
+    </FeaturedProductsContainer>
   );
 }
