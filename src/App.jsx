@@ -2,7 +2,7 @@ import { useFeaturedBanners } from "./utils/hooks/useFeaturedBanners";
 import Footer from "./components/Footer";
 import Home from "./pages/Home";
 import Navigation from "./components/Navigation";
-import ProductList from "./pages/ProductList";
+import Shop from "./pages/Shop";
 import { useState } from "react";
 import { NAVIGATION } from "./utils/constants";
 import styled from "styled-components";
@@ -29,11 +29,7 @@ function App() {
       page = <Home changePage={setPageId} />;
       break;
     case NAVIGATION.SHOP:
-      page = (
-        <UnfinishedPage>
-          <ProductList />
-        </UnfinishedPage>
-      );
+      page = <Shop />;
       break;
     default:
       page = (
