@@ -5,7 +5,7 @@ import { FaArrowAltCircleRight, FaArrowAltCircleLeft } from 'react-icons/fa';
 const ImageSlider = () => {
   console.log(data);
   return (
-    <section className={'slider'}>
+    <section className='slider'>
       <FaArrowAltCircleLeft className='left-arrow'  />
       <FaArrowAltCircleRight className='right-arrow'  />
       {
@@ -16,7 +16,7 @@ const ImageSlider = () => {
               key={index}
             >
               {index === 0 && (
-                <img src={slide.data.main_image.url} alt={'test'} className='image' />
+                <img src={slide.data.main_image.url} alt='test' className='image' />
               )}
             </div>
           )

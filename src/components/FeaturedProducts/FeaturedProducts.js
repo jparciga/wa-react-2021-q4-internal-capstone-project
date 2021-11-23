@@ -4,9 +4,9 @@ import {results as data} from '../../utils/mocks/en-us/featured-products.json';
 
 const FeaturedProducts = () => {
   return (
-    <div className={'featured-products-container'}>
+    <div className='featured-products-container'>
       <h3>Featured Products</h3>
-      <div className={'featured-products'}>
+      <div className='featured-products'>
         {
           data.map(product => (
             <CardProduct
