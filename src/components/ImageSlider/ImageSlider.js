@@ -8,6 +8,7 @@ const ImageSlider = (props) => {
       <FaArrowAltCircleLeft className='left-arrow'  />
       <FaArrowAltCircleRight className='right-arrow'  />
       {
+        //TODO Separate this logic in a function
         props.featuredBanners.map((slide, index) => {
           return (
             <div
