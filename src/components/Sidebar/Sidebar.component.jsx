@@ -5,8 +5,8 @@ const Sidebar = ({data, title, filters, clickEvent}) => {
         <div>
             <h2>{title}</h2>
             <ul style={{listStyle: "none"}}>
-            {data.map( obj => {
-               return (<li key={obj.id} className={`${filters.includes(obj.data.name.toLowerCase()) ? "enabled" : "disabled"}`} onClick={() => clickEvent(obj.data.name.toLowerCase())}>{obj.data.name}</li>) 
+            {data.map( ({id, data: { name }}) => {
+               return (<li key={id} className={`${filters.includes(name.toLowerCase()) ? "enabled" : "disabled"}`} onClick={() => clickEvent(name.toLowerCase())}>{name}</li>) 
             })}
             </ul>
         </div>

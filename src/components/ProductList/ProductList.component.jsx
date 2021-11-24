@@ -10,7 +10,10 @@ export const ProductListComponent = ({className, products, categories}) => {
 
     return (
         <div className={className}>
-            <Sidebar data={categories} clickEvent={handleCustomFilering} title={`Categories`} filters={filters} />
+            <Sidebar data={categories} 
+                     clickEvent={handleCustomFilering} 
+                     title={`Categories`} 
+                     filters={filters} />
             <Grid data={filteredData} />
         </div>
     )

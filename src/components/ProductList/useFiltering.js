@@ -5,16 +5,14 @@ const useFiltering = (data) => {
     const [filteredData, setFilteredData] = useState(data);
 
     useEffect(() => {
-        if(filters.length > 0){
-            setFilteredData(data.filter(x => filters.includes(x.data.category.slug)));
-        } else {
-            setFilteredData(data);
-        }
-       
+        filters.length > 0 ? setFilteredData(data.filter(x => 
+            filters.includes(x.data.category.slug))) : setFilteredData(data);
+      
     }, [filters, data]);
 
     const handleCustomFilering = (newFilter) => {
         setFilters((prevFilter) => { 
+            
             if(!prevFilter.includes(newFilter))
                 return [...prevFilter, newFilter] 
             else {         
