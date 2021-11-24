@@ -7,13 +7,13 @@ const GridComponent = ({className, data}) =>  {
     <>
         <div className="grid-container">
             {
-                data.map(obj => { return ( 
+                data.map(({ id, url, name, category, price }) => { return ( 
                     <GridCard 
-                        key={obj.id} 
-                        url={obj.data.mainimage.url}
-                        name={obj.data.name}
-                        category={obj.data.category.slug}
-                        price={"$"+obj.data.price}
+                        key={id} 
+                        url={url}
+                        name={name}
+                        category={category}
+                        price={price}
                     />) 
                 }) 
             }

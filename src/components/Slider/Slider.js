@@ -9,9 +9,9 @@ const SliderComponent = ({className, data}) => {
     const [slideIndex, setSlideIndex] = useState(1);
 
     const nextSlide = () => {
-        if(slideIndex !== data.results.length) {
+        if(slideIndex !== data.length) {
             setSlideIndex(slideIndex + 1);
-        } else if (slideIndex === data.results.length) {
+        } else if (slideIndex === data.length) {
             setSlideIndex(1);
         }
     };
@@ -20,7 +20,7 @@ const SliderComponent = ({className, data}) => {
         if(slideIndex !== 1) {
             setSlideIndex(slideIndex - 1);
         } else if (slideIndex === 1) {
-            setSlideIndex(data.results.length);
+            setSlideIndex(data.length);
         }
     };
 
@@ -30,14 +30,14 @@ const SliderComponent = ({className, data}) => {
     
     return ( 
     <div className={className}>
-        {data.results.map( (obj, index) => {
-            return (<ImageSlider key={obj.id} url={obj.data.main_image.url} index={index} slideIndex={slideIndex}></ImageSlider>)
+        {data.map( ({id, url}, index) => {
+            return (<ImageSlider key={id} url={url} index={index} slideIndex={slideIndex}></ImageSlider>)
         } )}
         <ButtonSlider moveSlide={prevSlide} direction={"prev"} />
         <ButtonSlider moveSlide={nextSlide} direction={"next"} />
         
         <div className="container-dots">
-            {Array.from({length: data.results.length}).map((item, index) => (
+            {Array.from({length: data.length}).map((item, index) => (
                 <div key={index}
                 onClick={() => moveDot(index + 1)}
                 className={slideIndex === index + 1 ? "dot active" : "dot"}
