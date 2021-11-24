@@ -6,7 +6,7 @@ const useData = (fileName, mapFunction) => {
     useEffect(() => {
         const abortController = new AbortController();
 
-        fetch(`${fileName}`, {
+        fetch(`wa-react-2021-q4-internal-capstone-project/${fileName}`, {
             headers : { 
               'Content-Type': 'application/json',
               'Accept': 'application/json'
