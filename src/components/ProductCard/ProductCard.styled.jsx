@@ -30,5 +30,5 @@ export const ProductName = styled.p`
 export const ProductPrice = styled.p`
   font-weight: 700;
   text-align: center;
-  color: ${({ theme }) => theme.gray};
+  color: ${({ theme }) => theme.accentWeak};
 `;
