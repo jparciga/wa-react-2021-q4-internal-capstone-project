@@ -3,8 +3,6 @@ import styled from 'styled-components';
 import GridCard from 'components/GridCard/GridCard';
 
 const GridComponent = ({className, data, pagination}) =>  {
-    console.log("Inside Grid: ", data);
-
     return ( 
     <div className={className}>
         <div className="grid-container">
