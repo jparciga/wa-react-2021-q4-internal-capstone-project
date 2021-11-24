@@ -5,8 +5,8 @@ const useFiltering = (data) => {
     const [filteredData, setFilteredData] = useState(data);
 
     useEffect(() => {
-        filters.length > 0 ? setFilteredData(data.filter(x => 
-            filters.includes(x.data.category.slug))) : setFilteredData(data);
+        filters.length > 0 ? setFilteredData(data.filter(({ category }) => 
+            filters.includes(category))) : setFilteredData(data);
       
     }, [filters, data]);
 
