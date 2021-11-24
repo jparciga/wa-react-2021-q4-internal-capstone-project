@@ -68,6 +68,7 @@ export default function ProductFilter({ categories, products }) {
       <ProductFilterSidebar>{filterButtons}</ProductFilterSidebar>
       <ProductFilterContent>
         <Grid>{productsList}</Grid>
+        <Pagination />
       </ProductFilterContent>
     </>
   );
