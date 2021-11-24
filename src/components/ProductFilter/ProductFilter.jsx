@@ -1,5 +1,6 @@
 import { useState } from "react";
 import Grid from "../Grid";
+import Pagination from "../Pagination/Pagination";
 import ProductCard from "../ProductCard";
 import {
   FilterButton,
@@ -33,7 +34,7 @@ export default function ProductFilter({ categories, products }) {
         >
           {category.name}
         </FilterButton>
-        {index + 1 !== category.length ? (
+        {index + 1 !== categories.length ? (
           <FilterDivider key={`divider${category.id}`} />
         ) : null}
       </>
