@@ -1,12 +1,11 @@
 
 import React from 'react';
 import Grid from 'components/Grid/Grid'
-import styled from 'styled-components';
 
 import Sidebar from 'components/Sidebar/Sidebar.component';
 import useFiltering from './useFiltering';
 
-const ProductListComponent = ({className, products, categories}) => {
+export const ProductListComponent = ({className, products, categories}) => {
     const [filteredData, filters, handleCustomFilering] = useFiltering(products);
 
     return (
@@ -16,13 +15,3 @@ const ProductListComponent = ({className, products, categories}) => {
         </div>
     )
 };
-
-const ProductList = styled(ProductListComponent)`
-    display: grid;
-    grid-template-columns: 1fr 6fr;  
-    grid-template-rows: 1fr;   
-`;
-
-
-
-export default ProductList;
