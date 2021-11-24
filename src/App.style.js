@@ -54,6 +54,9 @@ export const ShoppingCart = styled.div`
 export const Content = styled.div`
   background-color: gold;
   grid-area: content;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 `;
 
 export const Footer = styled.div`

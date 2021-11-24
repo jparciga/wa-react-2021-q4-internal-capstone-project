@@ -12,10 +12,10 @@ const CarouselComponent = ({className, data}) => {
     return (
     <div className={className}>
         <div className="track" style={style}>
-            {data.results.map(obj => {
+            {data.map(({id, url}) => {
                 return (
-                    <div key={obj.id} id={obj.id} className="card-container">
-                        <div className="card"><img src={obj.data.main_image.url} alt="haha"></img> </div>
+                    <div key={id} id={id} className="card-container">
+                        <div className="card"><img src={url} alt="haha"></img> </div>
                     </div>
                 );
             })}      
