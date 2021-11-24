@@ -2,13 +2,11 @@ import React from 'react';
 import styled from 'styled-components';
 import GridCard from 'components/GridCard/GridCard';
 
-const GridComponent = ({className, data, pagination}) =>  {
-    return ( 
-    <div className={className}>
+const GridComponent = ({className, data}) =>  {
+    const filledGrid = (               
+    <>
         <div className="grid-container">
             {
-            (data.length > 0) 
-            ?
                 data.map(obj => { return ( 
                     <GridCard 
                         key={obj.id} 
@@ -16,20 +14,27 @@ const GridComponent = ({className, data, pagination}) =>  {
                         name={obj.data.name}
                         category={obj.data.category.slug}
                         price={"$"+obj.data.price}
-                        />) 
-                })
-            :   
-                <p style={{textAlign: "center"}}>Sorry! No elements.</p>}
+                    />) 
+                }) 
+            }
         </div>
-        {pagination &&
-            <div className="pagination">
-                <button>Prev</button>
-                <button>1</button>
-                <button>2</button>
-                <button>3</button>
-                <button>...</button>
-                <button>Next</button>
-            </div>}
+        <div className="grid-paginator">
+            <button>Prev</button>
+            <button>1</button>
+            <button>2</button>
+            <button>3</button>
+            <button>...</button>
+            <button>Next</button>
+        </div>
+    </>);
+    
+    return ( 
+    <div className={className}>
+        { (data.length > 0) 
+            ? 
+                filledGrid 
+            : 
+                <p style={{textAlign: "center"}}>Sorry! No elements.</p> }
     </div>);
 }
 
