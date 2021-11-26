@@ -11,6 +11,8 @@ import ShoppingCartIcon from 'images/shopping-cart.svg';
 import productsData from 'mocks/products.json';
 import productCategoriesData from 'mocks/product-categories.json';
 
+import {Switch, Route, Link, Redirect } from 'react-router-dom';
+
 const App = () => {
   const [currentPage, setCurrentPage] = useState("Home");
 
@@ -36,10 +38,21 @@ const App = () => {
         </ShoppingCart>
       </Header>
       <Content>
-      {currentPage === "Home" ? <Home /> : <ProductList products={productsData.results} categories={productCategoriesData.results} />}
-        <div>
+        <Switch>
+          <Redirect from='/wa-react-2021-q4-internal-capstone-project' to='/home' />
+          <Route exact path='/home'>
+            <Home />
+          </Route>
+          <Route path='/products'>
+            <ProductList products={productsData.results} categories={productCategoriesData.results} />
+          </Route>
+          <Route path='*'>
+            <span>404 Not Found.</span>
+          </Route>
+        </Switch>
+        <Link to={(currentPage === "Home") ? '/home' : '/products'}>
           <button id="btnChangePage" onClick={handleNavigation}>View All Products</button>
-        </div>
+        </Link>
       </Content>
       <Footer>Ecommerce created during Wizeline’s Academy React Bootcamp.</Footer>
     </Container>
