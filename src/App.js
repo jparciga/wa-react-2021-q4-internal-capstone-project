@@ -39,7 +39,6 @@ const App = () => {
       </Header>
       <Content>
         <Switch>
-          <Redirect from='/wa-react-2021-q4-internal-capstone-project' to='/home' />
           <Route exact path='/home'>
             <Home />
           </Route>
@@ -53,6 +52,9 @@ const App = () => {
         <Link to={(currentPage === "Home") ? '/home' : '/products'}>
           <button id="btnChangePage" onClick={handleNavigation}>View All Products</button>
         </Link>
+
+        <Redirect from='/wa-react-2021-q4-internal-capstone-project' to='/home' />
+        <Redirect from='/' to='/home' />
       </Content>
       <Footer>Ecommerce created during Wizeline’s Academy React Bootcamp.</Footer>
     </Container>
