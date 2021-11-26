@@ -53,9 +53,9 @@ const App = () => {
           <button id="btnChangePage" onClick={handleNavigation}>View All Products</button>
         </Link>
 
-        <Redirect from='/wa-react-2021-q4-internal-capstone-project' to='/home' />
-        <Redirect from='/' to='/home' />
-        <Redirect from='/home' to='/home' />
+        <Redirect exact from='/wa-react-2021-q4-internal-capstone-project' to='/home'  />
+        <Redirect exact from='/' to='/home' />
+        <Redirect exact from='/home' to='/home' />
       </Content>
       <Footer>Ecommerce created during Wizeline’s Academy React Bootcamp.</Footer>
     </Container>
