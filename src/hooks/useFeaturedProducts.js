@@ -1,4 +1,5 @@
 import useData from 'hooks/useData';
+import { devSearch } from 'utils/DataRetrievalService';
 
 const useFeaturedProducts = () => {
     const fileName = 'featured-products.json';
@@ -6,7 +7,7 @@ const useFeaturedProducts = () => {
         return { id, url, name, "category": slug, price };
     };
 
-    const [productCategories] = useData(fileName, mapFunction);
+    const [productCategories] = useData(devSearch, fileName, mapFunction);
     return [productCategories];
 };
 
