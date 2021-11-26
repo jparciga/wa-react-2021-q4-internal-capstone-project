@@ -55,6 +55,7 @@ const App = () => {
 
         <Redirect from='/wa-react-2021-q4-internal-capstone-project' to='/home' />
         <Redirect from='/' to='/home' />
+        <Redirect from='/home' to='/home' />
       </Content>
       <Footer>Ecommerce created during Wizeline’s Academy React Bootcamp.</Footer>
     </Container>
