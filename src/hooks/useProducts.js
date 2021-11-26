@@ -1,5 +1,6 @@
 import useMockData from 'hooks/useData';
-import { devSearch } from 'utils/DataRetrievalService';
+import DataRetrievalService from 'utils/DataRetrievalService';
+import { ALLOW_MOCKS } from 'utils/constants';
 
 const useProducts = () => {
     const fileName = 'products.json';
@@ -7,7 +8,9 @@ const useProducts = () => {
         return { id, url, name, "category": slug, price };
     };
 
-    const [productCategories] = useMockData(devSearch, fileName, mapFunction);
+    const searchFunction = (ALLOW_MOCKS === 'true') ? DataRetrievalService.devSearch : DataRetrievalService.search;
+
+    const [productCategories] = useMockData(searchFunction, fileName, mapFunction);
     return [productCategories];
 };
 
