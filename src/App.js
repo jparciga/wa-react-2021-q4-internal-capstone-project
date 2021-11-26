@@ -49,7 +49,7 @@ const App = () => {
             <span>404 Not Found.</span>
           </Route>
         </Switch>
-        <Link to={(currentPage === "Home") ? '/home' : '/products'}>
+        <Link to={(currentPage === "Home") ? '/products' : '/home'}>
           <button id="btnChangePage" onClick={handleNavigation}>View All Products</button>
         </Link>
 
