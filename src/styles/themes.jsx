@@ -5,5 +5,5 @@ export const defaultTheme = {
   light50: "rgb(255, 255, 255, 0.5)",
   dark: "#000",
   darkWeak: "#333",
-  gray: "#999",
+  transition: "all 0.3s ease 0s",
 };
