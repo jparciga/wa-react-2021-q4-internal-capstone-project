@@ -6,4 +6,11 @@ export const ProductPageContent = styled.div`
   grid-template-areas:
     'sidebar main'
     'empty pagination';
+
+  @media (max-width: 780px) {
+    grid-template-columns: 100% 100%;
+    grid-template-areas:
+      'sidebar main'
+      'empty pagination';
+  }
 `;

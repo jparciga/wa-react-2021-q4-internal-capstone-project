@@ -31,6 +31,6 @@ export const CategoriesContainer = styled.div`
     margin: 0px;
     margin-bottom: 15px;
     height: 100%;
-    top: 55px;
+    top: 42px;
   }
 `;

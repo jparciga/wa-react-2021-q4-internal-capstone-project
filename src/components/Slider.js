@@ -1,24 +1,24 @@
-import React, { useEffect, useState, useCallback } from 'react';
+import React, { useEffect, useState, useCallback, useRef } from 'react';
 import bannersData from '../mocks/en-us/featured-banners.json';
 import styles from './Slider.module.css';
 export default function Slider() {
   const [imageSelected, setImageSelected] = useState(0);
   const length = bannersData.results.length;
-
+  const isMounted = useRef(null);
   const nextSlide = useCallback(() => {
     setImageSelected(imageSelected === length - 1 ? 0 : imageSelected + 1);
   }, [length, imageSelected]);
   useEffect(() => {
-    let mounted = true;
+    isMounted.current = true;
     let timer = null;
-    if (mounted) {
+    if (isMounted.current) {
       timer = setTimeout(() => {
         nextSlide();
       }, 6000);
     }
 
     return () => {
-      mounted = false;
+      isMounted.current = false;
       clearTimeout(timer);
     };
   }, [nextSlide, imageSelected]);

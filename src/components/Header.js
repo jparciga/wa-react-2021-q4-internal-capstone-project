@@ -17,8 +17,11 @@ export default function Header({ onSetShowMenu, showMenu }) {
   return (
     <HeaderContainer>
       <HeaderMenu>
-        <ShowMenuBtn>
-          <ImMenu onClick={() => onSetShowMenu(!showMenu)} />
+        <ShowMenuBtn style={{ margin: '0px', padding: '0px' }}>
+          <ImMenu
+            style={{ margin: '0px', padding: '0px' }}
+            onClick={() => onSetShowMenu(!showMenu)}
+          />
         </ShowMenuBtn>
         <MenuLogo>
           <Link to="/"> Logo </Link>

@@ -1,12 +1,13 @@
 import React from 'react';
 import { SidebarContent, SidebarItem } from './Sidebar.style';
-export default function Sidebar({ onSelectCategory, categories }) {
+
+const Sidebar = ({ showMenu, onSelectCategory, categories }) => {
   const selectCategoryHandler = (categoryId) => {
     onSelectCategory(categoryId);
   };
 
   return (
-    <SidebarContent>
+    <SidebarContent className={showMenu && 'active'}>
       <SidebarItem>
         <h3>
           <i>Categories</i>
@@ -15,11 +16,12 @@ export default function Sidebar({ onSelectCategory, categories }) {
       {categories.map(({ id, isSelected, data: { name } }) => {
         return (
           <SidebarItem key={id} onClick={() => selectCategoryHandler(id)}>
-            <input type="checkbox" readOnly={true} checked={isSelected} />{' '}
-            {name}
+            <input type="checkbox" readOnly={true} checked={isSelected} />
+            {` ${name}`}
           </SidebarItem>
         );
       })}
     </SidebarContent>
   );
-}
+};
+export default Sidebar;
