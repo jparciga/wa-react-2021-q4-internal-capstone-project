@@ -1,4 +1,4 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import Grid from "../Grid";
 import Pagination from "../Pagination/Pagination";
 import ProductCard from "../ProductCard";
@@ -26,7 +26,7 @@ export default function ProductFilter({ categories, products }) {
 
   const filterButtons = categories.map((category, index) => {
     return (
-      <>
+      <React.Fragment key={category.id}>
         <FilterButton
           key={category.id}
           onClick={() => toogleFilter(category.id)}
@@ -37,7 +37,7 @@ export default function ProductFilter({ categories, products }) {
         {index + 1 !== categories.length ? (
           <FilterDivider key={`divider${category.id}`} />
         ) : null}
-      </>
+      </React.Fragment>
     );
   });
 
