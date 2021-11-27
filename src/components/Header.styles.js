@@ -4,6 +4,7 @@ export const HeaderContainer = styled.nav`
   padding: 0 15px;
   color: white;
   @media (max-width: 768px) {
+    position: fixed;
     width: 100%;
     margin: 0px;
     padding: 0px;
@@ -23,16 +24,24 @@ export const HeaderMenu = styled.ul`
   flex-wrap: wrap;
   justify-content: space-between;
   align-items: center;
+  margin: 0px;
 `;
 export const MenuItem = styled.li`
-  padding: 10px;
+  margin: 0px;
   @media (max-width: 768px) {
     display: none;
   }
 `;
 export const MenuLogo = styled.li`
   font-size: 20px;
-  padding: 7.5px 10px 7.5px 0;
+  padding: 10px 10px 10px 0;
+  a {
+    color: white;
+    text-decoration: none;
+  }
+  a:hover {
+    color: white;
+  }
 `;
 export const SearchInput = styled.input`
   padding: 10px;

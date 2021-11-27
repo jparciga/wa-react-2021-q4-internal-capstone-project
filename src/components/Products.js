@@ -1,14 +1,11 @@
 import React from 'react';
 import ProductCard from './ProductCard';
-import ProductsData from '../mocks/en-us/featured-products.json';
 import { ProductList } from './Products.styles';
+import Pagination from '../components/Pagination';
+import { useProducts } from '../utils/hooks/useProducts';
+export default function Products({ categoriesSelected }) {
+  const products = useProducts(categoriesSelected);
 
-export default function Products({ categoryId }) {
-  const products = categoryId
-    ? ProductsData.results.filter(
-        (prod) => prod.data.category.id === categoryId
-      )
-    : ProductsData.results;
   return (
     <ProductList>
       {products.map(({ id, data: { name, mainimage, category, price } }) => {
@@ -23,6 +20,11 @@ export default function Products({ categoryId }) {
           />
         );
       })}
+      <Pagination
+        style={{ width: '100%', textAlign: 'center' }}
+        current={4}
+        totalPages={10}
+      />
     </ProductList>
   );
 }
