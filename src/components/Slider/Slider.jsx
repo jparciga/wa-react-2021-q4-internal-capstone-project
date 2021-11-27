@@ -23,7 +23,7 @@ export default function Slider({
     setActive(active - 1 < 0 ? contentList.length - 1 : active - 1);
   }
 
-  let sliderMarks = contentList.map((_, index) => (
+  const sliderMarks = contentList.map((_, index) => (
     <SliderButton onClick={() => setActive(index)} key={`mark${index}`}>
       {active === index ? "●" : "○"}
     </SliderButton>

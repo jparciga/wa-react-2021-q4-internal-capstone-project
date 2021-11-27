@@ -7,7 +7,7 @@ import {
 } from "./ProductCard.styled";
 
 export default function ProductCard({ image, name, price, category }) {
-  let formatter = Intl.NumberFormat("en-US", {
+  const formatter = Intl.NumberFormat("en-US", {
     style: "currency",
     currency: "USD",
   });

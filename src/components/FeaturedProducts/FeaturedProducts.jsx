@@ -23,7 +23,7 @@ export default function FeaturedProducts({
 
   const categoryControlList = [{ id: "*", name: "All" }, ...categories];
 
-  let categoryControls = categoryControlList.map((category) => {
+  const categoryControls = categoryControlList.map((category) => {
     if (category.id === activeCategoryId) {
       return (
         <FeaturedProductsOption
@@ -51,7 +51,7 @@ export default function FeaturedProducts({
     categoryNames = { ...categoryNames, [id]: name };
   });
 
-  let productsList = products
+  const productsList = products
     .filter(
       ({ typeId }) => typeId === activeCategoryId || activeCategoryId === "*"
     )

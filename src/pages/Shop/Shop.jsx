@@ -1,7 +1,7 @@
 import ProductFilter from "../../components/ProductFilter";
 
 export default function Shop() {
-  let categories =
+  const categories =
     require("../../mocks/en-us/product-categories.json").results.map(
       ({ id, data }) => ({
         id,
@@ -9,7 +9,7 @@ export default function Shop() {
       })
     );
 
-  let products = require("../../mocks/en-us/products.json").results.map(
+  const products = require("../../mocks/en-us/products.json").results.map(
     ({ data }) => ({
       typeId: data.category.id,
       image: data.mainimage.url,

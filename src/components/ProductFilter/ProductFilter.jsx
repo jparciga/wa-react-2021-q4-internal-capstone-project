@@ -24,7 +24,7 @@ export default function ProductFilter({ categories, products }) {
     }
   }
 
-  let filterButtons = categories.map((category, index) => {
+  const filterButtons = categories.map((category, index) => {
     return (
       <>
         <FilterButton
@@ -53,7 +53,7 @@ export default function ProductFilter({ categories, products }) {
     categoryNames = { ...categoryNames, [id]: name };
   });
 
-  let productsList = filteredProducts.map((product, index) => (
+  const productsList = filteredProducts.map((product, index) => (
     <ProductCard
       key={`product${index}`}
       image={product.image}

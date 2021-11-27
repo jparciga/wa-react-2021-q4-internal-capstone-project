@@ -3,7 +3,7 @@ import FeaturedProducts from "../../components/FeaturedProducts";
 import Slider from "../../components/Slider";
 
 export default function Home({ changePage }) {
-  let bannerList =
+  const bannerList =
     require("../../mocks/en-us/featured-banners.json").results.map(
       ({ data }) => (
         <Banner
@@ -15,7 +15,7 @@ export default function Home({ changePage }) {
       )
     );
 
-  let categories =
+  const categories =
     require("../../mocks/en-us/product-categories.json").results.map(
       ({ id, data }) => ({
         id,
@@ -23,7 +23,7 @@ export default function Home({ changePage }) {
       })
     );
 
-  let products =
+  const products =
     require("../../mocks/en-us/featured-products.json").results.map(
       ({ data }) => ({
         typeId: data.category.id,
