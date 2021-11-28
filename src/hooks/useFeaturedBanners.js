@@ -1,15 +1,13 @@
-import useMockData from 'hooks/useData';
-import DataRetrievalService from 'utils/DataRetrievalService';
-import { ALLOW_MOCKS } from 'utils/constants';
+import { useAPIData }from 'utils/hooks/useAPIData';
 
 const useFeaturedBanners = () => {
-    const fileName = 'featured-banners.json';
-    const mapFunction = ({id, data: { main_image: { url } }}) => { return { id, url } };
+    const queries = ['at(document.type, "banner")'];
+    const pageSize = 5;
+    const mapFunction = ({id, data: { mainimage: { url } }}) => { return { id, url } };
 
-    const searchFunction = (ALLOW_MOCKS === 'true') ? DataRetrievalService.devSearch : DataRetrievalService.search;
-
-    const [productCategories] = useMockData(searchFunction, fileName, mapFunction);
-    return [productCategories];
+    const featuredBanners = useAPIData({queries, pageSize}, mapFunction);
+    console.log('Featured Banners: ', featuredBanners);
+    return featuredBanners;
 };
 
 export default useFeaturedBanners;

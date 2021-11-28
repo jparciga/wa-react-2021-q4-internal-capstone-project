@@ -1,5 +1,4 @@
 //Retrieval function for mock files;
-
 export const DataRetrievalService = {
     devSearch: (fileName, mapFunction, controllerSignal) => {
         return new Promise((resolve, reject) => {
@@ -25,7 +24,15 @@ export const DataRetrievalService = {
         });
     },
     
-    search: () => {}
+    search: async (fileName, mapFunction, controllerSignal) => {      
+      try {
+
+
+      } catch (error) {
+        throw new Error(error);
+      }
+
+    }
 };
 
 export default DataRetrievalService;

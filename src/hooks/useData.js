@@ -13,24 +13,6 @@ const useData = (service, fileName, mapFunction) => {
                 console.error('There has been a problem with your fetch operation:', error);
             });
 
-        // fetch(`wa-react-2021-q4-internal-capstone-project/${fileName}`, {
-        //     headers : { 
-        //       'Content-Type': 'application/json',
-        //       'Accept': 'application/json'
-        //      },
-        //      signal: controller.signal
-        //    })
-        //     .then(response => response.json())
-        //     .then((data) => {
-        //         const results = data.results;
-        
-        //         var productCategoriesConverted = results.map(mapFunction);
-        //         setParsedData(productCategoriesConverted);
-        //     })
-        //     .catch(error => {
-        //         console.error('There has been a problem with your fetch operation:', error);
-        //     });
-
         return () => controller.abort();
     }, []);
     

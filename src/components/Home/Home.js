@@ -16,7 +16,7 @@ const HomeContainer = styled.div`
 `;
 
 const Home = () => {
-    const [featuredBanners] = useFeaturedBanners();
+    const featuredBanners = useFeaturedBanners();
     const [featuredProducts] = useFeaturedProducts();
     const [productCategories] = useProductCategories();
 
