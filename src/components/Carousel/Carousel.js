@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import ButtonSlider from 'components/ButtonSlider/ButtonSlider.style';
+import { Link } from 'react-router-dom';
 
 const CarouselComponent = ({className, data: { parsedData = [], isLoading }}) => {
     const [xPos, setXpos] = useState(0);
@@ -12,10 +13,12 @@ const CarouselComponent = ({className, data: { parsedData = [], isLoading }}) =>
     return (
     <div className={className}>
         <div className="track" style={style}>
-            {parsedData.map(({id, url}) => {
+            {parsedData.map(({id, name, url}) => {
                 return (
                     <div key={id} id={id} className="card-container">
-                        <div className="card"><img src={url} alt="haha"></img> </div>
+                        <Link to={`/products?category=${name.toLowerCase()}`}>
+                            <img src={url} alt="haha"></img> 
+                        </Link>
                     </div>
                 );
             })}      
