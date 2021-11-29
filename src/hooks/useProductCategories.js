@@ -8,7 +8,6 @@ const useProductCategories = () => {
     };
 
     const productCategories = useAPIData({queries, pageSize}, mapFunction);
-    console.log('Product Categories: ', productCategories)
     return productCategories;
 };
 
