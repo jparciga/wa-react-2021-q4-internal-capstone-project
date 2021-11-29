@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { API_BASE_URL } from '../constants';
 import { useLatestAPI } from './useLatestAPI';
 
-export function useAPIData({queries, pageSize, page = ''}, mapFunction) {
+export function useAPIData({queries, pageSize = 1, page = ''}, mapFunction) {
     const { ref: apiRef, isLoading: isApiMetadataLoading } = useLatestAPI();
     const [pageNumber, setPageNumber] = useState(page);
     const [retrievedData, setRetrievedData] = useState(() => ({

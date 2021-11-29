@@ -1,58 +1,113 @@
-import React, { useState } from "react";
-import styled from 'styled-components';
-import Slider from 'components/Slider/Slider'
+import React from "react";
+import styled from "styled-components";
+import Slider from "components/Slider/Slider";
+import useProductById from "../../hooks/useProductById";
 
-const ProductDetailComponent = ({ className, data }) => {
+import { useParams } from 'react-router-dom';
+
+const ProductDetailComponent = ({ className }) => {
+  const {productId} = useParams();
+  const [{parsedData, isLoading}] = useProductById(productId);
+
+
+  if(isLoading || parsedData.length === 0)
+    return (<h1>Loading...</h1>);
+
+  const {
+     id = '',
+     name = '',
+     price = '',
+     sku = '',
+     description = '',
+     category = [],
+     tags = [],
+     specs = [],
+     images = [],
+
+  } = parsedData[0];
+
+  const mappedImages = images.map(({image: { url }}, i) => { return {id: id+i, url}} )
+
   return (
     <div className={className}>
       <div className="product-detail-gallery">
-        <Slider data={{}} />
+        <h3>{name}</h3>
+        <Slider data={{ parsedData: mappedImages, isLoading }} />
       </div>
       <div className="product-detail-data">
-          <label>Price</label>
-          <label>SKU</label>
-          <label>Category</label>
-          <label htmlFor="quantity">Qty</label>
-          <input id="quantity" name="addToCart"></input>
-          <input type="submit" value="Add to Cart"></input>
+        <label>Price: </label>
+        <label>{`$${price}`}</label>
+        <label>SKU: </label>
+        <label>{sku}</label>
+        <label>Category: </label>
+        <label>{category}</label>
+        <label htmlFor="quantity">Qty</label>
+        <input id="quantity" name="addToCart"></input>
+        <input className="addToCart" type="submit" value="Add to Cart"></input>
       </div>
-     <div className="product-detail-tags">
-          <label>Tags</label>
-          <ul>
-              <li>Tag1</li>
-              <li>Tag1</li>
-              <li>Tag1</li>
-              <li>Tag1</li>
-          </ul>
+      <div className="product-detail-tags">
+        <h5>Tags</h5>
+        <ul>
+          {tags.map((tag, i) => {
+            return <li key={`${tag}+${i}`}>{tag}</li>;
+          })}
+        </ul>
       </div>
       <div className="product-detail-description">
-        <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Fugit earum delectus accusamus inventore autem dolorem alias id illum obcaecati nostrum ducimus ut corrupti quae enim ipsam molestias iste, perferendis deserunt!</p>
+        <h5>Description</h5>
+        <p>
+          {description}
+        </p>
       </div>
       <div className="product-detail-specs">
-          <ul>
-              <li></li>
-          </ul>
-      </div> 
+        <ul>
+          {specs.map(({ spec_name, spec_value }, i) => {
+            return (
+              <li
+                key={`${spec_name}+${i}`}
+              >{`${spec_name} --- ${spec_value}`}</li>
+            );
+          })}
+        </ul>
+      </div>
     </div>
   );
 };
 
 const ProductDetail = styled(ProductDetailComponent)`
-    display: grid;
-    grid-template-columns: 4fr 2fr;
-    grid-template-rows: 3fr 1fr 1fr;
-    gap: 3em;
+  display: grid;
+  grid-template-columns: 4fr 2fr;
+  grid-template-rows: 3fr 1fr 1fr;
+  gap: 3em;
+  padding: 2em;
 
-    div {
-        border: 1px solid black;
-    }
+  & > div {
+    border: 1px solid black;
+  }
 
-    .product-detail-tags, 
-    .product-detail-description,
-    .product-detail-specs {
+  .product-detail-tags,
+  .product-detail-description,
+  .product-detail-specs {
+    grid-column: 1/3;
+  }
+
+  .product-detail-data
+  {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: center;
+  }
+
+  .product-detail-data
+  {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: center;
+  }
+
+  .product-detail-data .addToCart {
         grid-column: 1/3;
-    }
+  }
 `;
 
 export default ProductDetail;
-
