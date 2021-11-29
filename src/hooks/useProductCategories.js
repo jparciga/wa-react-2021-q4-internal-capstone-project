@@ -1,15 +1,15 @@
-import useMockData from 'hooks/useData';
-import DataRetrievalService from 'utils/DataRetrievalService';
-import { ALLOW_MOCKS } from 'utils/constants';
+import { useAPIData } from 'utils/hooks/useAPIData';
 
 const useProductCategories = () => {
-    const fileName = 'product-categories.json';
-    const mapFunction = ({id, data: { name, main_image: { url } }}) => { return { id, name, url } };
+    const queries = ['at(document.type, "category")'];
+    const pageSize = 30;
+    const mapFunction = ({id, data: { name, main_image: { url } }}) => { 
+        return { id, name, url }; 
+    };
 
-    const searchFunction = (ALLOW_MOCKS === 'true') ? DataRetrievalService.devSearch : DataRetrievalService.search;
-
-    const [productCategories] = useMockData(searchFunction, fileName, mapFunction);
-    return [productCategories];
+    const productCategories = useAPIData({queries, pageSize}, mapFunction);
+    console.log('Product Categories: ', productCategories)
+    return productCategories;
 };
 
 export default useProductCategories;

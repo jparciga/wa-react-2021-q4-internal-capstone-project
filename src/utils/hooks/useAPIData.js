@@ -21,13 +21,12 @@ export function useAPIData({queries, pageSize}, mapFunction) {
             setRetrievedData({ parsedData: [], isLoading: true });
 
             const queryString = queries.map(query => {
-                return `q='[[${query}]]'`;
+                //return `q=[[${query}]]`;
+                return `q=${encodeURIComponent(`[[${query}]]`)}`;
             }).join('&');
     
             const response = await fetch(
-              `${API_BASE_URL}/documents/search?ref=${apiRef}&${encodeURIComponent(
-                queryString
-              )}&lang=en-us&pageSize=${pageSize}`,
+              `${API_BASE_URL}/documents/search?ref=${apiRef}&${queryString}&lang=en-us&pageSize=${pageSize}`,
               {
                 signal: controller.signal,
               }
