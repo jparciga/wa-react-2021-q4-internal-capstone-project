@@ -3,12 +3,17 @@ import { BiLeftArrow, BiRightArrow } from 'react-icons/bi';
 import { PaginationContent, ButtonNumber } from './Pagination.style';
 
 export default function Pagination({ current, totalPages }) {
+  let pages = [];
+  for (let page = 1; page <= totalPages; page++) {
+    pages.push(page);
+  }
+
   return (
     <PaginationContent>
       <BiLeftArrow />
-      <ButtonNumber>1</ButtonNumber>
-      <ButtonNumber>2</ButtonNumber>
-      <ButtonNumber>3</ButtonNumber>
+      {pages.map((page, index) => (
+        <ButtonNumber key={index}>{page}</ButtonNumber>
+      ))}
       <BiRightArrow />
     </PaginationContent>
   );

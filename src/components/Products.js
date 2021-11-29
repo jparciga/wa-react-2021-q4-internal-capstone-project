@@ -4,7 +4,7 @@ import { ProductList } from './Products.styles';
 import Pagination from '../components/Pagination';
 import { useProducts } from '../utils/hooks/useProducts';
 export default function Products({ categoriesSelected }) {
-  const products = useProducts(categoriesSelected);
+  const [products, pageInformation] = useProducts(categoriesSelected);
 
   return (
     <ProductList>
@@ -23,7 +23,7 @@ export default function Products({ categoriesSelected }) {
       <Pagination
         style={{ width: '100%', textAlign: 'center' }}
         current={4}
-        totalPages={10}
+        totalPages={pageInformation?.data?.total_pages}
       />
     </ProductList>
   );
