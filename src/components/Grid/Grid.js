@@ -29,7 +29,8 @@ const GridComponent = ({className, data: { page, totalPages, parsedData = [], is
             {
                 parsedData.map(({ id, url, name, category, price }) => { return ( 
                     <GridCard 
-                        key={id} 
+                        key={id}
+                        cardId={id} 
                         url={url}
                         name={name}
                         category={category}

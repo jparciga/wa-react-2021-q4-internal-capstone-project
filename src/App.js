@@ -4,6 +4,7 @@ import { useState } from 'react';
 
 import Home from 'components/Home/Home';
 import ProductList from 'components/ProductList/ProductList.styles'
+import ProductDetail from 'components/ProductDetail/ProductDetail.component';
 
 import LogoImg from 'images/image.png';
 import ShoppingCartIcon from 'images/shopping-cart.svg';
@@ -24,11 +25,12 @@ const App = () => {
     <Container>
       <Header>
         <Logo>
+          <Link to='/home'>
           <img src={LogoImg} 
-               onClick={() => setCurrentPage("Home")} 
                style={{cursor: "pointer"}} 
                alt="logo" 
                height="100%"></img>
+          </Link>
         </Logo>
         <Search>
           <input type="text" disabled></input>
@@ -42,8 +44,11 @@ const App = () => {
           <Route exact path='/home'>
             <Home />
           </Route>
-          <Route path='/products'>
+          <Route exact path='/products'>
             <ProductList products={productsData.results} categories={productCategoriesData.results} />
+          </Route>
+          <Route exact path='/products/:productId'>
+            <ProductDetail></ProductDetail>
           </Route>
           <Route path='*'>
             <span>404 Not Found.</span>

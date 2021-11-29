@@ -1,10 +1,13 @@
 import React from 'react'
 import styled from 'styled-components'
+import {Link} from 'react-router-dom';
 
-const GridCardComponent = ({className, url, name, category, price}) => {
+const GridCardComponent = ({className, cardId, url, name, category, price}) => {
     return (
         <div className={className}>
-            <img src={url} alt="img"></img>
+            <Link to={`/products/${cardId}`}>
+                <img src={url} alt="img"></img>
+            </Link>
             <span>{name}</span>
             <span>{category}</span>
             <span>{`$${price}`}</span>

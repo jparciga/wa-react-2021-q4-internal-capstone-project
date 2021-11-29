@@ -11,13 +11,12 @@ import {useQuery} from 'hooks/useQuery';
 
 export const ProductListComponent = ({className}) => {
     let query = useQuery();
-    const [productCategories] = useProductCategories();
-    const [products, pageNumber, setPageNumber] = useProducts({page: 1, pageSize: 12});
-
     const queryString = query.get("category");
 
+    const [productCategories] = useProductCategories();
+    const [products, pageNumber, setPageNumber] = useProducts({page: 1, pageSize: 12});
     const [filteredProducts, filters, handleCustomFiltering, clearAllFilters] = useFiltering(products, queryString);
-    console.log('Filtered Products: ', filteredProducts)
+
     return (
         <div className={className}>
             <Sidebar data={productCategories} 
