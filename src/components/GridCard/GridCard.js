@@ -5,7 +5,7 @@ import {Link} from 'react-router-dom';
 const GridCardComponent = ({className, cardId, url, name, category, price}) => {
     return (
         <div className={className}>
-            <Link to={`/products/${cardId}`}>
+            <Link to={`/product/${cardId}`}>
                 <img src={url} alt="img"></img>
             </Link>
             <span>{name}</span>
