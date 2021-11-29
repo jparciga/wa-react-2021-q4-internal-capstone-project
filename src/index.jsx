@@ -30,8 +30,9 @@ ReactDOM.render(
       <GlobalStyle />
       <BrowserRouter>
         <Routes>
-          <Route path={NAVIGATION.HOME} element={<App />}>
+          <Route path="/" element={<App />}>
             <Route index element={<Home />} />
+            <Route path={NAVIGATION.HOME} element={<Home />} />
             <Route path={NAVIGATION.SHOP} element={<Shop />} />
             <Route path={NAVIGATION.ABOUT} element={<About />} />
             <Route path="*" element={nothingFound} />
