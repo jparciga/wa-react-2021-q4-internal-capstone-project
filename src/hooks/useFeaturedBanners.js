@@ -5,8 +5,8 @@ const useFeaturedBanners = () => {
     const pageSize = 5;
     const mapFunction = ({id, data: { main_image: { url } }}) => { return { id, url } };
 
-    const featuredBanners = useAPIData({queries, pageSize}, mapFunction);
-    return featuredBanners;
+    const [featuredBanners] = useAPIData({queries, pageSize}, mapFunction);
+    return [featuredBanners];
 };
 
 export default useFeaturedBanners;

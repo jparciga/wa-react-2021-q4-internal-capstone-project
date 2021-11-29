@@ -2,9 +2,12 @@ import { useState, useEffect } from 'react';
 import { API_BASE_URL } from '../constants';
 import { useLatestAPI } from './useLatestAPI';
 
-export function useAPIData({queries, pageSize}, mapFunction) {
+export function useAPIData({queries, pageSize, page = ''}, mapFunction) {
     const { ref: apiRef, isLoading: isApiMetadataLoading } = useLatestAPI();
+    const [pageNumber, setPageNumber] = useState(page);
     const [retrievedData, setRetrievedData] = useState(() => ({
+      page: 1, 
+      totalPages: 0,
       parsedData: [],
       isLoading: true,
     }));
@@ -18,14 +21,14 @@ export function useAPIData({queries, pageSize}, mapFunction) {
     
         async function getDataFromAPI() {
           try {
-            setRetrievedData({ parsedData: [], isLoading: true });
+            setRetrievedData({ page: 1, totalPages: 0, parsedData: [], isLoading: true });
 
             const queryString = queries.map(query => {
                 return `q=${encodeURIComponent(`[[${query}]]`)}`;
             }).join('&');
     
             const response = await fetch(
-              `${API_BASE_URL}/documents/search?ref=${apiRef}&${queryString}&lang=en-us&pageSize=${pageSize}`,
+              `${API_BASE_URL}/documents/search?ref=${apiRef}&${queryString}&lang=en-us&pageSize=${pageSize}${(page) ? `&page=${pageNumber}` : ''}`,
               {
                 signal: controller.signal,
               }
@@ -38,10 +41,14 @@ export function useAPIData({queries, pageSize}, mapFunction) {
              };
 
             const parsedData = mappingFunction(data);
+
+            let totalPages = data.total_pages;
     
-            setRetrievedData({ parsedData, isLoading: false });
+            setRetrievedData({ page, totalPages, parsedData, isLoading: false });
+            setPageNumber(pageNumber);
           } catch (err) {
-            setRetrievedData({ parsedData: [], isLoading: false });
+            setRetrievedData({ page: 1, totalPages: 0, parsedData: [], isLoading: false });
+            setPageNumber(1);
             console.error(err);
           }
         }
@@ -51,7 +58,7 @@ export function useAPIData({queries, pageSize}, mapFunction) {
         return () => {
           controller.abort();
         };
-      }, [apiRef, isApiMetadataLoading]);
+      }, [apiRef, isApiMetadataLoading, pageNumber]);
 
-      return retrievedData;
+      return [retrievedData, pageNumber, setPageNumber];
 };

@@ -1,6 +1,6 @@
 import './Sidebar.css';
 
-const Sidebar = ({data: { parsedData = [], isLoading }, title, filters, clickEvent}) => {
+const Sidebar = ({data: { parsedData = [], isLoading }, title, filters, clickEvent, clearAllFilters}) => {
     return (
         <div>
             <h2>{title}</h2>
@@ -13,7 +13,7 @@ const Sidebar = ({data: { parsedData = [], isLoading }, title, filters, clickEve
                            </li>) 
             })}
             </ul>
-            <button>Clear all</button>
+            <button onClick={clearAllFilters}>Clear filters</button>
         </div>
     )
 }

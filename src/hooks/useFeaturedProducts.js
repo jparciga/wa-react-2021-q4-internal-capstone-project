@@ -8,8 +8,8 @@ const useFeaturedProducts = () => {
         return { id, url, name, "category": slug, price };
     };
 
-    const productCategories = useAPIData({queries, pageSize}, mapFunction);
-    return productCategories;
+    const [productCategories] = useAPIData({queries, pageSize}, mapFunction);
+    return [productCategories];
 };
 
 export default useFeaturedProducts;

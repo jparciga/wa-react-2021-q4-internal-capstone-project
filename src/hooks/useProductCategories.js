@@ -7,8 +7,8 @@ const useProductCategories = () => {
         return { id, name, url }; 
     };
 
-    const productCategories = useAPIData({queries, pageSize}, mapFunction);
-    return productCategories;
+    const [productCategories] = useAPIData({queries, pageSize}, mapFunction);
+    return [productCategories];
 };
 
 export default useProductCategories;

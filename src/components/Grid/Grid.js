@@ -2,17 +2,24 @@ import React from 'react';
 import styled from 'styled-components';
 import GridCard from 'components/GridCard/GridCard';
 
-const GridComponent = ({className, data: { parsedData = [], isLoading }, pagination}) =>  {
-    console.log('Parsed Data Inside Grid: ', parsedData);
+const GridComponent = ({className, data: { page, totalPages, parsedData = [], isLoading }, pagination, setPageNumber}) =>  {
+
+    const createPaginationNumeration = (page, totalPages) => {
+        let content = [];
+        for (let i = 1; i <= totalPages; i++) {
+            content.push(<button style={ (page === i) ? { color: "red" } : {}} key={`number${i}}`} onClick={() => setPageNumber(i)}>{i}</button>);
+        }
+
+        return content;
+    };
 
     const paginationControls = pagination && (
         <div className="grid-paginator">
-            <button>Prev</button>
-            <button>1</button>
-            <button>2</button>
-            <button>3</button>
-            <button>...</button>
-            <button>Next</button>
+            <button onClick={() => setPageNumber(1)}>First</button>
+            <button onClick={() => setPageNumber((pageNumber) => { return (pageNumber > 1) ? pageNumber - 1 : pageNumber; })}>Prev</button>
+            { createPaginationNumeration(page, totalPages) }
+            <button onClick={() => setPageNumber((pageNumber) => { return (pageNumber < totalPages) ? pageNumber + 1 : pageNumber; })}>Next</button>
+            <button onClick={() => setPageNumber(totalPages)}>Last</button>
         </div>
     );
     
@@ -37,9 +44,6 @@ const GridComponent = ({className, data: { parsedData = [], isLoading }, paginat
 
     </>);
 
-   
-   
-    
     return ( 
     <div className={className}>
         { (parsedData.length > 0) 

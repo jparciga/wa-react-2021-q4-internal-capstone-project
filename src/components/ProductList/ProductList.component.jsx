@@ -7,19 +7,25 @@ import useFiltering from './useFiltering';
 import useProductCategories from 'hooks/useProductCategories';
 import useProducts from 'hooks/useProducts';
 
-export const ProductListComponent = ({className, categories}) => {
-    const productCategories = useProductCategories();
-    const products = useProducts();
+import {useQuery} from 'hooks/useQuery';
 
-    const [filteredProducts, filters, handleCustomFilering] = useFiltering(products);
+export const ProductListComponent = ({className}) => {
+    let query = useQuery();
+    const [productCategories] = useProductCategories();
+    const [products, pageNumber, setPageNumber] = useProducts({page: 1, pageSize: 12});
+
+    const queryString = query.get("category");
+
+    const [filteredProducts, filters, handleCustomFiltering, clearAllFilters] = useFiltering(products, queryString);
     console.log('Filtered Products: ', filteredProducts)
     return (
         <div className={className}>
             <Sidebar data={productCategories} 
-                     clickEvent={handleCustomFilering} 
+                     clickEvent={handleCustomFiltering} 
+                     clearAllFilters={clearAllFilters}
                      title={`Categories`} 
                      filters={filters} />
-            <Grid data={{ parsedData: filteredProducts, isLoading: products.isLoading}} pagination />
+            <Grid data={{ page: pageNumber, totalPages: products.totalPages, parsedData: filteredProducts, isLoading: products.isLoading}} pagination setPageNumber={setPageNumber} />
         </div>
     )
 };

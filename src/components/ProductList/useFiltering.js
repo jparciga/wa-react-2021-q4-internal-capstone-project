@@ -1,7 +1,7 @@
 import {useState, useEffect} from 'react'
 
-const useFiltering = ({ parsedData, isLoading }) => {
-    const [filters, setFilters] = useState([]);
+const useFiltering = ({ parsedData, isLoading }, queryString) => {
+    const [filters, setFilters] = useState((queryString !== null) ? [ queryString ] : []);
     const [filteredData, setFilteredData] = useState(parsedData);
 
     useEffect(() => {
@@ -10,7 +10,7 @@ const useFiltering = ({ parsedData, isLoading }) => {
       
     }, [filters, parsedData]);
 
-    const handleCustomFilering = (newFilter) => {
+    const handleCustomFiltering = (newFilter) => {
         setFilters((prevFilter) => { 
             
             if(!prevFilter.includes(newFilter))
@@ -19,9 +19,13 @@ const useFiltering = ({ parsedData, isLoading }) => {
                 return prevFilter.filter(x => x !== newFilter);
             }
         });
-;    };
+    };
+
+    const clearAllFilters = () => {
+        setFilters([]);
+    };
     
-    return [filteredData, filters, handleCustomFilering];
+    return [filteredData, filters, handleCustomFiltering, clearAllFilters];
 }
 
 export default useFiltering;
