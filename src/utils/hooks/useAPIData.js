@@ -21,7 +21,6 @@ export function useAPIData({queries, pageSize}, mapFunction) {
             setRetrievedData({ parsedData: [], isLoading: true });
 
             const queryString = queries.map(query => {
-                //return `q=[[${query}]]`;
                 return `q=${encodeURIComponent(`[[${query}]]`)}`;
             }).join('&');
     
@@ -52,7 +51,7 @@ export function useAPIData({queries, pageSize}, mapFunction) {
         return () => {
           controller.abort();
         };
-      }, [apiRef, isApiMetadataLoading]); //, queries, pageSize, mapFunction
+      }, [apiRef, isApiMetadataLoading]);
 
       return retrievedData;
 };
