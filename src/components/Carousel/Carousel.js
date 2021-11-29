@@ -23,7 +23,7 @@ const CarouselComponent = ({className, data: { parsedData = [], isLoading }}) =>
                 );
             })}      
         </div>
-        <ButtonSlider moveSlide={() => setXpos(x => x - ((xPos > -600) ? 330 : 0)) } direction="prev"></ButtonSlider>
+        <ButtonSlider moveSlide={() => setXpos(x => x - ((xPos > -600) ? 330 : 0))} direction="prev"></ButtonSlider>
         <ButtonSlider moveSlide={() => setXpos(x => x + ((xPos <  600) ? 330 : 0))} direction="next"></ButtonSlider>
     </div> );
 }

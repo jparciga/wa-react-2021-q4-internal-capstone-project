@@ -1,17 +1,15 @@
-import useData from 'hooks/useData';
-import DataRetrievalService from 'utils/DataRetrievalService';
-import { ALLOW_MOCKS } from 'utils/constants';
+import { useAPIData } from 'utils/hooks/useAPIData';
 
 const useFeaturedProducts = () => {
-    const fileName = 'featured-products.json';
+    const queries = ['at(document.type, "product")', 
+                     'at(document.tags, ["Featured"])'];
+    const pageSize = 16;
     const mapFunction = ({id, data: {name, mainimage: { url }, category: { slug }, price }}) => {
         return { id, url, name, "category": slug, price };
     };
 
-    const searchFunction = (ALLOW_MOCKS === 'true') ? DataRetrievalService.devSearch : DataRetrievalService.search;
-
-    const [productCategories] = useData(searchFunction, fileName, mapFunction);
-    return [productCategories];
+    const productCategories = useAPIData({queries, pageSize}, mapFunction);
+    return productCategories;
 };
 
 export default useFeaturedProducts;

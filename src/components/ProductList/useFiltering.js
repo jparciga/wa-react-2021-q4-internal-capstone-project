@@ -1,14 +1,14 @@
 import {useState, useEffect} from 'react'
 
-const useFiltering = (data) => {
+const useFiltering = ({ parsedData, isLoading }) => {
     const [filters, setFilters] = useState([]);
-    const [filteredData, setFilteredData] = useState(data);
+    const [filteredData, setFilteredData] = useState(parsedData);
 
     useEffect(() => {
-        filters.length > 0 ? setFilteredData(data.filter(({ category }) => 
-            filters.includes(category))) : setFilteredData(data);
+        filters.length > 0 ? setFilteredData(parsedData.filter(({ category }) => 
+            filters.includes(category))) : setFilteredData(parsedData);
       
-    }, [filters, data]);
+    }, [filters, parsedData]);
 
     const handleCustomFilering = (newFilter) => {
         setFilters((prevFilter) => { 

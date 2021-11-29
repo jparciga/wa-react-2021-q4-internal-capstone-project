@@ -1,11 +1,11 @@
 import './Sidebar.css';
 
-const Sidebar = ({data, title, filters, clickEvent}) => {
+const Sidebar = ({data: { parsedData = [], isLoading }, title, filters, clickEvent}) => {
     return (
         <div>
             <h2>{title}</h2>
             <ul style={{listStyle: "none"}}>
-            {data.map( ({id, name }) => {
+            {parsedData.map( ({id, name }) => {
                return (<li key={id} 
                            className={`${filters.includes(name.toLowerCase()) ? "enabled" : "disabled"}`} 
                            onClick={() => clickEvent(name.toLowerCase())}>
@@ -13,6 +13,7 @@ const Sidebar = ({data, title, filters, clickEvent}) => {
                            </li>) 
             })}
             </ul>
+            <button>Clear all</button>
         </div>
     )
 }

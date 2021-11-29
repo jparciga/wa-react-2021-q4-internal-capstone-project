@@ -2,12 +2,25 @@ import React from 'react';
 import styled from 'styled-components';
 import GridCard from 'components/GridCard/GridCard';
 
-const GridComponent = ({className, data}) =>  {
+const GridComponent = ({className, data: { parsedData = [], isLoading }, pagination}) =>  {
+    console.log('Parsed Data Inside Grid: ', parsedData);
+
+    const paginationControls = pagination && (
+        <div className="grid-paginator">
+            <button>Prev</button>
+            <button>1</button>
+            <button>2</button>
+            <button>3</button>
+            <button>...</button>
+            <button>Next</button>
+        </div>
+    );
+    
     const filledGrid = (               
     <>
         <div className="grid-container">
             {
-                data.map(({ id, url, name, category, price }) => { return ( 
+                parsedData.map(({ id, url, name, category, price }) => { return ( 
                     <GridCard 
                         key={id} 
                         url={url}
@@ -18,19 +31,18 @@ const GridComponent = ({className, data}) =>  {
                 }) 
             }
         </div>
-        <div className="grid-paginator">
-            <button>Prev</button>
-            <button>1</button>
-            <button>2</button>
-            <button>3</button>
-            <button>...</button>
-            <button>Next</button>
-        </div>
+        {
+            pagination && (paginationControls)
+        }
+
     </>);
+
+   
+   
     
     return ( 
     <div className={className}>
-        { (data.length > 0) 
+        { (parsedData.length > 0) 
             ? 
                 filledGrid 
             : 

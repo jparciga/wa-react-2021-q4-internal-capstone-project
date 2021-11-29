@@ -7,7 +7,8 @@ const GridCardComponent = ({className, url, name, category, price}) => {
             <img src={url} alt="img"></img>
             <span>{name}</span>
             <span>{category}</span>
-            <span>{price}</span>
+            <span>{`$${price}`}</span>
+            <button>Add to cart</button>
         </div>
     )
 };
