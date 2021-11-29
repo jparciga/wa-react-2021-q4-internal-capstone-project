@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 
 export const FeaturedProductsContainer = styled.div`
   grid-column: 2 / span 4;
@@ -30,7 +31,7 @@ export const FeaturedProductsOption = styled.span`
   }
 `;
 
-export const ViewAllButton = styled.button`
+export const ViewAllButton = styled(Link)`
   align-self: center;
   margin: 30px 0px;
   width: 300px;
@@ -39,7 +40,10 @@ export const ViewAllButton = styled.button`
   color: ${({ theme }) => theme.accent};
   border-color: ${({ theme }) => theme.accent};
   border-style: solid;
+  border-width: 2px;
   border-radius: 10px;
   font-weight: 700;
   font-size: 1.125rem;
+  text-align: center;
+  padding: 11.5px;
 `;

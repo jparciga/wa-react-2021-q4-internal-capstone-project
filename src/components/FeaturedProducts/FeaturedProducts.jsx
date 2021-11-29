@@ -14,7 +14,6 @@ export default function FeaturedProducts({
   title,
   categories,
   products,
-  changePage,
   firstActiveCategoryId = "*",
 }) {
   const [activeCategoryId, setActiveCategoryId] = useState(
@@ -72,9 +71,7 @@ export default function FeaturedProducts({
         <div>{categoryControls}</div>
       </FeaturedProductsHeader>
       <Grid>{productsList}</Grid>
-      <ViewAllButton onClick={() => changePage(NAVIGATION.SHOP)}>
-        View all products
-      </ViewAllButton>
+      <ViewAllButton to={NAVIGATION.SHOP}>View all products</ViewAllButton>
     </FeaturedProductsContainer>
   );
 }
