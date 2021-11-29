@@ -3,11 +3,11 @@ import { useApi } from './useApi';
 
 export const useProductCategories = (categoryFromURL) => {
   const [categoriesSelected, setCategoriesSelected] = useState([]);
-  const response = useApi('category');
+  const response = useApi('category', 12, 1);
   const [categories, setCategories] = useState([]);
   useEffect(() => {
     if (!response.isLoading) {
-      const categoryFilter = response.data.results.find((category) =>
+      const categoryFilter = response?.data?.results.find((category) =>
         category.slugs.includes(categoryFromURL)
       );
 

@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { API_BASE_URL } from '../constants';
 import { useLatestAPI } from './useLatestAPI';
 
-export function useApi(documentType, elementsPerPage = 10, page = 1) {
+export function useApi(documentType, elementsPerPage = 10, page) {
   const { ref: apiRef, isLoading: isApiMetadataLoading } = useLatestAPI();
   const [response, setResponse] = useState(() => ({
     data: {},
@@ -42,7 +42,7 @@ export function useApi(documentType, elementsPerPage = 10, page = 1) {
     return () => {
       controller.abort();
     };
-  }, [apiRef, isApiMetadataLoading, documentType]);
+  }, [apiRef, isApiMetadataLoading, documentType, elementsPerPage, page]);
 
   return response;
 }

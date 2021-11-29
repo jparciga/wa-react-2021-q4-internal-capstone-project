@@ -8,21 +8,23 @@ export default function Products({ categoriesSelected }) {
 
   return (
     <ProductList>
-      {products.map(({ id, data: { name, mainimage, category, price } }) => {
-        return (
-          <ProductCard
-            key={id}
-            id={id}
-            name={name}
-            mainimage={mainimage}
-            category={category}
-            price={price}
-          />
-        );
-      })}
+      {products &&
+        products.map(({ id, data: { name, mainimage, category, price } }) => {
+          return (
+            <ProductCard
+              key={id}
+              id={id}
+              name={name}
+              mainimage={mainimage}
+              category={category}
+              price={price}
+            />
+          );
+        })}
+      {pageInformation?.data?.page}
       <Pagination
         style={{ width: '100%', textAlign: 'center' }}
-        current={4}
+        current={pageInformation?.data?.page}
         totalPages={pageInformation?.data?.total_pages}
       />
     </ProductList>

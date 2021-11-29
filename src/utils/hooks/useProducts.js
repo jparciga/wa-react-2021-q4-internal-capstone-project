@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from 'react';
 import { useApi } from './useApi';
-
+import { useLocation } from 'react-router';
 const pagesInformation = {
   current: 1,
   total: 1,
@@ -10,8 +10,11 @@ const pagesInformation = {
 export const useProducts = (categoriesSelected) => {
   let [products, setProducts] = useState([]);
   let [pageInformation, setPageInformation] = useState(pagesInformation);
+  const search = useLocation().search;
+  let page = new URLSearchParams(search).get('page') ?? 1;
+
   const isMounted = useRef(null);
-  const response = useApi('product');
+  const response = useApi('product', 12, page);
 
   useEffect(() => {
     isMounted.current = true;
