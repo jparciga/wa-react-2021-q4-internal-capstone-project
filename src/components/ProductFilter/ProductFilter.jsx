@@ -11,13 +11,16 @@ import {
 
 export default function ProductFilter({ categories, products }) {
   const [filterArray, setFilterArray] = useState([]);
+  const clearFilters = { id: "-", name: "Clear Filters" };
 
   useEffect(() => {
     setFilterArray([]);
   }, [categories]);
 
   function toogleFilter(typeId) {
-    if (filterArray.includes(typeId)) {
+    if (typeId === clearFilters.id) {
+      setFilterArray([]);
+    } else if (filterArray.includes(typeId)) {
       let indexToRemove = filterArray.indexOf(typeId);
       setFilterArray([
         ...filterArray.slice(0, indexToRemove),
@@ -28,7 +31,9 @@ export default function ProductFilter({ categories, products }) {
     }
   }
 
-  const filterButtons = categories.map((category, index) => {
+  let categoriesArray =
+    filterArray.length > 0 ? [clearFilters, ...categories] : [...categories];
+  const filterButtons = categoriesArray.map((category, index) => {
     return (
       <React.Fragment key={category.id}>
         <FilterButton
@@ -38,7 +43,7 @@ export default function ProductFilter({ categories, products }) {
         >
           {category.name}
         </FilterButton>
-        {index + 1 !== categories.length ? (
+        {index + 1 !== categoriesArray.length ? (
           <FilterDivider key={`divider${category.id}`} />
         ) : null}
       </React.Fragment>
