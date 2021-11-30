@@ -12,6 +12,7 @@ export const FeaturedProductsHeader = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
+  margin-bottom: 20px;
 `;
 
 export const FeaturedProductsTitle = styled.h1`
