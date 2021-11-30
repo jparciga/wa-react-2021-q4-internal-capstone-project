@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { NAVIGATION } from "../../utils/constants";
 import Grid from "../Grid";
 import ProductCard from "../ProductCard";
@@ -10,39 +10,37 @@ import {
   ViewAllButton,
 } from "./FeaturedProducts.styled";
 
+const ALL_CATEGORY_ID = "*";
+
 export default function FeaturedProducts({
   title,
   categories,
   products,
-  firstActiveCategoryId = "*",
+  firstActiveCategoryId = ALL_CATEGORY_ID,
 }) {
   const [activeCategoryId, setActiveCategoryId] = useState(
     firstActiveCategoryId
   );
 
-  const categoryControlList = [{ id: "*", name: "All" }, ...categories];
+  useEffect(() => {
+    setActiveCategoryId(ALL_CATEGORY_ID);
+  }, [categories]);
+
+  const categoryControlList = [
+    { id: ALL_CATEGORY_ID, name: "All" },
+    ...categories,
+  ];
 
   const categoryControls = categoryControlList.map((category) => {
-    if (category.id === activeCategoryId) {
-      return (
-        <FeaturedProductsOption
-          key={category.id}
-          onClick={() => setActiveCategoryId(category.id)}
-          active
-        >
-          {category.name}
-        </FeaturedProductsOption>
-      );
-    } else {
-      return (
-        <FeaturedProductsOption
-          key={category.id}
-          onClick={() => setActiveCategoryId(category.id)}
-        >
-          {category.name}
-        </FeaturedProductsOption>
-      );
-    }
+    return (
+      <FeaturedProductsOption
+        key={category.id}
+        onClick={() => setActiveCategoryId(category.id)}
+        active={category.id === activeCategoryId}
+      >
+        {category.name}
+      </FeaturedProductsOption>
+    );
   });
 
   let categoryNames = {};
@@ -52,7 +50,8 @@ export default function FeaturedProducts({
 
   const productsList = products
     .filter(
-      ({ typeId }) => typeId === activeCategoryId || activeCategoryId === "*"
+      ({ typeId }) =>
+        activeCategoryId === typeId || activeCategoryId === ALL_CATEGORY_ID
     )
     .map((product, index) => (
       <ProductCard

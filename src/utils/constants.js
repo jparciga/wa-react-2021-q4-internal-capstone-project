@@ -4,3 +4,4 @@ export const NAVIGATION = {
   SHOP: "/shop",
   ABOUT: "/about",
 };
+export const LOADING_TEXT = "Loading...";

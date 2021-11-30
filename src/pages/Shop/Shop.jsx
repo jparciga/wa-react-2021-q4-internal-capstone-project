@@ -1,13 +1,16 @@
 import ProductFilter from "../../components/ProductFilter";
+import { LOADING_TEXT } from "../../utils/constants";
+import { useCategories } from "../../utils/hooks/useCategories";
 
 export default function Shop() {
-  const categories =
-    require("../../mocks/en-us/product-categories.json").results.map(
-      ({ id, data }) => ({
+  const categoriesData = useCategories();
+
+  const categories = categoriesData.isLoading
+    ? [{ id: LOADING_TEXT, name: LOADING_TEXT }]
+    : categoriesData.data.results.map(({ id, data }) => ({
         id,
         name: data.name,
-      })
-    );
+      }));
 
   const products = require("../../mocks/en-us/products.json").results.map(
     ({ data }) => ({

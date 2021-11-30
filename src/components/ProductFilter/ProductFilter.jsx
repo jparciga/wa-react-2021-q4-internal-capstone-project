@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Grid from "../Grid";
 import Pagination from "../Pagination/Pagination";
 import ProductCard from "../ProductCard";
@@ -11,6 +11,10 @@ import {
 
 export default function ProductFilter({ categories, products }) {
   const [filterArray, setFilterArray] = useState([]);
+
+  useEffect(() => {
+    setFilterArray([]);
+  }, [categories]);
 
   function toogleFilter(typeId) {
     if (filterArray.includes(typeId)) {
