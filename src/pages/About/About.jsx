@@ -4,7 +4,7 @@ export default function About() {
       style={{
         gridColumn: "2 / span 4",
         textAlign: "center",
-        fontSize: "30px",
+        fontSize: "1.875rem",
         color: "red",
       }}
     >
