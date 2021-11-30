@@ -14,12 +14,18 @@ import {
   InStock,
   ProductTags,
   ProductSKU,
+  QuantityButton,
+  QuantityInput,
+  ProductSpecs,
 } from './ProductDetailPage.style';
 import { ProductButton } from '../components/ProductCard.styles';
+
 export default function ProductDetailPage() {
   const { productId } = useParams();
   const response = useProductApi(productId);
   const [images, setImages] = useState('');
+  const [quantity, setQuantity] = useState(0);
+
   useEffect(() => {
     if (!response.isLoading) {
       console.log(response.data?.results[0]);
@@ -30,7 +36,12 @@ export default function ProductDetailPage() {
       );
     }
   }, [response]);
-
+  const increaseHandler = () => {
+    setQuantity((prevQty) => prevQty + 1);
+  };
+  const reduceHandler = () => {
+    if (quantity > 1) setQuantity((prevQty) => prevQty - 1);
+  };
   return (
     <ProductDetailPageContent>
       <ProductCarousel style={{ width: '90%' }}>
@@ -68,6 +79,15 @@ export default function ProductDetailPage() {
           {response.data.results &&
             response.data.results[0].data.description[0].text}
         </ProductDescription>
+
+        <ProductSpecs>
+          {response.data.results &&
+            response.data.results[0].data.specs.map((spec, index) => {
+              return (
+                <li key={index}>{`${spec.spec_name} ${spec.spec_value} `}</li>
+              );
+            })}
+        </ProductSpecs>
         <div>
           {response.data.results &&
             response.data.results[0].tags.map((tag, index) => {
@@ -78,6 +98,11 @@ export default function ProductDetailPage() {
 
       <ProductActions>
         <InStock>In Stock </InStock>
+        <div style={{ margin: '20px 0px' }}>
+          <QuantityButton onClick={reduceHandler}> - </QuantityButton>
+          <QuantityInput readOnly value={quantity} />
+          <QuantityButton onClick={increaseHandler}> + </QuantityButton>
+        </div>
         <ProductButton> Add to Cart</ProductButton>
       </ProductActions>
     </ProductDetailPageContent>

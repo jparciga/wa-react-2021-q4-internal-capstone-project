@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
   HeaderContainer,
   HeaderMenu,
@@ -14,6 +14,7 @@ import { HiShoppingCart } from 'react-icons/hi';
 import { ImMenu } from 'react-icons/im';
 import { Link } from 'react-router-dom';
 export default function Header({ onSetShowMenu, showMenu }) {
+  const [searchInput, setSearchInput] = useState('');
   return (
     <HeaderContainer>
       <HeaderMenu>
@@ -28,10 +29,15 @@ export default function Header({ onSetShowMenu, showMenu }) {
         </MenuLogo>
         <MenuItem> HOME </MenuItem>
         <MenuItem>
-          <SearchInput placeholder="Search Products..." />
-          <SearchButton>
-            <GiMagnifyingGlass />
-          </SearchButton>
+          <SearchInput
+            onChange={(e) => setSearchInput(e.target.value)}
+            placeholder="Search Products..."
+          />
+          <Link to={`search?q=${searchInput}`}>
+            <SearchButton>
+              <GiMagnifyingGlass />
+            </SearchButton>
+          </Link>
         </MenuItem>
         <MenuItem>
           <HiShoppingCart />

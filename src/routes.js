@@ -1,6 +1,7 @@
 import Home from './pages/HomePage';
 import Products from './pages/ProductsPage';
 import ProductDetail from './pages/ProductDetailPage';
+import Search from './pages/SearchPage';
 export const routes = [
   {
     name: 'Home',
@@ -21,5 +22,10 @@ export const routes = [
     name: 'Product Detail',
     path: '/products/:productId',
     element: ProductDetail,
+  },
+  {
+    name: 'Search',
+    path: '/search',
+    element: Search,
   },
 ];

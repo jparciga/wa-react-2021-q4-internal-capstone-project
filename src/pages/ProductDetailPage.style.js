@@ -30,7 +30,6 @@ export const ProductCarousel = styled.div`
   margin: 15px;
   width: 90%;
   max-height: 80vh;
-  background-color: red;
 `;
 
 export const ProductActions = styled.div`
@@ -43,3 +42,21 @@ export const InStock = styled.div`
   color: green;
   margin: 20px 0px;
 `;
+export const QuantityButton = styled.button`
+  padding: 10px;
+  margin: 5px;
+`;
+export const QuantityInput = styled.input`
+  padding: 10px;
+  margin: 5px;
+  width: 30%;
+  text-align: center;
+`;
+
+export const ProductSpecs = styled.ul`
+  border-top: 1px solid black;
+  border-bottom: 1px solid black;
+  margin: 15px;
+  padding: 15px;
+`;
+export const ProductSpecItem = styled.li``;

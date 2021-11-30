@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { API_BASE_URL } from '../constants';
 import { useLatestAPI } from './useLatestAPI';
 
-export function useProductApi(documentId, elementsPerPage, page) {
+export function useSearch(searchTerm, elementsPerPage = 10, page) {
   const { ref: apiRef, isLoading: isApiMetadataLoading } = useLatestAPI();
   const [response, setResponse] = useState(() => ({
     data: {},
@@ -22,8 +22,8 @@ export function useProductApi(documentId, elementsPerPage, page) {
 
         const response = await fetch(
           `${API_BASE_URL}/documents/search?ref=${apiRef}&q=${encodeURIComponent(
-            '[[at(document.id, "' + documentId + '")]]'
-          )}&lang=en-us`,
+            '[[at(document.type, "product")]]'
+          )}&lang=en-us&&q=[[fulltext(document, "${searchTerm}")]]`,
           {
             signal: controller.signal,
           }
@@ -42,7 +42,7 @@ export function useProductApi(documentId, elementsPerPage, page) {
     return () => {
       controller.abort();
     };
-  }, [apiRef, isApiMetadataLoading, documentId]);
+  }, [apiRef, isApiMetadataLoading, searchTerm, elementsPerPage, page]);
 
   return response;
 }
