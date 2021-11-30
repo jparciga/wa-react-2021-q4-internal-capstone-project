@@ -2,8 +2,10 @@ import {
   ProductImage,
   ProductName,
   ProductPrice,
-  ProductCardContainer,
   ProductCategory,
+  AddToCart,
+  ProductInfo,
+  ProductContent,
 } from "./ProductCard.styled";
 
 export default function ProductCard({ image, name, price, category }) {
@@ -13,11 +15,16 @@ export default function ProductCard({ image, name, price, category }) {
   });
 
   return (
-    <ProductCardContainer>
-      <ProductImage src={image} alt={name} />
-      <ProductCategory>{category}</ProductCategory>
-      <ProductName>{name}</ProductName>
-      <ProductPrice>{formatter.format(price)}</ProductPrice>
-    </ProductCardContainer>
+    <div>
+      <ProductContent>
+        <ProductImage src={image} alt={name} />
+        <ProductInfo>
+          <ProductCategory>{category}</ProductCategory>
+          <ProductName>{name}</ProductName>
+          <ProductPrice>{formatter.format(price)}</ProductPrice>
+        </ProductInfo>
+      </ProductContent>
+      <AddToCart>Add to Cart</AddToCart>
+    </div>
   );
 }

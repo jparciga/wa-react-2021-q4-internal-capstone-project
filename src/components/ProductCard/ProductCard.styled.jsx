@@ -1,11 +1,19 @@
 import styled from "styled-components";
 
-export const ProductCardContainer = styled.div`
+export const ProductContent = styled.div`
   display: flex;
   flex-flow: column;
   align-items: center;
+  justify-content: space-around;
   cursor: pointer;
   width: 250px;
+  height: 320px;
+  border: solid 1px ${({ theme }) => theme.accentWeak};
+  border-radius: 10px 10px 0px 0px;
+`;
+
+export const ProductInfo = styled.div`
+  padding: 0px 10px;
 `;
 
 export const ProductImage = styled.img`
@@ -16,14 +24,12 @@ export const ProductCategory = styled.p`
   font-size: 0.875rem;
   color: ${({ theme }) => theme.darkWeak};
   font-style: italic;
-  margin-bottom: 5px;
   text-align: center;
 `;
 
 export const ProductName = styled.p`
   font-size: 1.125rem;
   font-weight: 700;
-  margin-bottom: 5px;
   text-align: center;
 `;
 
@@ -31,4 +37,16 @@ export const ProductPrice = styled.p`
   font-weight: 700;
   text-align: center;
   color: ${({ theme }) => theme.accentWeak};
+  margin-bottom: 10px;
+`;
+
+export const AddToCart = styled.button`
+  width: 100%;
+  height: 80px;
+  font-weight: 700;
+  font-size: 1.125rem;
+  border-radius: 0px 0px 10px 10px;
+  border: none;
+  color: ${({ theme }) => theme.light};
+  background-color: ${({ theme }) => theme.accentWeak};
 `;
