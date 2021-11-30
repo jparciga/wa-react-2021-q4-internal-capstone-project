@@ -1,3 +1,4 @@
+import styled from "styled-components";
 import Banner from "../../components/Banner";
 import FeaturedProducts from "../../components/FeaturedProducts";
 import Slider from "../../components/Slider";
@@ -6,13 +7,19 @@ import { useCategories } from "../../utils/hooks/useCategories";
 import { useFeaturedBanners } from "../../utils/hooks/useFeaturedBanners";
 import { useFeaturedProducts } from "../../utils/hooks/useFeaturedProducts";
 
+const Loading = styled.span`
+  grid-column: 2 / span 4;
+  text-align: center;
+  font-size: 1.875rem;
+`;
+
 export default function Home() {
   const bannerData = useFeaturedBanners();
   const categoriesData = useCategories();
   const featuredProductsData = useFeaturedProducts();
 
   const bannerList = bannerData.isLoading
-    ? [<Banner title={LOADING_TEXT} />]
+    ? []
     : bannerData.data.results.map(({ data }) => (
         <Banner
           title={data.title}
@@ -22,7 +29,7 @@ export default function Home() {
       ));
 
   const categories = categoriesData.isLoading
-    ? [{ id: LOADING_TEXT, name: LOADING_TEXT }]
+    ? []
     : categoriesData.data.results.map(({ id, data }) => ({
         id,
         name: data.name,
@@ -39,12 +46,20 @@ export default function Home() {
 
   return (
     <>
-      <Slider contentList={bannerList} autoPlaySeconds={3000} />
-      <FeaturedProducts
-        title="Hot Products"
-        categories={categories}
-        products={featuredProducts}
-      />
+      {bannerList.length === 0 ? (
+        <Loading>{LOADING_TEXT}</Loading>
+      ) : (
+        <Slider contentList={bannerList} autoPlaySeconds={3000} />
+      )}
+      {featuredProducts.length === 0 || categories.length === 0 ? (
+        <Loading>{LOADING_TEXT}</Loading>
+      ) : (
+        <FeaturedProducts
+          title="Hot Products"
+          categories={categories}
+          products={featuredProducts}
+        />
+      )}
     </>
   );
 }
