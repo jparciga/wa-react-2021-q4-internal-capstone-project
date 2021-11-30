@@ -9,9 +9,6 @@ import ProductDetail from 'components/ProductDetail/ProductDetail.component';
 import LogoImg from 'images/image.png';
 import ShoppingCartIcon from 'images/shopping-cart.svg';
 
-import productsData from 'mocks/products.json';
-import productCategoriesData from 'mocks/product-categories.json';
-
 import {Switch, Route, Link, Redirect } from 'react-router-dom';
 
 const App = () => {
@@ -45,7 +42,7 @@ const App = () => {
             <Home />
           </Route>
           <Route exact path='/products'>
-            <ProductList products={productsData.results} categories={productCategoriesData.results} />
+            <ProductList />
           </Route>
           <Route exact path='/product/:productId'>
             <ProductDetail></ProductDetail>
