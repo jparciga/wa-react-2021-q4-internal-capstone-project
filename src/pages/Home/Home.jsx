@@ -1,17 +1,10 @@
-import styled from "styled-components";
 import Banner from "../../components/Banner";
 import FeaturedProducts from "../../components/FeaturedProducts";
+import Loading from "../../components/Loading";
 import Slider from "../../components/Slider";
-import { LOADING_TEXT } from "../../utils/constants";
 import { useCategories } from "../../utils/hooks/useCategories";
 import { useFeaturedBanners } from "../../utils/hooks/useFeaturedBanners";
 import { useFeaturedProducts } from "../../utils/hooks/useFeaturedProducts";
-
-const Loading = styled.span`
-  grid-column: 2 / span 4;
-  text-align: center;
-  font-size: 1.875rem;
-`;
 
 export default function Home() {
   const bannerData = useFeaturedBanners();
@@ -47,12 +40,12 @@ export default function Home() {
   return (
     <>
       {bannerList.length === 0 ? (
-        <Loading>{LOADING_TEXT}</Loading>
+        <Loading />
       ) : (
         <Slider contentList={bannerList} autoPlaySeconds={3000} />
       )}
       {featuredProducts.length === 0 || categories.length === 0 ? (
-        <Loading>{LOADING_TEXT}</Loading>
+        <Loading />
       ) : (
         <FeaturedProducts
           title="Hot Products"

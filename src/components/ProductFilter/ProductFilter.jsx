@@ -1,4 +1,6 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
+import { useLocation } from "react-router";
+import { NAVIGATION } from "../../utils/constants";
 import Grid from "../Grid";
 import Pagination from "../Pagination/Pagination";
 import ProductCard from "../ProductCard";
@@ -9,37 +11,34 @@ import {
   ProductFilterSidebar,
 } from "./ProductFilter.styled";
 
-export default function ProductFilter({ categories, products }) {
-  const [filterArray, setFilterArray] = useState([]);
+export default function ProductFilter({ categories, products, totalPages }) {
+  const { filter = [] } = useLocation().state || {};
   const clearFilters = { id: "-", name: "Clear Filters" };
 
-  useEffect(() => {
-    setFilterArray([]);
-  }, [categories]);
-
-  function toogleFilter(typeId) {
-    if (typeId === clearFilters.id) {
-      setFilterArray([]);
-    } else if (filterArray.includes(typeId)) {
-      let indexToRemove = filterArray.indexOf(typeId);
-      setFilterArray([
-        ...filterArray.slice(0, indexToRemove),
-        ...filterArray.slice(indexToRemove + 1),
-      ]);
-    } else {
-      setFilterArray([...filterArray, typeId]);
-    }
-  }
-
   let categoriesArray =
-    filterArray.length > 0 ? [clearFilters, ...categories] : [...categories];
+    filter.length > 0 ? [clearFilters, ...categories] : [...categories];
+
   const filterButtons = categoriesArray.map((category, index) => {
+    const state = { page: 1 };
+    if (category.id === clearFilters.id) {
+      state.filter = [];
+    } else if (filter.includes(category.id)) {
+      const indexToRemove = filter.indexOf(category.id);
+      state.filter = [
+        ...filter.slice(0, indexToRemove),
+        ...filter.slice(indexToRemove + 1),
+      ];
+    } else {
+      state.filter = [...filter, category.id];
+    }
+
     return (
       <React.Fragment key={category.id}>
         <FilterButton
           key={category.id}
-          onClick={() => toogleFilter(category.id)}
-          active={filterArray.includes(category.id)}
+          to={NAVIGATION.SHOP}
+          state={state}
+          active={filter.includes(category.id)}
         >
           {category.name}
         </FilterButton>
@@ -50,19 +49,12 @@ export default function ProductFilter({ categories, products }) {
     );
   });
 
-  let filteredProducts = [...products];
-  if (filterArray.length > 0) {
-    filteredProducts = filteredProducts.filter(({ typeId }) =>
-      filterArray.includes(typeId)
-    );
-  }
-
   let categoryNames = {};
   categories.forEach(({ id, name }) => {
     categoryNames = { ...categoryNames, [id]: name };
   });
 
-  const productsList = filteredProducts.map((product, index) => (
+  const productsList = products.map((product, index) => (
     <ProductCard
       key={`product${index}`}
       image={product.image}
@@ -77,7 +69,7 @@ export default function ProductFilter({ categories, products }) {
       <ProductFilterSidebar>{filterButtons}</ProductFilterSidebar>
       <ProductFilterContent>
         <Grid>{productsList}</Grid>
-        <Pagination />
+        <Pagination totalPages={totalPages} />
       </ProductFilterContent>
     </>
   );

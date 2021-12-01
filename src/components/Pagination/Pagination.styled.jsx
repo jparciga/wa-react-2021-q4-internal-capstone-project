@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 export const PaginationContainer = styled.div`
@@ -5,12 +6,12 @@ export const PaginationContainer = styled.div`
   justify-content: center;
   margin-top: 50px;
 
-  button:not(:first-child) {
+  a:not(:first-child) {
     margin-left: 10px;
   }
 `;
 
-export const PaginationButton = styled.button`
+export const PaginationButton = styled(Link)`
   background: ${({ active, theme }) =>
     active ? theme.accentWeak : theme.light};
   border: solid ${({ theme }) => theme.accentWeak};
@@ -20,4 +21,6 @@ export const PaginationButton = styled.button`
   font-size: 0.875rem;
   font-weight: 700;
   color: ${({ active, theme }) => (active ? theme.light : theme.accentWeak)};
+  text-align: center;
+  padding: 5px;
 `;

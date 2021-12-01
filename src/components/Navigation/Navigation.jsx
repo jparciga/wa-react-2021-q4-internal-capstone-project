@@ -18,7 +18,9 @@ export default function Navigation() {
           >
             Home
           </Page>
-          <Page to={NAVIGATION.SHOP}>Shop</Page>
+          <Page to={NAVIGATION.SHOP} state={{ page: 1 }}>
+            Shop
+          </Page>
           <Page to={NAVIGATION.ABOUT}>About</Page>
         </Pages>
         <Icons>

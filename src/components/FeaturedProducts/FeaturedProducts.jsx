@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { NAVIGATION } from "../../utils/constants";
 import Grid from "../Grid";
 import ProductCard from "../ProductCard";
@@ -21,10 +21,6 @@ export default function FeaturedProducts({
   const [activeCategoryId, setActiveCategoryId] = useState(
     firstActiveCategoryId
   );
-
-  useEffect(() => {
-    setActiveCategoryId(ALL_CATEGORY_ID);
-  }, [categories]);
 
   const categoryControlList = [
     { id: ALL_CATEGORY_ID, name: "All" },
