@@ -2,7 +2,7 @@ import React, {useState} from "react";
 import { Switch, Route, Link, Redirect } from "react-router-dom";
 import Home from "components/Home/Home";
 import ProductList from "components/ProductList/ProductList.styles";
-import ProductDetail from "components/ProductDetail/ProductDetail.component";
+import ProductDetail from "components/ProductDetail/ProductDetail.styles";
 
 const PageRouter = () => {
     const [currentPage, setCurrentPage] = useState("Home");
