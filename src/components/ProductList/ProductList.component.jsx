@@ -1,6 +1,5 @@
-
 import React from 'react';
-import Grid from 'components/Grid/Grid'
+import Grid from 'components/Grid/Grid.styles'
 
 import Sidebar from 'components/Sidebar/Sidebar.component';
 import useFiltering from './useFiltering';

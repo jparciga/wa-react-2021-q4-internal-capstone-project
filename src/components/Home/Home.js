@@ -3,7 +3,7 @@ import styled from 'styled-components';
 
 import Slider from 'components/Slider/Slider';
 import Carousel from 'components/Carousel/Carousel.style';
-import Grid from 'components/Grid/Grid';
+import Grid from 'components/Grid/Grid.styles';
 
 import useFeaturedBanners from 'hooks/useFeaturedBanners';
 import useProductCategories from 'hooks/useProductCategories';
