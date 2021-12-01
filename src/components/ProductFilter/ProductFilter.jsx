@@ -2,6 +2,7 @@ import React from "react";
 import { useLocation } from "react-router";
 import { NAVIGATION } from "../../utils/constants";
 import Grid from "../Grid";
+import Loading from "../Loading";
 import Pagination from "../Pagination/Pagination";
 import ProductCard from "../ProductCard";
 import {
@@ -11,66 +12,82 @@ import {
   ProductFilterSidebar,
 } from "./ProductFilter.styled";
 
-export default function ProductFilter({ categories, products, totalPages }) {
+export default function ProductFilter({ categories, products }) {
   const { filter = [] } = useLocation().state || {};
-  const clearFilters = { id: "-", name: "Clear Filters" };
+  const clearFilters = { id: "-", data: { name: "Clear Filters" } };
 
-  let categoriesArray =
-    filter.length > 0 ? [clearFilters, ...categories] : [...categories];
+  let filterButtons = [];
+  if (!categories.isLoading) {
+    let categoriesArray =
+      filter.length > 0
+        ? [clearFilters, ...categories.data.results]
+        : [...categories.data.results];
 
-  const filterButtons = categoriesArray.map((category, index) => {
-    const state = { page: 1 };
-    if (category.id === clearFilters.id) {
-      state.filter = [];
-    } else if (filter.includes(category.id)) {
-      const indexToRemove = filter.indexOf(category.id);
-      state.filter = [
-        ...filter.slice(0, indexToRemove),
-        ...filter.slice(indexToRemove + 1),
-      ];
-    } else {
-      state.filter = [...filter, category.id];
-    }
+    filterButtons = categoriesArray.map(({ id, data: { name } }, index) => {
+      const state = { page: 1 };
+      if (id === clearFilters.id) {
+        state.filter = [];
+      } else if (filter.includes(id)) {
+        const indexToRemove = filter.indexOf(id);
+        state.filter = [
+          ...filter.slice(0, indexToRemove),
+          ...filter.slice(indexToRemove + 1),
+        ];
+      } else {
+        state.filter = [...filter, id];
+      }
 
-    return (
-      <React.Fragment key={category.id}>
-        <FilterButton
-          key={category.id}
-          to={NAVIGATION.SHOP}
-          state={state}
-          active={filter.includes(category.id)}
-        >
-          {category.name}
-        </FilterButton>
-        {index + 1 !== categoriesArray.length ? (
-          <FilterDivider key={`divider${category.id}`} />
-        ) : null}
-      </React.Fragment>
-    );
-  });
+      return (
+        <React.Fragment key={id}>
+          <FilterButton
+            key={id}
+            to={NAVIGATION.SHOP}
+            state={state}
+            active={filter.includes(id)}
+          >
+            {name}
+          </FilterButton>
+          {index + 1 !== categoriesArray.length ? (
+            <FilterDivider key={`divider${id}`} />
+          ) : null}
+        </React.Fragment>
+      );
+    });
+  }
 
-  let categoryNames = {};
-  categories.forEach(({ id, name }) => {
-    categoryNames = { ...categoryNames, [id]: name };
-  });
+  let productsList = [];
+  if (!categories.isLoading && !products.isLoading) {
+    let categoryNames = {};
+    categories.data.results.forEach(({ id, data: { name } }) => {
+      categoryNames = { ...categoryNames, [id]: name };
+    });
 
-  const productsList = products.map((product, index) => (
-    <ProductCard
-      key={`product${index}`}
-      image={product.image}
-      category={categoryNames[product.typeId]}
-      name={product.name}
-      price={product.price}
-    />
-  ));
+    productsList = products.data.results.map(({ data: product }, index) => (
+      <ProductCard
+        key={index}
+        image={product.mainimage.url}
+        category={categoryNames[product.category.id]}
+        name={product.name}
+        price={product.price}
+      />
+    ));
+  }
 
   return (
     <>
-      <ProductFilterSidebar>{filterButtons}</ProductFilterSidebar>
-      <ProductFilterContent>
-        <Grid>{productsList}</Grid>
-        <Pagination totalPages={totalPages} />
-      </ProductFilterContent>
+      {categories.isLoading ? (
+        <Loading />
+      ) : (
+        <ProductFilterSidebar>{filterButtons}</ProductFilterSidebar>
+      )}
+      {categories.isLoading || products.isLoading ? (
+        <Loading />
+      ) : (
+        <ProductFilterContent>
+          <Grid>{productsList}</Grid>
+          <Pagination totalPages={products.data.total_pages} />
+        </ProductFilterContent>
+      )}
     </>
   );
 }
