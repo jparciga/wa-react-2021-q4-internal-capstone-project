@@ -17,6 +17,13 @@ export const ProductListComponent = ({className}) => {
     const [products, pageNumber, setPageNumber] = useProducts({page: 1, pageSize: 12});
     const [filteredProducts, filters, handleCustomFiltering, clearAllFilters] = useFiltering(products, queryString);
 
+    const gridData = { 
+        page: pageNumber, 
+        totalPages: products.totalPages, 
+        parsedData: filteredProducts, 
+        isLoading: products.isLoading
+    };
+
     return (
         <div className={className}>
             <Sidebar data={productCategories} 
@@ -24,7 +31,7 @@ export const ProductListComponent = ({className}) => {
                      clearAllFilters={clearAllFilters}
                      title={`Categories`} 
                      filters={filters} />
-            <Grid data={{ page: pageNumber, totalPages: products.totalPages, parsedData: filteredProducts, isLoading: products.isLoading}} pagination setPageNumber={setPageNumber} />
+            <Grid data={gridData} pagination setPageNumber={setPageNumber} />
         </div>
     )
 };
