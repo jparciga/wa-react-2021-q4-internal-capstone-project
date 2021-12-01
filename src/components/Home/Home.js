@@ -5,9 +5,8 @@ import Slider from 'components/Slider/Slider';
 import Carousel from 'components/Carousel/Carousel.style';
 import Grid from 'components/Grid/Grid.styles';
 
-import useFeaturedBanners from 'hooks/useFeaturedBanners';
 import useProductCategories from 'hooks/useProductCategories';
-import useFeaturedProducts from 'hooks/useFeaturedProducts';
+import useFeatured from 'hooks/useFeatured';
 
 const HomeContainer = styled.div`
     display: grid;
@@ -16,8 +15,7 @@ const HomeContainer = styled.div`
 `;
 
 const Home = () => {
-    const [featuredBanners] = useFeaturedBanners();
-    const [featuredProducts] = useFeaturedProducts();
+    const [featuredProducts, featuredBanners] = useFeatured();
     const [productCategories] = useProductCategories();
 
     return (

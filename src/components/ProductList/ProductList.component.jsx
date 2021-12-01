@@ -30,7 +30,7 @@ export const ProductListComponent = ({className}) => {
                      clearAllFilters={clearAllFilters}
                      title={`Categories`} 
                      filters={filters} />
-            <Grid data={gridData} pagination setPageNumber={setPageNumber} />
+            <Grid data={gridData} setPageNumber={setPageNumber} pagination />
         </div>
     )
 };
