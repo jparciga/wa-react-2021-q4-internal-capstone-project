@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { useSearch } from '../utils/hooks/useSearch';
 import ProductCard from '../components/ProductCard';
 import { useLocation } from 'react-router';
@@ -10,9 +10,6 @@ export default function SearchPage() {
 
   const response = useSearch(productToSearch);
 
-  useEffect(() => {
-    console.log(response);
-  }, [response]);
   return (
     <ProductList>
       {response.data.results &&

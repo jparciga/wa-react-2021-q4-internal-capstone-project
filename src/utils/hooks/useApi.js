@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { API_BASE_URL } from '../constants';
 import { useLatestAPI } from './useLatestAPI';
 
-export function useApi(documentType, elementsPerPage = 10, page) {
+export function useApi(documentType, elementsPerPage = 10, page = 1) {
   const { ref: apiRef, isLoading: isApiMetadataLoading } = useLatestAPI();
   const [response, setResponse] = useState(() => ({
     data: {},

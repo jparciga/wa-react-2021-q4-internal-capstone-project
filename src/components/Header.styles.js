@@ -3,6 +3,7 @@ export const HeaderContainer = styled.nav`
   background-color: #222529;
   padding: 0 15px;
   color: white;
+  z-index: 100;
   @media (max-width: 768px) {
     position: fixed;
     width: 100%;

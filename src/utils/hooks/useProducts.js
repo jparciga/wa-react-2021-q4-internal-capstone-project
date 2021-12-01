@@ -7,7 +7,7 @@ const pagesInformation = {
   results_per_page: 12,
   total_pages: 1,
 };
-export const useProducts = (categoriesSelected) => {
+export const useProducts = (categoriesSelected = []) => {
   let [products, setProducts] = useState([]);
   let [pageInformation, setPageInformation] = useState(pagesInformation);
   const search = useLocation().search;
@@ -19,9 +19,8 @@ export const useProducts = (categoriesSelected) => {
   useEffect(() => {
     isMounted.current = true;
     if (!response.isLoading) {
-      console.log(response);
       const productsData =
-        categoriesSelected && categoriesSelected.length > 0
+        categoriesSelected.length > 0
           ? response.data.results.filter((prod) =>
               categoriesSelected.includes(prod.data.category.id)
             )
@@ -32,7 +31,7 @@ export const useProducts = (categoriesSelected) => {
         setPageInformation(response);
       }
     }
-  }, [response, categoriesSelected, pageInformation]);
+  }, [response, categoriesSelected]);
 
   return [products, pageInformation];
 };

@@ -1,15 +1,16 @@
-import React, { useEffect } from 'react';
+import React, { useContext } from 'react';
 import { Category, CategoriesContainer } from './Categories.styles';
 import { useApi } from '../utils/hooks/useApi';
+import ThemeContext from '../context/ThemeContext';
 
-export default function Categories({ showMenu }) {
+export default function Categories() {
   const response = useApi('category', 10, 1);
-  useEffect(() => {
-    console.log('CATEOGRY', response);
-  });
+
+  const ThemeCtx = useContext(ThemeContext);
+
   return (
     <>
-      {true && (
+      {ThemeCtx.showMenu && (
         <CategoriesContainer>
           {response?.data?.results &&
             response.data.results.map((category) => {

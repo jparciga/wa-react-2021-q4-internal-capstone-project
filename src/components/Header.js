@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import {
   HeaderContainer,
   HeaderMenu,
@@ -8,20 +8,21 @@ import {
   ShowMenuBtn,
   SearchButton,
 } from './Header.styles';
-
+import ThemeContext from '../context/ThemeContext';
 import { GiMagnifyingGlass } from 'react-icons/gi';
 import { HiShoppingCart } from 'react-icons/hi';
 import { ImMenu } from 'react-icons/im';
 import { Link } from 'react-router-dom';
-export default function Header({ onSetShowMenu, showMenu }) {
+export default function Header() {
   const [searchInput, setSearchInput] = useState('');
+  const ThemeCtx = useContext(ThemeContext);
   return (
     <HeaderContainer>
       <HeaderMenu>
         <ShowMenuBtn style={{ margin: '0px', padding: '0px' }}>
           <ImMenu
             style={{ margin: '0px', padding: '0px' }}
-            onClick={() => onSetShowMenu(!showMenu)}
+            onClick={() => ThemeCtx.changeShowMenu()}
           />
         </ShowMenuBtn>
         <MenuLogo>

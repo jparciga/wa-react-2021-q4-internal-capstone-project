@@ -17,6 +17,7 @@ import {
   QuantityButton,
   QuantityInput,
   ProductSpecs,
+  ProductCategory,
 } from './ProductDetailPage.style';
 import { ProductButton } from '../components/ProductCard.styles';
 
@@ -28,7 +29,6 @@ export default function ProductDetailPage() {
 
   useEffect(() => {
     if (!response.isLoading) {
-      console.log(response.data?.results[0]);
       setImages(
         response.data?.results[0].data?.images.map(({ image }) => ({
           src: image.url,
@@ -71,10 +71,10 @@ export default function ProductDetailPage() {
         <ProductSKU>
           sku {response.data.results && response.data.results[0].data.sku}
         </ProductSKU>
-        <div>
-          category{' '}
+        <ProductCategory>
+          {`Category `}
           {response.data.results && response.data.results[0].data.category.slug}
-        </div>
+        </ProductCategory>
         <ProductDescription>
           {response.data.results &&
             response.data.results[0].data.description[0].text}
