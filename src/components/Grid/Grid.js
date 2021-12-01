@@ -1,28 +1,10 @@
 import React from 'react';
 import styled from 'styled-components';
 import GridCard from 'components/GridCard/GridCard';
+import GridPaginator from 'components/GridPaginator/GridPaginator.component';
 
 const GridComponent = ({className, data: { page, totalPages, parsedData = [], isLoading }, pagination, setPageNumber}) =>  {
-
-    const createPaginationNumeration = (page, totalPages) => {
-        let content = [];
-        for (let i = 1; i <= totalPages; i++) {
-            content.push(<button style={ (page === i) ? { color: "red" } : {}} key={`number${i}}`} onClick={() => setPageNumber(i)}>{i}</button>);
-        }
-
-        return content;
-    };
-
-    const paginationControls = pagination && (
-        <div className="grid-paginator">
-            <button onClick={() => setPageNumber(1)}>First</button>
-            <button onClick={() => setPageNumber((pageNumber) => { return (pageNumber > 1) ? pageNumber - 1 : pageNumber; })}>Prev</button>
-            { createPaginationNumeration(page, totalPages) }
-            <button onClick={() => setPageNumber((pageNumber) => { return (pageNumber < totalPages) ? pageNumber + 1 : pageNumber; })}>Next</button>
-            <button onClick={() => setPageNumber(totalPages)}>Last</button>
-        </div>
-    );
-    
+  
     const filledGrid = (               
     <>
         <div className="grid-container">
@@ -40,7 +22,7 @@ const GridComponent = ({className, data: { page, totalPages, parsedData = [], is
             }
         </div>
         {
-            pagination && (paginationControls)
+            pagination && <GridPaginator page={page} totalPages={totalPages} setPageNumber={setPageNumber} />
         }
 
     </>);
