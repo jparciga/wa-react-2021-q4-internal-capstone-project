@@ -2,9 +2,9 @@ import { useState, useEffect } from "react";
 import { API_BASE_URL } from "../constants";
 import { useLatestAPI } from "./useLatestAPI";
 
-export function useCategories(searchTerm) {
+export function useSearch(searchTerm) {
   const { ref: apiRef, isLoading: isApiMetadataLoading } = useLatestAPI();
-  const [categories, setCategories] = useState(() => ({
+  const [search, setSearch] = useState(() => ({
     data: {},
     isLoading: true,
   }));
@@ -16,9 +16,9 @@ export function useCategories(searchTerm) {
 
     const controller = new AbortController();
 
-    async function getCategories() {
+    async function getSearch() {
       try {
-        setCategories({ data: {}, isLoading: true });
+        setSearch({ data: {}, isLoading: true });
 
         const response = await fetch(
           `${API_BASE_URL}/documents/search?ref=${apiRef}&q=${encodeURIComponent(
@@ -32,19 +32,19 @@ export function useCategories(searchTerm) {
         );
         const data = await response.json();
 
-        setCategories({ data, isLoading: false });
+        setSearch({ data, isLoading: false });
       } catch (err) {
-        setCategories({ data: {}, isLoading: false });
+        setSearch({ data: {}, isLoading: false });
         console.error(err);
       }
     }
 
-    getCategories();
+    getSearch();
 
     return () => {
       controller.abort();
     };
   }, [apiRef, isApiMetadataLoading, searchTerm]);
 
-  return categories;
+  return search;
 }
