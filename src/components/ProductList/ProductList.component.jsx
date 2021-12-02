@@ -2,7 +2,6 @@ import React, {useContext} from 'react';
 import Grid from 'components/Grid/Grid.styles'
 
 import Sidebar from 'components/Sidebar/Sidebar.component';
-import useFiltering from './useFiltering';
 import useProductCategories from 'hooks/useProductCategories';
 import useProducts from 'hooks/useProducts';
 
@@ -23,15 +22,12 @@ export const ProductListComponent = ({className}) => {
     }   
     const [productCategories] = useProductCategories();
     const [products] = useProducts({pageSize: 12});
-    const [filteredProducts, filters, handleCustomFiltering, clearAllFilters] = useFiltering(products, queryString);
 
     const gridData = { 
         totalPages: products.totalPages, 
         parsedData: products.parsedData, 
         isLoading: products.isLoading
     };
-
-   
 
     return (
         <ProductListContext.Provider value={{productListState, productListDispatcher}}>
