@@ -11,6 +11,10 @@ const GridComponent = ( {
         isLoading }, 
     pagination, 
     setPageNumber}) =>  {
+
+        if(isLoading)
+            return (<h1>Loading...</h1>);
+
         const filledGrid = (               
         <>
             <div className="grid-container">

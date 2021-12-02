@@ -10,6 +10,9 @@ const CarouselComponent = ({className, data: { parsedData = [], isLoading }}) =>
         setStyle(() => {return {transform: `translateX(${xPos}px)`, transitionDuration: "0.5s" }});
     },[xPos]);
 
+    if(isLoading)
+        return (<h1>Loading...</h1>);
+
     return (
     <div className={className}>
         <div className="track" style={style}>

@@ -28,6 +28,9 @@ const SliderComponent = ({className, data: { parsedData = [], isLoading }}) => {
         setSlideIndex(index)
     };
     
+    if(isLoading)
+        return (<h1>Loading...</h1>);
+
     return ( 
     <div className={className}>
         {parsedData.map( ({id, url}, index) => {

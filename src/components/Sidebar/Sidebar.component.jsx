@@ -5,6 +5,9 @@ import ProductListContext from 'state/ProductListContext';
 const Sidebar = ({data: { parsedData = [], isLoading }, title, filters, clickEvent, clearAllFilters}) => {
     const { productListState, productListDispatcher } = useContext(ProductListContext);
 
+    if(isLoading)
+        return (<h1>Loading...</h1>);
+
     return (
         <div>
             <h2>{title}</h2>
