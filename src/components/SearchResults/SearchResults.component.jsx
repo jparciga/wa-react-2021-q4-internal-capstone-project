@@ -16,7 +16,7 @@ const SearchResultsComponent = ({className}) => {
         <SearchResultsContext.Provider value={{searchResultsState, searchResultsDispatcher}}>
             <div className={className}>
                 <h3>Search Results</h3>   
-                <List searchTerm={searchTerm}/>
+                <List searchTerm={searchTerm} noElementsCustomMessage="No hits..."/>
             </div>
         </SearchResultsContext.Provider>
     );
