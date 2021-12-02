@@ -10,7 +10,8 @@ import { NAVIGATION, URL_PARAMS } from "./utils/constants";
 import Home from "./pages/Home";
 import Shop from "./pages/Shop";
 import About from "./pages/About/About";
-import Details from "./pages/Details/Details";
+import Details from "./pages/Details";
+import Search from "./pages/Search";
 
 const nothingFound = (
   <h1
@@ -38,6 +39,7 @@ ReactDOM.render(
               <Route index element={<Shop />} />
               <Route path={URL_PARAMS.PRODUCT_ID} element={<Details />} />
             </Route>
+            <Route path={NAVIGATION.SEARCH} element={<Search />} />
             <Route path={NAVIGATION.ABOUT} element={<About />} />
             <Route path="*" element={nothingFound} />
           </Route>
