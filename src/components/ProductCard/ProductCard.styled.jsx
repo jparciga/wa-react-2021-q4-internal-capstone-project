@@ -3,13 +3,10 @@ import styled from "styled-components";
 
 export const ProductContent = styled(Link)`
   display: flex;
-  flex-flow: column;
-  align-items: center;
-  justify-content: space-around;
   cursor: pointer;
-  width: 250px;
+  width: 100%;
   height: 320px;
-  border: solid 1px ${({ theme }) => theme.accentWeak};
+  border: solid 2px ${({ theme }) => theme.accentWeak};
   border-radius: 10px 10px 0px 0px;
 `;
 
@@ -50,4 +47,21 @@ export const AddToCart = styled.button`
   border: none;
   color: ${({ theme }) => theme.light};
   background-color: ${({ theme }) => theme.accentWeak};
+`;
+
+export const ContentLeft = styled.div`
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  justify-content: space-around;
+  width: 250px;
+  height: inherit;
+`;
+
+export const ContentRight = styled.div`
+  width: 350px;
+  height: 94%;
+  margin: 10px 10px 10px 0px;
+  padding-left: 10px;
+  border-left: solid 2px ${({ theme }) => theme.accentWeak};
 `;

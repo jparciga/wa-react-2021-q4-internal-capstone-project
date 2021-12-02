@@ -7,6 +7,8 @@ import {
   AddToCart,
   ProductInfo,
   ProductContent,
+  ContentLeft,
+  ContentRight,
 } from "./ProductCard.styled";
 
 export default function ProductCard({
@@ -15,6 +17,7 @@ export default function ProductCard({
   name,
   price,
   category,
+  description = "",
 }) {
   const formatter = Intl.NumberFormat("en-US", {
     style: "currency",
@@ -24,12 +27,15 @@ export default function ProductCard({
   return (
     <div>
       <ProductContent to={`${NAVIGATION.SHOP}/${productId}`}>
-        <ProductImage src={image} alt={name} />
-        <ProductInfo>
-          <ProductCategory>{category}</ProductCategory>
-          <ProductName>{name}</ProductName>
-          <ProductPrice>{formatter.format(price)}</ProductPrice>
-        </ProductInfo>
+        <ContentLeft>
+          <ProductImage src={image} alt={name} />
+          <ProductInfo>
+            <ProductCategory>{category}</ProductCategory>
+            <ProductName>{name}</ProductName>
+            <ProductPrice>{formatter.format(price)}</ProductPrice>
+          </ProductInfo>
+        </ContentLeft>
+        {description !== "" && <ContentRight>{description}</ContentRight>}
       </ProductContent>
       <AddToCart>Add to Cart</AddToCart>
     </div>
