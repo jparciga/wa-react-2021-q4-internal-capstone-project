@@ -9,6 +9,9 @@ export default function ProductListReducer(state, action) {
         case 'set_initial_state': 
             return PRODUCT_LIST_INITIAL_STATE;    
         case 'set_values': {
+
+            //we modify and return the "state" parameter instead of returning a new object to prevent the useEffect 
+            //in useProductListAPI from triggering, thus causing an infinite loop.
             state.currentPage = action.payload.currentPage;
             state.totalPages = action.payload.totalPages;
             state.filters = action.payload.filters;
@@ -67,6 +70,6 @@ export default function ProductListReducer(state, action) {
                 filters: []
             }
         default:
-            throw new Error();
+            return state;
     }
 };

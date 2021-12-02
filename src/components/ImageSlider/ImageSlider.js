@@ -2,7 +2,7 @@ import React from 'react'
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 
-const ImageSliderComponent = ({className, key, url, index, slideIndex}) => {
+const ImageSliderComponent = ({className, key, url, index}) => {
     return (
         <div key={key} className={className}>
             <img key={key+index} src={url} alt="none"></img>    
@@ -21,8 +21,7 @@ ImageSliderComponent.propTypes = {
     className: PropTypes.string, 
     key: PropTypes.string, 
     url: PropTypes.string, 
-    index: PropTypes.string, 
-    slideIndex: PropTypes.string
+    index: PropTypes.number, 
 };
 
 export default ImageSlider;

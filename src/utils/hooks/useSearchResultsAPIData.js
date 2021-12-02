@@ -1,16 +1,18 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect} from 'react';
 import { API_BASE_URL } from '../constants';
 import { useLatestAPI } from './useLatestAPI';
 
-export function useAPIData({queries, pageSize = 1, page = ''}, mapFunction) {
+import SearchResultsContext from 'state/SearchResultsContext';
+import { useContext } from 'react';
+
+export function useSearchResultsAPIData({queries, pageSize, mapFunction}) {
+    const { searchResultsState, searchResultsDispatcher } = useContext(SearchResultsContext);
     const { ref: apiRef, isLoading: isApiMetadataLoading } = useLatestAPI();
-    const [pageNumber, setPageNumber] = useState(page);
-    const [retrievedData, setRetrievedData] = useState(() => ({
-      page: 1, 
-      totalPages: 1,
-      parsedData: [],
-      isLoading: true,
-    }));
+    const [retrievedData, setRetrievedData] = useState({
+        parsedData: [],
+        totalPages: 1,
+        isLoading: true
+    });
 
     useEffect(() => {
         if (!apiRef || isApiMetadataLoading) {
@@ -21,14 +23,12 @@ export function useAPIData({queries, pageSize = 1, page = ''}, mapFunction) {
     
         async function getDataFromAPI() {
           try {
-            setRetrievedData({ page: 1, totalPages: 0, parsedData: [], isLoading: true });
-
             const queryString = queries.map(query => {
                 return `q=${encodeURIComponent(`[[${query}]]`)}`;
             }).join('&');
     
             const response = await fetch(
-              `${API_BASE_URL}/documents/search?ref=${apiRef}&${queryString}&lang=en-us&pageSize=${pageSize}${(page) ? `&page=${pageNumber}` : ''}`,
+              `${API_BASE_URL}/documents/search?ref=${apiRef}&${queryString}&lang=en-us&pageSize=${pageSize}&page=${searchResultsState.currentPage}`,
               {
                 signal: controller.signal,
               }
@@ -44,11 +44,11 @@ export function useAPIData({queries, pageSize = 1, page = ''}, mapFunction) {
 
             let totalPages = data.total_pages;
     
-            setRetrievedData({ page, totalPages, parsedData, isLoading: false });
-            setPageNumber(pageNumber);
+            searchResultsDispatcher({ type: 'set_values', payload: {currentPage: searchResultsState.currentPage, totalPages }});
+            setRetrievedData({ parsedData, totalPages, isLoading: false });
           } catch (err) {
-            setRetrievedData({ page: 1, totalPages: 1, parsedData: [], isLoading: false });
-            setPageNumber(1);
+            //productListDispatcher({ type: 'set_initial_state'});
+            setRetrievedData({ parsedData: [], totalPages: 1, isLoading: false });
             console.error(err);
           }
         }
@@ -58,7 +58,10 @@ export function useAPIData({queries, pageSize = 1, page = ''}, mapFunction) {
         return () => {
           controller.abort();
         };
-      }, [apiRef, isApiMetadataLoading, pageNumber]);
+      }, [apiRef, 
+        isApiMetadataLoading, 
+        searchResultsState
+    ]);
 
-      return [retrievedData, pageNumber, setPageNumber];
+      return [retrievedData];
 };

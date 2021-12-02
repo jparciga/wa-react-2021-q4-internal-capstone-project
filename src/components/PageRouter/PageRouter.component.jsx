@@ -3,6 +3,7 @@ import { Switch, Route, Link, Redirect } from "react-router-dom";
 import Home from "components/Home/Home";
 import ProductList from "components/ProductList/ProductList.styles";
 import ProductDetail from "components/ProductDetail/ProductDetail.styles";
+import SearchResults from 'components/SearchResults/SearchResults.styles';
 
 const PageRouter = () => {
     const [currentPage, setCurrentPage] = useState("Home");
@@ -17,6 +18,7 @@ const PageRouter = () => {
         <Route exact path="/home" component={Home} />
         <Route exact path="/products" component={ProductList} />
         <Route exact path="/product/:productId" component={ProductDetail} />
+        <Route exact path='/search' component={SearchResults} />
         <Route path="*">
           <span>404 Not Found.</span>
         </Route>

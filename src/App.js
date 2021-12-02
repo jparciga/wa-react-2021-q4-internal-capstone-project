@@ -7,11 +7,10 @@ import LogoImg from 'images/image.png';
 import ShoppingCartIcon from 'images/shopping-cart.svg';
 
 import {Link } from 'react-router-dom';
+import { useState } from 'react';
 
 const App = () => {
-
-
-
+  const [searchTerm, setSearchTerm] = useState('');
 
   return (
     <Container>
@@ -25,7 +24,14 @@ const App = () => {
           </Link>
         </Logo>
         <Search>
-          <input type="text" disabled></input>
+          <input 
+            value={searchTerm} 
+            onInput={e => setSearchTerm(e.target.value)} 
+            type="text" 
+            placeholder="Search products..." />
+          <Link to={`/search?q=${searchTerm}`}>
+            <button>Search</button>
+          </Link>
         </Search>
         <ShoppingCart>
           <img src={ShoppingCartIcon}  alt="shoppingcart"></img>
