@@ -30,7 +30,8 @@ export default function Home() {
 
   const featuredProducts = featuredProductsData.isLoading
     ? []
-    : featuredProductsData.data.results.map(({ data }) => ({
+    : featuredProductsData.data.results.map(({ id, data }) => ({
+        id,
         typeId: data.category.id,
         image: data.mainimage.url,
         name: data.name,

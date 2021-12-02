@@ -1,3 +1,4 @@
+import { NAVIGATION } from "../../utils/constants";
 import {
   ProductImage,
   ProductName,
@@ -8,7 +9,13 @@ import {
   ProductContent,
 } from "./ProductCard.styled";
 
-export default function ProductCard({ image, name, price, category }) {
+export default function ProductCard({
+  productId,
+  image,
+  name,
+  price,
+  category,
+}) {
   const formatter = Intl.NumberFormat("en-US", {
     style: "currency",
     currency: "USD",
@@ -16,7 +23,7 @@ export default function ProductCard({ image, name, price, category }) {
 
   return (
     <div>
-      <ProductContent>
+      <ProductContent to={`${NAVIGATION.SHOP}/${productId}`}>
         <ProductImage src={image} alt={name} />
         <ProductInfo>
           <ProductCategory>{category}</ProductCategory>
