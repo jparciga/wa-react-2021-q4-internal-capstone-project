@@ -1,12 +1,22 @@
 import { useLocation } from "react-router";
 import { NAVIGATION } from "../../utils/constants";
-import { Header, Icons, Logo, Page, Pages } from "./Navigation.styled";
+import {
+  Header,
+  Icon,
+  Icons,
+  Logo,
+  Page,
+  Pages,
+  SearchBar,
+} from "./Navigation.styled";
 import LogoSVG from "../../images/logo.svg";
 import SearchSVG from "../../images/search.svg";
 import CartSVG from "../../images/cart.svg";
 import UserSVG from "../../images/user.svg";
+import { useState } from "react";
 
 export default function Navigation() {
+  const [searchTerm, setSearchTerm] = useState("");
   const location = useLocation();
 
   return (
@@ -28,7 +38,24 @@ export default function Navigation() {
           <Page to={NAVIGATION.ABOUT}>About</Page>
         </Pages>
         <Icons>
-          <img src={SearchSVG} alt="Search" />
+          <SearchBar
+            type="text"
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+            onKeyDown={(e) => {
+              if (e.key === "Enter") {
+                document.getElementById("searchButton").click();
+                setSearchTerm("");
+              }
+            }}
+          />
+          <Icon
+            onClick={() => setSearchTerm("")}
+            to={`${NAVIGATION.SEARCH}?q=${searchTerm}`}
+            id="searchButton"
+          >
+            <img src={SearchSVG} alt="Search" />
+          </Icon>
           <img src={CartSVG} alt="Cart" />
           <img src={UserSVG} alt="User" />
         </Icons>

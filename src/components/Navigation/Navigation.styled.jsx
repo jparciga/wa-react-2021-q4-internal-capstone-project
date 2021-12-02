@@ -43,12 +43,23 @@ export const Page = styled(NavLink)`
 export const Icons = styled.div`
   flex-basis: 100%;
   text-align: right;
+  display: flex;
+  justify-content: end;
+  align-content: center;
 
-  img {
-    cursor: pointer;
-
-    :not(:first-child) {
-      margin-left: 20px;
-    }
+  *:not(:first-child) {
+    margin-left: 20px;
   }
+`;
+
+export const Icon = styled(Link)`
+  display: flex;
+`;
+
+export const SearchBar = styled.input`
+  border: solid 3px ${({ theme }) => theme.accentWeak};
+  border-radius: 10px;
+  text-align: center;
+  font-weight: 700;
+  outline: none;
 `;
