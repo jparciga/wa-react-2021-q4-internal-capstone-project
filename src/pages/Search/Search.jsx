@@ -1,15 +1,18 @@
-import { useSearchParams } from "react-router-dom";
+import { useLocation } from "react-router";
 import Grid from "../../components/Grid";
 import Loading from "../../components/Loading/Loading";
+import Pagination from "../../components/Pagination/Pagination";
 import ProductCard from "../../components/ProductCard";
 import { useCategories } from "../../utils/hooks/useCategories";
 import { useSearch } from "../../utils/hooks/useSearch";
 import { NotFound, SearchResults } from "./Search.styled";
 
 export default function Search() {
-  const [searchParams] = useSearchParams();
+  const { pathname, search, state } = useLocation();
+  const searchParams = new URLSearchParams(search);
+  const { page = 1 } = state || {};
   const categoriesData = useCategories();
-  const productData = useSearch(searchParams.get("q") || "");
+  const productData = useSearch(page, searchParams.get("q") || "");
 
   let productsList;
   if (!categoriesData.isLoading && !productData.isLoading) {
@@ -44,6 +47,10 @@ export default function Search() {
           ) : (
             <SearchResults>
               <Grid>{productsList}</Grid>
+              <Pagination
+                navigation={`${pathname}${search}`}
+                totalPages={productData.data.total_pages}
+              />
             </SearchResults>
           )}
         </>

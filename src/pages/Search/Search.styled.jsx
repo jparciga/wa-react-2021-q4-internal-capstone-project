@@ -2,6 +2,7 @@ import styled from "styled-components";
 
 export const SearchResults = styled.div`
   grid-column: 2 / span 4;
+  margin-bottom: 30px;
 `;
 
 export const NotFound = styled.span`
