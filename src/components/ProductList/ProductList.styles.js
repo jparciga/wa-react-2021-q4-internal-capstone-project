@@ -1,7 +1,7 @@
 import styled from 'styled-components';
-import {ProductListComponent} from './ProductList.component'
+import ProductListContextWrapper from  'components/ProductListContextWrapper/ProductListContextWrapper.component';
 
-const ProductList = styled(ProductListComponent)`
+const ProductList = styled(ProductListContextWrapper)`
     display: grid;
     grid-template-columns: 1fr 6fr;  
     grid-template-rows: 1fr;   

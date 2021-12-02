@@ -1,11 +1,14 @@
-import React from 'react';
+import React, {useContext} from 'react';
+import ProductListContext from 'state/ProductListContext';
 
 const GridPaginator = ({ page, totalPages, setPageNumber }) => {
+
+    const { productListState, productListDispatcher } = useContext(ProductListContext);
 
     const createPaginationNumeration = (page, totalPages) => {
         let content = [];
         for (let i = 1; i <= totalPages; i++) {
-            content.push(<button style={ (page === i) ? { color: "red" } : {}} key={`number${i}}`} onClick={() => setPageNumber(i)}>{i}</button>);
+            content.push(<button style={ (page === i) ? { color: "red" } : {}} key={`number${i}}`} onClick={() => productListDispatcher({ type: "set_current_page", currentPage: i})}>{i}</button>);
         }
 
         return content;
@@ -13,11 +16,11 @@ const GridPaginator = ({ page, totalPages, setPageNumber }) => {
 
     return (
         <div className="grid-paginator">
-            <button onClick={() => setPageNumber(1)}>First</button>
-            <button onClick={() => setPageNumber((pageNumber) => { return (pageNumber > 1) ? pageNumber - 1 : pageNumber; })}>Prev</button>
-            { createPaginationNumeration(page, totalPages) }
-            <button onClick={() => setPageNumber((pageNumber) => { return (pageNumber < totalPages) ? pageNumber + 1 : pageNumber; })}>Next</button>
-            <button onClick={() => setPageNumber(totalPages)}>Last</button>
+            <button onClick={() => productListDispatcher({ type: "first" }) }>First</button>
+            <button onClick={() => productListDispatcher({ type: "prev" }) }>Prev</button>
+            { createPaginationNumeration(productListState.currentPage, totalPages) }
+            <button onClick={() => productListDispatcher({ type: "next" })}>Next</button>
+            <button onClick={() => productListDispatcher({ type: "last" })}>Last</button>
         </div>
     )
 }
