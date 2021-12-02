@@ -1,22 +1,15 @@
-import { useState } from "react";
 import { useParams } from "react-router";
-import Gallery from "../../components/Gallery/Gallery";
+import AddToCartForm from "../../components/AddToCartForm";
+import Gallery from "../../components/Gallery";
 import Loading from "../../components/Loading";
 import { useCategories } from "../../utils/hooks/useCategories";
 import { useProduct } from "../../utils/hooks/useProduct";
 import {
   AccentRow,
-  AddToCartButton,
-  AddToCartForm,
-  AddToCartInput,
   Data,
   GalleryContainer,
   Header,
   Info,
-  InputButton,
-  InputControls,
-  InputLabel,
-  InputText,
   Label,
   Price,
   ProductInformation,
@@ -25,7 +18,6 @@ import {
 } from "./Details.styled";
 
 export default function Details() {
-  const [quantity, setQuantity] = useState(1);
   const { productId } = useParams();
   const categoriesData = useCategories();
   const productData = useProduct(productId);
@@ -60,14 +52,6 @@ export default function Details() {
     currency: "USD",
   });
 
-  function handleQuantityChange(e) {
-    let newValue = e.target.value;
-    if (isNaN(newValue) || newValue < 1) {
-      newValue = 1;
-    }
-    setQuantity(newValue);
-  }
-
   return (
     <>
       {productData.isLoading || categoriesData.isLoading ? (
@@ -95,31 +79,7 @@ export default function Details() {
               <tbody>{specs}</tbody>
             </Specs>
             <Price>{formatter.format(product.data.price)}</Price>
-            <AddToCartForm>
-              <AddToCartInput>
-                <InputLabel htmlFor="item_quantity">Qty.:</InputLabel>
-                <InputText
-                  value={quantity}
-                  onChange={handleQuantityChange}
-                  type="text"
-                  name="item_quantity"
-                  id="item_quantity"
-                />
-                <InputControls>
-                  <InputButton onClick={() => setQuantity(quantity + 1)}>
-                    +
-                  </InputButton>
-                  <InputButton
-                    onClick={() =>
-                      quantity - 1 > 0 && setQuantity(quantity - 1)
-                    }
-                  >
-                    -
-                  </InputButton>
-                </InputControls>
-              </AddToCartInput>
-              <AddToCartButton>Add to Cart</AddToCartButton>
-            </AddToCartForm>
+            <AddToCartForm />
           </ProductInformation>
         </>
       )}
