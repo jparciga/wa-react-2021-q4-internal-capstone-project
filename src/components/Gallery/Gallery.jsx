@@ -18,10 +18,16 @@ export default function Gallery({ images }) {
   const [thumbsSwiper, setThumbsSwiper] = useState(null);
   return (
     <GalleryContainer>
-      <SwiperMain loop navigation thumbs={{ swiper: thumbsSwiper }}>
+      <SwiperMain
+        spaceBetween={2}
+        loop
+        navigation
+        thumbs={{ swiper: thumbsSwiper }}
+      >
         {slides}
       </SwiperMain>
       <SwiperSelector
+        spaceBetween={2}
         onSwiper={setThumbsSwiper}
         loop
         slidesPerView={4}

@@ -13,7 +13,9 @@ export const GlobalStyle = createGlobalStyle`
   p,
   span,
   button,
-  a {
+  a,
+  table,
+  label {
     font-family: "Lato", sans-serif;
     font-size: 1rem;
     font-weight: 400;

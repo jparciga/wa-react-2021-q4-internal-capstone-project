@@ -2,8 +2,6 @@ import styled from "styled-components";
 import { Swiper } from "swiper/react/swiper-react.js";
 
 export const GalleryContainer = styled.div`
-  background: ${({ theme }) => theme.dark};
-
   .swiper-slide img {
     display: block;
     width: 100%;
