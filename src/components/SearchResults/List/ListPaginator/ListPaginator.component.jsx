@@ -1,5 +1,6 @@
 import React, {useContext} from 'react'
 import SearchResultsContext from 'state/SearchResultsContext';
+import PropTypes from 'prop-types';
 
 const ListPaginatorComponent = ({className}) => {
     
@@ -8,7 +9,13 @@ const ListPaginatorComponent = ({className}) => {
     const createPaginationNumeration = (page, totalPages) => {
         let content = [];
         for (let i = 1; i <= totalPages; i++) {
-            content.push(<button style={ (page === i) ? { color: "red" } : {}} key={`number${i}}`}  onClick={() => searchResultsDispatcher({ type: "set_current_page", currentPage: i})}>{i}</button>);
+            content.push(
+                <button 
+                    style={ (page === i) ? { color: "red" } : {}} 
+                    key={`number${i}}`}  
+                    onClick={() => searchResultsDispatcher({ type: "set_current_page", currentPage: i})}>
+                        {i}
+                </button>);
         }
 
         return content;
@@ -24,5 +31,9 @@ const ListPaginatorComponent = ({className}) => {
         </div>
     )
 }
+
+ListPaginatorComponent.propTypes = {
+    className: PropTypes.string
+};
 
 export default ListPaginatorComponent;

@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 const ListCardComponent = ({className, data: { id, url, name, category, price, shortDescription }}) => {
     return (
@@ -14,5 +15,17 @@ const ListCardComponent = ({className, data: { id, url, name, category, price, s
         </div>
     )
 }
+
+ListCardComponent.propTypes = {
+    className: PropTypes.string,
+    data: PropTypes.shape({
+        id: PropTypes.string,
+        url: PropTypes.string,
+        name: PropTypes.string,
+        category: PropTypes.string,
+        price: PropTypes.number,
+        shortDescription: PropTypes.string
+    })
+};
 
 export default ListCardComponent;

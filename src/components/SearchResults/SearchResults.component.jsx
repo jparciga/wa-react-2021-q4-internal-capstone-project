@@ -3,7 +3,7 @@ import List from './List/List.styles';
 import { useQuery } from 'hooks/useQuery';
 import SearchResultsContext from 'state/SearchResultsContext';
 import SearchResultsReducer, {SEARCH_RESULTS_INITIAL_STATE} from 'state/SearchResultsReducer';
-
+import PropTypes from 'prop-types';
 
 const SearchResultsComponent = ({className}) => {
 
@@ -21,6 +21,10 @@ const SearchResultsComponent = ({className}) => {
         </SearchResultsContext.Provider>
     );
 }
+
+SearchResultsComponent.propTypes = {
+    className: PropTypes.string
+};
 
 
 export default SearchResultsComponent;

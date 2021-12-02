@@ -3,6 +3,7 @@ import ListCard from 'components/SearchResults/List/ListCard/ListCard.styles';
 import ListPaginator from './ListPaginator/ListPaginator.styles';
 import useSearch from 'hooks/useSearch';
 import SearchResultsContext from 'state/SearchResultsContext';
+import PropTypes from 'prop-types';
 
 const ListComponent = ({className, searchTerm}) => {
     const {searchResultsState} = useContext(SearchResultsContext);
@@ -30,5 +31,10 @@ const ListComponent = ({className, searchTerm}) => {
         </div>
     )
 }
+
+ListComponent.propTypes = {
+    className: PropTypes.string,
+    searchTerm: PropTypes.string
+};
 
 export default ListComponent;
