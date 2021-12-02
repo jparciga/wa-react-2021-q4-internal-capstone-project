@@ -16,7 +16,7 @@ export default function ProductFilter({ categories, products }) {
   const { filter = [] } = useLocation().state || {};
   const clearFilters = { id: "-", data: { name: "Clear Filters" } };
 
-  let filterButtons = [];
+  let filterButtons;
   if (!categories.isLoading) {
     let categoriesArray =
       filter.length > 0
@@ -43,7 +43,7 @@ export default function ProductFilter({ categories, products }) {
             key={id}
             to={NAVIGATION.SHOP}
             state={state}
-            active={filter.includes(id)}
+            active={filter.includes(id) ? 1 : undefined}
           >
             {name}
           </FilterButton>
@@ -55,7 +55,7 @@ export default function ProductFilter({ categories, products }) {
     });
   }
 
-  let productsList = [];
+  let productsList;
   if (!categories.isLoading && !products.isLoading) {
     let categoryNames = {};
     categories.data.results.forEach(({ id, data: { name } }) => {

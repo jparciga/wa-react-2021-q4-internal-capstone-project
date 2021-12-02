@@ -12,7 +12,7 @@ export default function Pagination({ totalPages }) {
         key={page}
         to={NAVIGATION.SHOP}
         state={{ page, filter }}
-        active={page === currentPage}
+        active={page === currentPage ? 1 : undefined}
       >
         {page}
       </PaginationButton>
