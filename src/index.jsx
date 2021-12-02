@@ -6,10 +6,11 @@ import { ThemeProvider } from "styled-components";
 import { GlobalStyle } from "./globalStyle";
 import { defaultTheme } from "./styles/themes";
 import reportWebVitals from "./reportWebVitals";
-import { NAVIGATION } from "./utils/constants";
+import { NAVIGATION, URL_PARAMS } from "./utils/constants";
 import Home from "./pages/Home";
 import Shop from "./pages/Shop";
 import About from "./pages/About/About";
+import Details from "./pages/Details/Details";
 
 const nothingFound = (
   <h1
@@ -33,7 +34,10 @@ ReactDOM.render(
           <Route path="/" element={<App />}>
             <Route index element={<Home />} />
             <Route path={NAVIGATION.HOME} element={<Home />} />
-            <Route path={NAVIGATION.SHOP} element={<Shop />} />
+            <Route path={NAVIGATION.SHOP}>
+              <Route index element={<Shop />} />
+              <Route path={URL_PARAMS.PRODUCT_ID} element={<Details />} />
+            </Route>
             <Route path={NAVIGATION.ABOUT} element={<About />} />
             <Route path="*" element={nothingFound} />
           </Route>

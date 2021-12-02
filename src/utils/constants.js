@@ -4,3 +4,6 @@ export const NAVIGATION = {
   SHOP: "/products",
   ABOUT: "/about",
 };
+export const URL_PARAMS = {
+  PRODUCT_ID: ":productId",
+};
