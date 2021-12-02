@@ -8,6 +8,7 @@ import useProducts from 'hooks/useProducts';
 
 import {useQuery} from 'hooks/useQuery';
 import ProductListContext from 'state/ProductListContext';
+import PropTypes from 'prop-types';
 
 export const ProductListComponent = ({className}) => {
 
@@ -15,30 +16,37 @@ export const ProductListComponent = ({className}) => {
 
     let query = useQuery();
     const queryString = query.get("category");
-
+    if(queryString)
+    {   
+         productListDispatcher({ type: "add_querystring", categoryId: queryString});
+         query.delete('category');
+    }   
     const [productCategories] = useProductCategories();
-    const [products, pageNumber, setPageNumber] = useProducts({pageSize: 12});
+    const [products] = useProducts({pageSize: 12});
     const [filteredProducts, filters, handleCustomFiltering, clearAllFilters] = useFiltering(products, queryString);
 
     const gridData = { 
-        page: pageNumber, 
         totalPages: products.totalPages, 
         parsedData: products.parsedData, 
         isLoading: products.isLoading
     };
 
+   
+
     return (
         <ProductListContext.Provider value={{productListState, productListDispatcher}}>
         <div className={className}>
             <Sidebar data={productCategories} 
-                     clickEvent={handleCustomFiltering} 
-                     clearAllFilters={clearAllFilters}
-                     title={`Categories`} 
-                     filters={filters} />
-            <Grid data={gridData} setPageNumber={setPageNumber} pagination />
+                     title={`Categories`} />
+            <Grid data={gridData} pagination />
         </div>
         </ProductListContext.Provider>
     )
 };
+
+ProductListComponent.propTypes = {
+    className: PropTypes.string
+};
+  
 
 export default ProductListComponent;

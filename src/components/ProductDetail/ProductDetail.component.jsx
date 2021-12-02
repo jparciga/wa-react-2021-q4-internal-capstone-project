@@ -1,9 +1,9 @@
 import React from "react";
-import styled from "styled-components";
 import Slider from "components/Slider/Slider";
 import useProductById from "../../hooks/useProductById";
 
 import { useParams } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
 const ProductDetailComponent = ({ className }) => {
   const {productId} = useParams();
@@ -72,6 +72,10 @@ const ProductDetailComponent = ({ className }) => {
       </div>
     </div>
   );
+};
+
+ProductDetailComponent.propTypes = {
+  className: PropTypes.string
 };
 
 export default ProductDetailComponent;

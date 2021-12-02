@@ -3,6 +3,7 @@ import {useReducer} from 'react';
 import ProductListContext from '../../state/ProductListContext';
 import ProductListComponent from 'components/ProductList/ProductList.component';
 import ProductListReducer, { PRODUCT_LIST_INITIAL_STATE} from '../../state/ProductListReducer';
+import PropTypes from 'prop-types';
 
 const ProductListContextWrapper = ({className}) => {
 
@@ -15,4 +16,8 @@ const ProductListContextWrapper = ({className}) => {
     )
 }
 
+ProductListComponent.propTypes = {
+    className: PropTypes.string
+};
+  
 export default ProductListContextWrapper;

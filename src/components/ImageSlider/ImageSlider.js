@@ -1,5 +1,6 @@
 import React from 'react'
 import styled from 'styled-components';
+import PropTypes from 'prop-types';
 
 const ImageSliderComponent = ({className, key, url, index, slideIndex}) => {
     return (
@@ -15,5 +16,13 @@ const ImageSlider = styled(ImageSliderComponent)`
     opacity: ${ props => props.slideIndex === props.index + 1 ? "1; ": "0;"}    
     }
 `;
+
+ImageSliderComponent.propTypes = {
+    className: PropTypes.string, 
+    key: PropTypes.string, 
+    url: PropTypes.string, 
+    index: PropTypes.string, 
+    slideIndex: PropTypes.string
+};
 
 export default ImageSlider;

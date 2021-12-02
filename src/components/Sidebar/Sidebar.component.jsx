@@ -1,8 +1,9 @@
 import './Sidebar.css';
 import React, {useContext} from 'react';
 import ProductListContext from 'state/ProductListContext';
+import PropTypes from 'prop-types';
 
-const Sidebar = ({data: { parsedData = [], isLoading }, title, filters, clickEvent, clearAllFilters}) => {
+const Sidebar = ({data: { parsedData = [], isLoading }, title}) => {
     const { productListState, productListDispatcher } = useContext(ProductListContext);
 
     if(isLoading)
@@ -24,5 +25,13 @@ const Sidebar = ({data: { parsedData = [], isLoading }, title, filters, clickEve
         </div>
     )
 }
+
+Sidebar.propTypes = {
+    data: PropTypes.shape({ 
+        parsedData: PropTypes.array, 
+        isLoading: PropTypes.bool
+    }) , 
+    title: PropTypes.string
+};
 
 export default Sidebar;

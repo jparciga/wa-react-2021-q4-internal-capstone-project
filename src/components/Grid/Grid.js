@@ -1,16 +1,15 @@
 import React from 'react';
 import GridCard from 'components/GridCard/GridCard';
 import GridPaginator from 'components/GridPaginator/GridPaginator.component';
+import PropTypes from 'prop-types';
 
 const GridComponent = ( {
     className, 
     data: { 
-        page, 
         totalPages, 
         parsedData = [], 
         isLoading }, 
-    pagination, 
-    setPageNumber}) =>  {
+    pagination}) =>  {
 
         if(isLoading)
             return (<h1>Loading...</h1>);
@@ -34,9 +33,7 @@ const GridComponent = ( {
             {
                 pagination &&
                 <GridPaginator 
-                    page={page} 
                     totalPages={totalPages} 
-                    setPageNumber={setPageNumber} 
                 />
             }
 
@@ -51,5 +48,16 @@ const GridComponent = ( {
                     <p style={{textAlign: "center"}}>Sorry! No elements.</p> }
         </div>);
 }
+
+PropTypes.propTypes = {
+    className: PropTypes.string,
+    data: PropTypes.shape ({ 
+        totalPages: PropTypes.number, 
+        parsedData: PropTypes.array, 
+        isLoading: PropTypes.bool 
+    }), 
+    pagination: PropTypes.bool, 
+    setPageNumber: PropTypes.funct
+};
 
 export default GridComponent;

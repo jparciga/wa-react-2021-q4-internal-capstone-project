@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import ButtonSlider from 'components/ButtonSlider/ButtonSlider.style';
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
 const CarouselComponent = ({className, data: { parsedData = [], isLoading }}) => {
     const [xPos, setXpos] = useState(0);
@@ -19,7 +20,7 @@ const CarouselComponent = ({className, data: { parsedData = [], isLoading }}) =>
             {parsedData.map(({id, name, url}) => {
                 return (
                     <div key={id} id={id} className="card-container">
-                        <Link to={`/products?category=${name.toLowerCase()}`}>
+                        <Link to={`/products?category=${id}`}>
                             <img src={url} alt="haha"></img> 
                         </Link>
                     </div>
@@ -30,5 +31,13 @@ const CarouselComponent = ({className, data: { parsedData = [], isLoading }}) =>
         <ButtonSlider moveSlide={() => setXpos(x => x + ((xPos <  600) ? 330 : 0))} direction="next"></ButtonSlider>
     </div> );
 }
+
+PropTypes.propTypes = {
+    className: PropTypes.string, 
+    data: PropTypes.shape({
+        parsedData: PropTypes.array,
+        isLoading: PropTypes.bool
+    })
+};
 
 export default CarouselComponent;

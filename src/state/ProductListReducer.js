@@ -44,11 +44,16 @@ export default function ProductListReducer(state, action) {
             else {         
                 return { ...state, filters: state.filters.filter(x => x !== action.categoryId)} ;
         };
+        case 'add_querystring': 
+            {
+                state.filters = [action.categoryId];
+                return state;
+            }
         case 'add_filter':
-            return { 
+            {return { 
                 ...state,
                 filters: [...state.filters, action.payload]
-            }
+            }}
         case 'remove_filter':
             return {
                 ...state,

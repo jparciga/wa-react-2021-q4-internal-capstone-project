@@ -1,6 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import {Link} from 'react-router-dom';
+import PropTypes from 'prop-types';
 
 const GridCardComponent = ({className, cardId, url, name, category, price}) => {
     return (
@@ -29,6 +30,15 @@ const GridCard = styled(GridCardComponent)`
         object-fit: cover;
     }
 `;
+
+GridCardComponent.propTypes = {
+    className: PropTypes.string, 
+    cardId: PropTypes.string, 
+    url: PropTypes.string, 
+    name: PropTypes.string, 
+    category: PropTypes.string, 
+    price: PropTypes.number
+};
 
 
 export default GridCard;

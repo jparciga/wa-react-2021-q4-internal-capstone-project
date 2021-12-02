@@ -3,6 +3,7 @@ import styled from 'styled-components';
 
 import ButtonSlider from 'components/ButtonSlider/ButtonSlider.style';
 import ImageSlider from 'components/ImageSlider/ImageSlider';
+import PropTypes from 'prop-types';
 
 const SliderComponent = ({className, data: { parsedData = [], isLoading }}) => {
 
@@ -92,6 +93,14 @@ const Slider = styled(SliderComponent)`
       }
     
 `;
+
+SliderComponent.propTypes = {
+    data: PropTypes.shape({ 
+        parsedData: PropTypes.array, 
+        isLoading: PropTypes.bool
+    }) , 
+    title: PropTypes.string
+};
 
 export default Slider;
 

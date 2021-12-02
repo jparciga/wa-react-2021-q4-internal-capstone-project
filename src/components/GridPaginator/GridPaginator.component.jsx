@@ -1,7 +1,8 @@
 import React, {useContext} from 'react';
 import ProductListContext from 'state/ProductListContext';
+import PropTypes from 'prop-types';
 
-const GridPaginator = ({ page, totalPages, setPageNumber }) => {
+const GridPaginator = ({ totalPages }) => {
 
     const { productListState, productListDispatcher } = useContext(ProductListContext);
 
@@ -24,5 +25,14 @@ const GridPaginator = ({ page, totalPages, setPageNumber }) => {
         </div>
     )
 }
+
+GridPaginator.propTypes = {
+    className: PropTypes.string, 
+    cardId: PropTypes.string, 
+    url: PropTypes.string, 
+    name: PropTypes.string, 
+    category: PropTypes.string, 
+    price: PropTypes.number
+};
 
 export default GridPaginator;
