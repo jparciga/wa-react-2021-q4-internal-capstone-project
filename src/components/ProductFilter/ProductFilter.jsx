@@ -86,7 +86,11 @@ export default function ProductFilter({ categories, products }) {
       ) : (
         <ProductFilterContent>
           <Grid>{productsList}</Grid>
-          <Pagination totalPages={products.data.total_pages} />
+          <Pagination
+            navigation={NAVIGATION.SHOP}
+            totalPages={products.data.total_pages}
+            options={{ filter }}
+          />
         </ProductFilterContent>
       )}
     </>
