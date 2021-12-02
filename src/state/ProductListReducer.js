@@ -38,6 +38,12 @@ export default function ProductListReducer(state, action) {
             };
             return last;
         }
+        case 'modify_filter': 
+            if(!state.filters.includes(action.categoryId))
+                return { ...state, filters: [...state.filters, action.categoryId ]};
+            else {         
+                return { ...state, filters: state.filters.filter(x => x !== action.categoryId)} ;
+        };
         case 'add_filter':
             return { 
                 ...state,
