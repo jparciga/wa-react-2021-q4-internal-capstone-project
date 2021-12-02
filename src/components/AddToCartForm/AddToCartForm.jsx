@@ -17,7 +17,7 @@ export default function AddToCartForm() {
     if (isNaN(newValue) || newValue < 1) {
       newValue = 1;
     }
-    setQuantity(newValue);
+    setQuantity(parseInt(newValue));
   }
 
   return (
@@ -32,9 +32,13 @@ export default function AddToCartForm() {
           id="item_quantity"
         />
         <InputControls>
-          <InputButton onClick={() => setQuantity(quantity + 1)}>+</InputButton>
+          <InputButton onClick={() => setQuantity(parseInt(quantity) + 1)}>
+            +
+          </InputButton>
           <InputButton
-            onClick={() => quantity - 1 > 0 && setQuantity(quantity - 1)}
+            onClick={() =>
+              quantity - 1 > 0 && setQuantity(parseInt(quantity) - 1)
+            }
           >
             -
           </InputButton>
