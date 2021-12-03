@@ -1,13 +1,18 @@
 import React from 'react'
 import styled from 'styled-components'
+import {Link} from 'react-router-dom';
+import PropTypes from 'prop-types';
 
-const GridCardComponent = ({className, url, name, category, price}) => {
+const GridCardComponent = ({className, cardId, url, name, category, price}) => {
     return (
         <div className={className}>
-            <img src={url} alt="img"></img>
+            <Link to={`/product/${cardId}`}>
+                <img src={url} alt="img"></img>
+            </Link>
             <span>{name}</span>
             <span>{category}</span>
-            <span>{price}</span>
+            <span>{`$${price}`}</span>
+            <button>Add to cart</button>
         </div>
     )
 };
@@ -25,6 +30,15 @@ const GridCard = styled(GridCardComponent)`
         object-fit: cover;
     }
 `;
+
+GridCardComponent.propTypes = {
+    className: PropTypes.string, 
+    cardId: PropTypes.string, 
+    url: PropTypes.string, 
+    name: PropTypes.string, 
+    category: PropTypes.string, 
+    price: PropTypes.number
+};
 
 
 export default GridCard;

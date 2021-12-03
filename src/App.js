@@ -1,45 +1,44 @@
 import './App.css';
 import { Container, Logo, Header, Search, ShoppingCart, Content, Footer} from './App.style';
-import { useState } from 'react';
 
-import Home from 'components/Home/Home';
-import ProductList from 'components/ProductList/ProductList.styles'
+import PageRouter from 'components/PageRouter/PageRouter.component';
 
 import LogoImg from 'images/image.png';
 import ShoppingCartIcon from 'images/shopping-cart.svg';
 
-import productsData from 'mocks/products.json';
-import productCategoriesData from 'mocks/product-categories.json';
+import {Link } from 'react-router-dom';
+import { useState } from 'react';
 
 const App = () => {
-  const [currentPage, setCurrentPage] = useState("Home");
-
-  const handleNavigation = () => {
-    setCurrentPage((currentPage === "Home") ? "ProductList" : "Home");
-  };
+  const [searchTerm, setSearchTerm] = useState('');
 
   return (
     <Container>
       <Header>
         <Logo>
+          <Link to='/home'>
           <img src={LogoImg} 
-               onClick={() => setCurrentPage("Home")} 
                style={{cursor: "pointer"}} 
                alt="logo" 
                height="100%"></img>
+          </Link>
         </Logo>
         <Search>
-          <input type="text" disabled></input>
+          <input 
+            value={searchTerm} 
+            onInput={e => setSearchTerm(e.target.value)} 
+            type="text" 
+            placeholder="Search products..." />
+          <Link to={`/search?q=${searchTerm}`}>
+            <button>Search</button>
+          </Link>
         </Search>
         <ShoppingCart>
           <img src={ShoppingCartIcon}  alt="shoppingcart"></img>
         </ShoppingCart>
       </Header>
       <Content>
-      {currentPage === "Home" ? <Home /> : <ProductList products={productsData.results} categories={productCategoriesData.results} />}
-        <div>
-          <button id="btnChangePage" onClick={handleNavigation}>View All Products</button>
-        </div>
+        <PageRouter />
       </Content>
       <Footer>Ecommerce created during Wizeline’s Academy React Bootcamp.</Footer>
     </Container>

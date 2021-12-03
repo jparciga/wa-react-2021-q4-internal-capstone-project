@@ -1,10 +1,13 @@
-import useData from 'hooks/useData';
+import { useAPIData } from 'utils/hooks/useAPIData';
 
 const useProductCategories = () => {
-    const fileName = 'product-categories.json';
-    const mapFunction = ({id, data: { name, main_image: { url } }}) => { return { id, name, url } };
+    const queries = ['at(document.type, "category")'];
+    const pageSize = 30;
+    const mapFunction = ({id, data: { name, main_image: { url } }}) => { 
+        return { id, name, url }; 
+    };
 
-    const [productCategories] = useData(fileName, mapFunction);
+    const [productCategories] = useAPIData({queries, pageSize}, mapFunction);
     return [productCategories];
 };
 

@@ -3,15 +3,16 @@ import styled from 'styled-components';
 
 import ButtonSlider from 'components/ButtonSlider/ButtonSlider.style';
 import ImageSlider from 'components/ImageSlider/ImageSlider';
+import PropTypes from 'prop-types';
 
-const SliderComponent = ({className, data}) => {
+const SliderComponent = ({className, data: { parsedData = [], isLoading }}) => {
 
     const [slideIndex, setSlideIndex] = useState(1);
 
     const nextSlide = () => {
-        if(slideIndex !== data.length) {
+        if(slideIndex !== parsedData.length) {
             setSlideIndex(slideIndex + 1);
-        } else if (slideIndex === data.length) {
+        } else if (slideIndex === parsedData.length) {
             setSlideIndex(1);
         }
     };
@@ -20,7 +21,7 @@ const SliderComponent = ({className, data}) => {
         if(slideIndex !== 1) {
             setSlideIndex(slideIndex - 1);
         } else if (slideIndex === 1) {
-            setSlideIndex(data.length);
+            setSlideIndex(parsedData.length);
         }
     };
 
@@ -28,16 +29,19 @@ const SliderComponent = ({className, data}) => {
         setSlideIndex(index)
     };
     
+    if(isLoading)
+        return (<h1>Loading...</h1>);
+
     return ( 
     <div className={className}>
-        {data.map( ({id, url}, index) => {
+        {parsedData.map( ({id, url}, index) => {
             return (<ImageSlider key={id} url={url} index={index} slideIndex={slideIndex}></ImageSlider>)
         } )}
         <ButtonSlider moveSlide={prevSlide} direction={"prev"} />
         <ButtonSlider moveSlide={nextSlide} direction={"next"} />
         
         <div className="container-dots">
-            {Array.from({length: data.length}).map((item, index) => (
+            {Array.from({length: parsedData.length}).map((item, index) => (
                 <div key={index}
                 onClick={() => moveDot(index + 1)}
                 className={slideIndex === index + 1 ? "dot active" : "dot"}
@@ -89,6 +93,14 @@ const Slider = styled(SliderComponent)`
       }
     
 `;
+
+SliderComponent.propTypes = {
+    data: PropTypes.shape({ 
+        parsedData: PropTypes.array, 
+        isLoading: PropTypes.bool
+    }) , 
+    title: PropTypes.string
+};
 
 export default Slider;
 
