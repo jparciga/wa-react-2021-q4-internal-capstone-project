@@ -1,8 +1,12 @@
 import { useState, useEffect } from 'react';
 import { API_BASE_URL } from '../constants';
 import { useLatestAPI } from './useLatestAPI';
+import { useLocation } from 'react-router';
 
-export function useSearch(searchTerm, elementsPerPage = 10, page) {
+export function useSearch(elementsPerPage = 16, page = 1) {
+  const search = useLocation().search;
+  const productToSearch = new URLSearchParams(search).get('q');
+
   const { ref: apiRef, isLoading: isApiMetadataLoading } = useLatestAPI();
   const [response, setResponse] = useState(() => ({
     data: {},
@@ -23,7 +27,7 @@ export function useSearch(searchTerm, elementsPerPage = 10, page) {
         const response = await fetch(
           `${API_BASE_URL}/documents/search?ref=${apiRef}&q=${encodeURIComponent(
             '[[at(document.type, "product")]]'
-          )}&lang=en-us&&q=[[fulltext(document, "${searchTerm}")]]`,
+          )}&page=${page}&lang=en-us&&q=[[fulltext(document, "${productToSearch}")]]`,
           {
             signal: controller.signal,
           }
@@ -42,7 +46,7 @@ export function useSearch(searchTerm, elementsPerPage = 10, page) {
     return () => {
       controller.abort();
     };
-  }, [apiRef, isApiMetadataLoading, searchTerm, elementsPerPage, page]);
+  }, [apiRef, isApiMetadataLoading, productToSearch, elementsPerPage, page]);
 
   return response;
 }

@@ -2,20 +2,27 @@ import React, { useContext } from 'react';
 import { Category, CategoriesContainer } from './Categories.styles';
 import { useApi } from '../utils/hooks/useApi';
 import ThemeContext from '../context/ThemeContext';
-
+import { useNavigate } from 'react-router-dom';
 export default function Categories() {
   const response = useApi('category', 10, 1);
-
-  const ThemeCtx = useContext(ThemeContext);
-
+  const categories = response?.data?.results;
+  const { showMenu } = useContext(ThemeContext);
+  const navigate = useNavigate();
   return (
     <>
-      {ThemeCtx.showMenu && (
+      {showMenu && (
         <CategoriesContainer>
-          {response?.data?.results &&
-            response.data.results.map((category) => {
+          {categories &&
+            categories.map((category) => {
               return (
-                <Category key={category.id}>{category.data.name}</Category>
+                <Category
+                  onClick={() => {
+                    navigate(`?category=${category.slugs[0]}`);
+                  }}
+                  key={category.id}
+                >
+                  {category.data.name}
+                </Category>
               );
             })}
         </CategoriesContainer>

@@ -25,7 +25,6 @@ export default function ProductsPage({ showMenu }) {
   return (
     <ProductPageContent>
       <Sidebar
-        showMenu={showMenu}
         categories={categories}
         onSelectCategory={selectCategoryHandler}
       />

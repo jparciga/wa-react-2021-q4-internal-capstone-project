@@ -1,37 +1,34 @@
 import { useState, useEffect, useRef } from 'react';
 import { useApi } from './useApi';
 import { useLocation } from 'react-router';
-const pagesInformation = {
-  current: 1,
-  total: 1,
-  results_per_page: 12,
-  total_pages: 1,
-};
+
 export const useProducts = (categoriesSelected = []) => {
-  let [products, setProducts] = useState([]);
-  let [pageInformation, setPageInformation] = useState(pagesInformation);
   const search = useLocation().search;
   let page = new URLSearchParams(search).get('page') ?? 1;
+  const [products, setProducts] = useState([]);
+  const [totalPages, setTotalPages] = useState(1);
 
   const isMounted = useRef(null);
   const response = useApi('product', 12, page);
-
+  const productsResponse = response?.data.results;
   useEffect(() => {
     isMounted.current = true;
     if (!response.isLoading) {
       const productsData =
         categoriesSelected.length > 0
-          ? response.data.results.filter((prod) =>
+          ? productsResponse.filter((prod) =>
               categoriesSelected.includes(prod.data.category.id)
             )
-          : response.data.results;
-
+          : productsResponse;
       if (isMounted.current) {
         setProducts(productsData);
-        setPageInformation(response);
+        setTotalPages(response?.data?.total_pages);
       }
     }
-  }, [response, categoriesSelected]);
+    return () => {
+      isMounted.current = false;
+    };
+  }, [productsResponse, response, categoriesSelected]);
 
-  return [products, pageInformation];
+  return [products, totalPages];
 };

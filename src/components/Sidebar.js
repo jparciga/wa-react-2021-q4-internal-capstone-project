@@ -1,14 +1,15 @@
 import React, { useContext } from 'react';
 import { SidebarContent, SidebarItem } from './Sidebar.style';
 import ThemeContext from '../context/ThemeContext';
-const Sidebar = ({ showMenu, onSelectCategory, categories }) => {
-  const ThemeCtx = useContext(ThemeContext);
+const Sidebar = ({ onSelectCategory, categories }) => {
+  const { showMenu } = useContext(ThemeContext);
   const selectCategoryHandler = (categoryId) => {
     onSelectCategory(categoryId);
   };
+  const clearCategories = () => {};
 
   return (
-    <SidebarContent className={ThemeCtx.showMenu && 'active'}>
+    <SidebarContent className={showMenu && 'active'}>
       <SidebarItem>
         <h3>
           <i>Categories</i>
@@ -22,6 +23,9 @@ const Sidebar = ({ showMenu, onSelectCategory, categories }) => {
           </SidebarItem>
         );
       })}
+      <SidebarItem key={9} onClick={() => clearCategories()}>
+        Clear categories
+      </SidebarItem>
     </SidebarContent>
   );
 };

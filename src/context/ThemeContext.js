@@ -1,6 +1,5 @@
 import { createContext, useState, useContext } from 'react';
-const initialState = window.width > 780;
-// const initialState = false;
+const initialState = window.innerWidth > 780;
 const ThemeContext = createContext();
 export const useTheme = () => {
   return useContext(ThemeContext);

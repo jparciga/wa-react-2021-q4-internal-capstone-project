@@ -3,7 +3,8 @@ import { useFeaturedBanners } from './useFeaturedBanners';
 const useBanners = () => {
   const isMounted = useRef(null);
   const [imageSelected, setImageSelected] = useState(0);
-  const featuredBanners = useFeaturedBanners();
+  const response = useFeaturedBanners();
+  const featuredBanners = response?.data?.results;
   const [lengthBanners, setLengthBanners] = useState(0);
 
   const nextSlide = useCallback(() => {
@@ -26,9 +27,12 @@ const useBanners = () => {
       clearTimeout(timer);
     };
   }, [nextSlide, imageSelected]);
+
   useEffect(() => {
-    setLengthBanners(featuredBanners.data?.results?.length);
-  }, [featuredBanners]);
+    if (!response.isLoading) {
+      setLengthBanners(featuredBanners?.length);
+    }
+  }, [response.isLoading, featuredBanners?.length]);
 
   return [imageSelected, featuredBanners];
 };

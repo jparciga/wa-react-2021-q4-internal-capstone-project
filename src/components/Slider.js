@@ -10,16 +10,14 @@ export default function Slider() {
 
   return (
     <section className={styles.slider}>
-      {featuredBanners.data?.results &&
-        featuredBanners.data.results.map(
-          ({ id, data: { main_image } }, index) => {
-            return (
-              <div className={getSlideStyles(index)} key={id}>
-                <img className={styles.image} src={main_image.url} alt={id} />
-              </div>
-            );
-          }
-        )}
+      {featuredBanners &&
+        featuredBanners.map(({ id, data: { main_image } }, index) => {
+          return (
+            <div className={getSlideStyles(index)} key={id}>
+              <img className={styles.image} src={main_image.url} alt={id} />
+            </div>
+          );
+        })}
     </section>
   );
 }

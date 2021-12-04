@@ -5,6 +5,7 @@ export const ProductList = styled.div`
   margin-bottom: 10px;
   padding-bottom: 50px;
   align-items: left;
+  margin-top: 30px;
   @media (max-width: 768px) {
     flex-direction: column;
     justify-content: space-between;

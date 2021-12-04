@@ -1,7 +1,6 @@
 import Home from './pages/HomePage';
 import Products from './pages/ProductsPage';
 import ProductDetail from './pages/ProductDetailPage';
-import Search from './pages/SearchPage';
 export const routes = [
   {
     name: 'Home',
@@ -26,6 +25,6 @@ export const routes = [
   {
     name: 'Search',
     path: '/search',
-    element: Search,
+    element: Products,
   },
 ];
