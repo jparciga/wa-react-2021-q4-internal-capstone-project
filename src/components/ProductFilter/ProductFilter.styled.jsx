@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 export const ProductFilterSidebar = styled.aside`
@@ -12,7 +13,7 @@ export const ProductFilterSidebar = styled.aside`
   border-color: ${({ theme }) => theme.accentWeak};
 `;
 
-export const FilterButton = styled.button`
+export const FilterButton = styled(Link)`
   height: 50px;
   width: 90%;
   border: none;
@@ -21,6 +22,8 @@ export const FilterButton = styled.button`
   color: ${({ active, theme }) => (active ? theme.light : theme.accent)};
   font-weight: 700;
   border-radius: 10px;
+  text-align: center;
+  padding: 16px;
 `;
 
 export const FilterDivider = styled.h1`

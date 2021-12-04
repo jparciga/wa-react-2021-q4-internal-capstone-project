@@ -1,22 +1,12 @@
+import { useLocation } from "react-router";
 import ProductFilter from "../../components/ProductFilter";
+import { useCategories } from "../../utils/hooks/useCategories";
+import { useProducts } from "../../utils/hooks/useProducts";
 
 export default function Shop() {
-  const categories =
-    require("../../mocks/en-us/product-categories.json").results.map(
-      ({ id, data }) => ({
-        id,
-        name: data.name,
-      })
-    );
+  const { page = 1, filter = [] } = useLocation().state || {};
+  const categoriesData = useCategories();
+  const productsData = useProducts(page, filter);
 
-  const products = require("../../mocks/en-us/products.json").results.map(
-    ({ data }) => ({
-      typeId: data.category.id,
-      image: data.mainimage.url,
-      name: data.name,
-      price: data.price,
-    })
-  );
-
-  return <ProductFilter categories={categories} products={products} />;
+  return <ProductFilter categories={categoriesData} products={productsData} />;
 }

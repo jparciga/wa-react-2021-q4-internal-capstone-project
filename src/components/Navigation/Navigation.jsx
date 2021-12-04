@@ -1,37 +1,63 @@
+import { useLocation } from "react-router";
 import { NAVIGATION } from "../../utils/constants";
-import { Header, Icons, Link, Links, Logo } from "./Navigation.styled";
+import {
+  Header,
+  Icon,
+  Icons,
+  Logo,
+  Page,
+  Pages,
+  SearchBar,
+} from "./Navigation.styled";
+import LogoSVG from "../../images/logo.svg";
+import SearchSVG from "../../images/search.svg";
+import CartSVG from "../../images/cart.svg";
+import UserSVG from "../../images/user.svg";
+import { useState } from "react";
 
-export default function Navigation({ changePage, activePage }) {
+export default function Navigation() {
+  const [searchTerm, setSearchTerm] = useState("");
+  const location = useLocation();
+
   return (
     <Header>
       <nav>
-        <Logo onClick={() => changePage(NAVIGATION.HOME)}>
-          <img src="images/logo.svg" alt="Logo" />
+        <Logo to="/">
+          <img src={LogoSVG} alt="Logo" />
         </Logo>
-        <Links>
-          <Link
-            onClick={() => changePage(NAVIGATION.HOME)}
-            active={activePage === NAVIGATION.HOME}
+        <Pages>
+          <Page
+            to={NAVIGATION.HOME}
+            className={location.pathname === "/" && "active"}
           >
             Home
-          </Link>
-          <Link
-            onClick={() => changePage(NAVIGATION.SHOP)}
-            active={activePage === NAVIGATION.SHOP}
-          >
+          </Page>
+          <Page to={NAVIGATION.SHOP} state={{ page: 1 }}>
             Shop
-          </Link>
-          <Link
-            onClick={() => changePage(NAVIGATION.ABOUT)}
-            active={activePage === NAVIGATION.ABOUT}
-          >
-            About
-          </Link>
-        </Links>
+          </Page>
+          <Page to={NAVIGATION.ABOUT}>About</Page>
+        </Pages>
         <Icons>
-          <img src="images/search.svg" alt="Search" />
-          <img src="images/cart.svg" alt="Cart" />
-          <img src="images/user.svg" alt="User" />
+          <SearchBar
+            type="text"
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+            onKeyDown={(e) => {
+              if (e.key === "Enter") {
+                document.getElementById("searchButton").click();
+                setSearchTerm("");
+              }
+            }}
+          />
+          <Icon
+            onClick={() => setSearchTerm("")}
+            to={`${NAVIGATION.SEARCH}?q=${searchTerm}`}
+            id="searchButton"
+          >
+            <img src={SearchSVG} alt="Search" />
+          </Icon>
+          <img src={CartSVG} alt="Cart" />
+          <img src={UserSVG} alt="User" />
         </Icons>
       </nav>
     </Header>

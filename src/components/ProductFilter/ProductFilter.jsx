@@ -1,5 +1,8 @@
-import React, { useState } from "react";
+import React from "react";
+import { useLocation } from "react-router";
+import { NAVIGATION } from "../../utils/constants";
 import Grid from "../Grid";
+import Loading from "../Loading";
 import Pagination from "../Pagination/Pagination";
 import ProductCard from "../ProductCard";
 import {
@@ -10,66 +13,86 @@ import {
 } from "./ProductFilter.styled";
 
 export default function ProductFilter({ categories, products }) {
-  const [filterArray, setFilterArray] = useState([]);
+  const { filter = [] } = useLocation().state || {};
+  const clearFilters = { id: "-", data: { name: "Clear Filters" } };
 
-  function toogleFilter(typeId) {
-    if (filterArray.includes(typeId)) {
-      let indexToRemove = filterArray.indexOf(typeId);
-      setFilterArray([
-        ...filterArray.slice(0, indexToRemove),
-        ...filterArray.slice(indexToRemove + 1),
-      ]);
-    } else {
-      setFilterArray([...filterArray, typeId]);
-    }
+  let filterButtons;
+  if (!categories.isLoading) {
+    let categoriesArray =
+      filter.length > 0
+        ? [clearFilters, ...categories.data.results]
+        : [...categories.data.results];
+
+    filterButtons = categoriesArray.map(({ id, data: { name } }, index) => {
+      const state = { page: 1 };
+      if (id === clearFilters.id) {
+        state.filter = [];
+      } else if (filter.includes(id)) {
+        const indexToRemove = filter.indexOf(id);
+        state.filter = [
+          ...filter.slice(0, indexToRemove),
+          ...filter.slice(indexToRemove + 1),
+        ];
+      } else {
+        state.filter = [...filter, id];
+      }
+
+      return (
+        <React.Fragment key={id}>
+          <FilterButton
+            key={id}
+            to={NAVIGATION.SHOP}
+            state={state}
+            active={filter.includes(id) ? 1 : undefined}
+          >
+            {name}
+          </FilterButton>
+          {index + 1 !== categoriesArray.length ? (
+            <FilterDivider key={`divider${id}`} />
+          ) : null}
+        </React.Fragment>
+      );
+    });
   }
 
-  const filterButtons = categories.map((category, index) => {
-    return (
-      <React.Fragment key={category.id}>
-        <FilterButton
-          key={category.id}
-          onClick={() => toogleFilter(category.id)}
-          active={filterArray.includes(category.id)}
-        >
-          {category.name}
-        </FilterButton>
-        {index + 1 !== categories.length ? (
-          <FilterDivider key={`divider${category.id}`} />
-        ) : null}
-      </React.Fragment>
-    );
-  });
+  let productsList;
+  if (!categories.isLoading && !products.isLoading) {
+    let categoryNames = {};
+    categories.data.results.forEach(({ id, data: { name } }) => {
+      categoryNames = { ...categoryNames, [id]: name };
+    });
 
-  let filteredProducts = [...products];
-  if (filterArray.length > 0) {
-    filteredProducts = filteredProducts.filter(({ typeId }) =>
-      filterArray.includes(typeId)
-    );
+    productsList = products.data.results.map(({ id, data: product }, index) => (
+      <ProductCard
+        key={index}
+        productId={id}
+        image={product.mainimage.url}
+        category={categoryNames[product.category.id]}
+        name={product.name}
+        price={product.price}
+      />
+    ));
   }
-
-  let categoryNames = {};
-  categories.forEach(({ id, name }) => {
-    categoryNames = { ...categoryNames, [id]: name };
-  });
-
-  const productsList = filteredProducts.map((product, index) => (
-    <ProductCard
-      key={`product${index}`}
-      image={product.image}
-      category={categoryNames[product.typeId]}
-      name={product.name}
-      price={product.price}
-    />
-  ));
 
   return (
     <>
-      <ProductFilterSidebar>{filterButtons}</ProductFilterSidebar>
-      <ProductFilterContent>
-        <Grid>{productsList}</Grid>
-        <Pagination />
-      </ProductFilterContent>
+      {categories.isLoading ? (
+        <Loading />
+      ) : (
+        <ProductFilterSidebar>{filterButtons}</ProductFilterSidebar>
+      )}
+      {categories.isLoading || products.isLoading ? (
+        <Loading />
+      ) : (
+        <ProductFilterContent>
+          <Grid>{productsList}</Grid>
+          <Pagination
+            navigation={NAVIGATION.SHOP}
+            totalPages={products.data.total_pages}
+            options={{ filter }}
+          />
+        </ProductFilterContent>
+      )}
     </>
   );
 }

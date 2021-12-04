@@ -6,7 +6,12 @@ import {
   BannerTitle,
 } from "./Banner.styled";
 
-export default function Banner({ title, subtitle, text, image }) {
+export default function Banner({
+  title = "",
+  subtitle = "",
+  text = "",
+  image,
+}) {
   return (
     <BannerContainer image={image}>
       <BannerCTA>

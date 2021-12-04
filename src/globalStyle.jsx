@@ -12,11 +12,15 @@ export const GlobalStyle = createGlobalStyle`
   h2,
   p,
   span,
-  button {
+  button,
+  a,
+  table,
+  label {
     font-family: "Lato", sans-serif;
     font-size: 1rem;
     font-weight: 400;
     color: ${({ theme }) => theme.dark};
+    text-decoration: none;
   }
 
   main {
