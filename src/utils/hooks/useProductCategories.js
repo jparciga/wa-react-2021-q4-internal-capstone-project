@@ -1,13 +1,26 @@
 import { useState, useEffect } from 'react';
-import ProductCategoriesData from '../../mocks/en-us/product-categories.json';
+import { useApi } from './useApi';
 
-const initialCategoriesState = ProductCategoriesData.results.map((category) => {
-  return { ...category, isSelected: false };
-});
-console.log(ProductCategoriesData);
-export const useProductCategories = () => {
+export const useProductCategories = (categoryFromURL) => {
   const [categoriesSelected, setCategoriesSelected] = useState([]);
-  const [categories, setCategories] = useState(initialCategoriesState);
+  const response = useApi('category', 12, 1);
+  const [categories, setCategories] = useState([]);
+  useEffect(() => {
+    if (!response.isLoading) {
+      const categoryFilter = response?.data?.results.find((category) =>
+        category.slugs.includes(categoryFromURL)
+      );
+
+      const newCategories = response.data.results.map((category) => {
+        category.isSelected = false;
+        if (categoryFilter?.id === category.id) category.isSelected = true;
+
+        return category;
+      });
+      setCategories(newCategories);
+    }
+  }, [response, categoryFromURL]);
+
   useEffect(() => {
     const filteredCategories = categories
       .filter((category) => category.isSelected)

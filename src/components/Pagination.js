@@ -1,14 +1,21 @@
-import React from 'react';
 import { BiLeftArrow, BiRightArrow } from 'react-icons/bi';
 import { PaginationContent, ButtonNumber } from './Pagination.style';
-
-export default function Pagination({ current, totalPages }) {
+import { Link } from 'react-router-dom';
+import usePages from '../utils/hooks/usePages';
+export default function Pagination({ totalPages }) {
+  const [pages, currentPage] = usePages(totalPages);
   return (
     <PaginationContent>
       <BiLeftArrow />
-      <ButtonNumber>1</ButtonNumber>
-      <ButtonNumber>2</ButtonNumber>
-      <ButtonNumber>3</ButtonNumber>
+      {pages.map((page) => (
+        <ButtonNumber key={page}>
+          {page === currentPage ? (
+            page
+          ) : (
+            <Link to={`?page=${page}`}>{page}</Link>
+          )}
+        </ButtonNumber>
+      ))}
       <BiRightArrow />
     </PaginationContent>
   );

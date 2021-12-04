@@ -3,9 +3,10 @@ export const HeaderContainer = styled.nav`
   background-color: #222529;
   padding: 0 15px;
   color: white;
+  z-index: 100;
+  position: fixed;
+  width: 100%;
   @media (max-width: 768px) {
-    position: fixed;
-    width: 100%;
     margin: 0px;
     padding: 0px;
   }
@@ -42,14 +43,4 @@ export const MenuLogo = styled.li`
   a:hover {
     color: white;
   }
-`;
-export const SearchInput = styled.input`
-  padding: 10px;
-`;
-export const SearchButton = styled.button`
-  padding: 11px;
-  background: #2196f3;
-  color: white;
-  border: none;
-  cursor: pointer;
 `;

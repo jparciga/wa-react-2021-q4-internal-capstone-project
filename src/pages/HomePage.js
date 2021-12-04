@@ -4,11 +4,11 @@ import Categories from '../components/Categories';
 import Products from '../components/Products';
 import Slider from '../components/Slider';
 import { ButtonPrimary } from './HomePage.style';
-export default function HomePage({ onSetShowMenu, showMenu }) {
+export default function HomePage() {
   return (
     <>
       <Slider />
-      <Categories onSetShowMenu={onSetShowMenu} showMenu={showMenu} />
+      <Categories />
       <Products />
       <ButtonPrimary>
         <Link to="/products"> View all products</Link>

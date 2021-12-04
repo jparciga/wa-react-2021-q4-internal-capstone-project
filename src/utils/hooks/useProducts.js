@@ -1,20 +1,34 @@
 import { useState, useEffect, useRef } from 'react';
-import ProductsData from '../../mocks/en-us/featured-products.json';
+import { useApi } from './useApi';
+import { useLocation } from 'react-router';
 
-export const useProducts = (categoriesSelected) => {
-  let [products, setProducts] = useState([]);
-  const isMounted = useRef(true);
+export const useProducts = (categoriesSelected = []) => {
+  const search = useLocation().search;
+  let page = new URLSearchParams(search).get('page') ?? 1;
+  const [products, setProducts] = useState([]);
+  const [totalPages, setTotalPages] = useState(1);
+
+  const isMounted = useRef(null);
+  const response = useApi('product', 12, page);
+  const productsResponse = response?.data.results;
   useEffect(() => {
     isMounted.current = true;
-    const productsData =
-      categoriesSelected && categoriesSelected.length > 0
-        ? ProductsData.results.filter((prod) =>
-            categoriesSelected.includes(prod.data.category.id)
-          )
-        : ProductsData.results;
-    if (isMounted.current) setProducts(productsData);
-    return () => (isMounted.current = false);
-  }, [categoriesSelected]);
+    if (!response.isLoading) {
+      const productsData =
+        categoriesSelected.length > 0
+          ? productsResponse.filter((prod) =>
+              categoriesSelected.includes(prod.data.category.id)
+            )
+          : productsResponse;
+      if (isMounted.current) {
+        setProducts(productsData);
+        setTotalPages(response?.data?.total_pages);
+      }
+    }
+    return () => {
+      isMounted.current = false;
+    };
+  }, [productsResponse, response, categoriesSelected]);
 
-  return products;
+  return [products, totalPages];
 };

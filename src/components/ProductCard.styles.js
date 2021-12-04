@@ -7,6 +7,11 @@ export const ProductCardItem = styled.div`
   text-align: center;
   font-family: arial;
   margin-bottom: 15px;
+  text-decoration: none;
+  a {
+    text-decoration: none;
+    color: black;
+  }
   @media (max-width: 768px) {
     width: 90%;
     text-align: center;
@@ -33,4 +38,6 @@ export const ProductButton = styled.button`
 `;
 export const ProductTitle = styled.h2`
   height: 58px;
+  color: black;
+  text-decoration: none;
 `;
