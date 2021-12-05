@@ -31,7 +31,7 @@ const GridComponent = ( {
                 }
             </div>
             {
-                pagination &&
+                pagination && totalPages > 1 &&
                 <GridPaginator 
                     totalPages={totalPages} 
                 />

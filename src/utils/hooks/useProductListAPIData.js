@@ -2,11 +2,15 @@ import { useState, useEffect} from 'react';
 import { API_BASE_URL } from '../constants';
 import { useLatestAPI } from './useLatestAPI';
 
-import ProductListContext from 'state/ProductListContext';
-import { useContext } from 'react';
+import { useSelector, useDispatch } from "react-redux";
+import { bindActionCreators } from 'redux';
+import { productListActionCreators } from 'state/index';
 
 export function useProductListAPIData({queries, pageSize, mapFunction}) {
-    const { productListState, productListDispatcher } = useContext(ProductListContext);
+
+    const productList = useSelector((state) => state.productList);
+    const { setValues } = bindActionCreators(productListActionCreators, useDispatch());
+
     const { ref: apiRef, isLoading: isApiMetadataLoading } = useLatestAPI();
     const [retrievedData, setRetrievedData] = useState({
         parsedData: [],
@@ -28,7 +32,7 @@ export function useProductListAPIData({queries, pageSize, mapFunction}) {
             }).join('&');
     
             const response = await fetch(
-              `${API_BASE_URL}/documents/search?ref=${apiRef}&${queryString}&lang=en-us&pageSize=${pageSize}&page=${productListState.currentPage}`,
+              `${API_BASE_URL}/documents/search?ref=${apiRef}&${queryString}&lang=en-us&pageSize=${pageSize}&page=${productList.currentPage}`,
               {
                 signal: controller.signal,
               }
@@ -44,10 +48,9 @@ export function useProductListAPIData({queries, pageSize, mapFunction}) {
 
             let totalPages = data.total_pages;
     
-            productListDispatcher({ type: 'set_values', payload: {currentPage: productListState.currentPage, totalPages, filters: productListState.filters }});
+            setValues({currentPage: productList.currentPage, totalPages, filters: productList.filters });    
             setRetrievedData({ parsedData, totalPages, isLoading: false });
           } catch (err) {
-            //productListDispatcher({ type: 'set_initial_state'});
             setRetrievedData({ parsedData: [], totalPages: 1, isLoading: false });
             console.error(err);
           }
@@ -60,7 +63,8 @@ export function useProductListAPIData({queries, pageSize, mapFunction}) {
         };
       }, [apiRef, 
         isApiMetadataLoading, 
-        productListState
+        productList.currentPage, 
+        productList.filters
     ]);
 
       return [retrievedData];

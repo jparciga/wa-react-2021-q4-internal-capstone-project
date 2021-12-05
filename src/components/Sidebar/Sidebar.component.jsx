@@ -1,10 +1,16 @@
 import './Sidebar.css';
-import React, {useContext} from 'react';
-import ProductListContext from 'state/ProductListContext';
+import React from 'react';
 import PropTypes from 'prop-types';
 
-const Sidebar = ({data: { parsedData = [], isLoading }, title}) => {
-    const { productListState, productListDispatcher } = useContext(ProductListContext);
+import { useSelector, useDispatch } from "react-redux";
+import { bindActionCreators } from 'redux';
+import { productListActionCreators } from 'state/index';
+
+const Sidebar = ({data: { parsedData = [], isLoading }, title}) => { 
+    const filters = useSelector(({productList: { filters } }) => filters);
+    const dispatch = useDispatch();
+
+    const { modifyFilter, resetFilter } = bindActionCreators(productListActionCreators, dispatch);
 
     if(isLoading)
         return (<h1>Loading...</h1>);
@@ -14,14 +20,14 @@ const Sidebar = ({data: { parsedData = [], isLoading }, title}) => {
             <h2>{title}</h2>
             <ul style={{listStyle: "none"}}>
             {parsedData.map( ({id, name }) => {
-               return (<li key={id} 
-                           className={`${productListState.filters.includes(id) ? "enabled" : "disabled"}`} 
-                           onClick={() => productListDispatcher({type: "modify_filter", categoryId: id})}>
-                               {name}
-                           </li>) 
+                return (<li key={id} 
+                            className={`${filters.includes(id) ? "enabled" : "disabled"}`} 
+                            onClick={() => modifyFilter(id) }>
+                                {name}
+                            </li>) 
             })}
             </ul>
-            <button onClick={() => productListDispatcher({type: "reset_filter"})}>Clear filters</button>
+            <button onClick={() => resetFilter() }>Clear filters</button>
         </div>
     )
 }
