@@ -5,31 +5,31 @@ export const SEARCH_RESULTS_INITIAL_STATE = {
 
 export default function searchResultsReducer(state = SEARCH_RESULTS_INITIAL_STATE, action) {
     switch(action.type) {
-        case 'set_initial_state':
+        case 'sr_set_initial_state':
             return SEARCH_RESULTS_INITIAL_STATE;
-        case 'set_values': {
+        case 'sr_set_values': {
             state.currentPage = action.payload.currentPage;
             state.totalPages = action.payload.totalPages;      
             return state;
         }
-        case 'set_current_page':
-            return { ...state, currentPage: action.currentPage };
-        case 'next':
+        case 'sr_set_current_page':
+            return { ...state, currentPage: action.payload };
+        case 'sr_next':
             return {
                 ...state,
                 currentPage: (state.currentPage < state.totalPages) ? state.currentPage + 1 : state.currentPage
             };
-        case 'prev':
+        case 'sr_prev':
             return { 
                 ...state,
-                currentPage: (state.currentPage > 1) ? state.currentPage - 1 : state.currentPage
+                currentPage: (state.currentPage > 1) ? state.currentPage  - 1 : state.currentPage
             };
-        case 'first':
+        case 'sr_first':
             return {
                 ...state,
                 currentPage: 1
             };
-        case 'last':
+        case 'sr_last':
         {    const last = {
                 ...state,
                 currentPage: state.totalPages

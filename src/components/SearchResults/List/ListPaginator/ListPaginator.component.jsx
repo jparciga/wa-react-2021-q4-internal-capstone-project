@@ -1,10 +1,15 @@
-import React, {useContext} from 'react'
-import SearchResultsContext from 'state/SearchResultsContext';
+import React from 'react';
 import PropTypes from 'prop-types';
 
+import { useSelector, useDispatch } from "react-redux";
+import { bindActionCreators } from 'redux';
+import { searchResultsActionCreators } from 'state/index';
+
 const ListPaginatorComponent = ({className}) => {
-    
-    const {searchResultsState, searchResultsDispatcher} = useContext(SearchResultsContext);
+    const { currentPage, totalPages } = useSelector((state) => state.searchResults);
+    const dispatch = useDispatch();
+
+    const { first, prev, next, last, setCurrentPage } = bindActionCreators(searchResultsActionCreators, dispatch);
 
     const createPaginationNumeration = (page, totalPages) => {
         let content = [];
@@ -13,7 +18,7 @@ const ListPaginatorComponent = ({className}) => {
                 <button 
                     style={ (page === i) ? { color: "red" } : {}} 
                     key={`number${i}}`}  
-                    onClick={() => searchResultsDispatcher({ type: "set_current_page", currentPage: i})}>
+                    onClick={() => setCurrentPage(i)}>
                         {i}
                 </button>);
         }
@@ -23,13 +28,23 @@ const ListPaginatorComponent = ({className}) => {
 
     return (
         <div className={className}>
-            <button onClick={() => searchResultsDispatcher({ type: "first" }) }>First</button>
-            <button onClick={() => searchResultsDispatcher({ type: "prev" }) }>Prev</button>
-            { createPaginationNumeration(searchResultsState.currentPage, searchResultsState.totalPages) }
-            <button onClick={() => searchResultsDispatcher({ type: "next" })}>Next</button>
-            <button onClick={() => searchResultsDispatcher({ type: "last" })}>Last</button>
+            <button onClick={() => first() }>First</button>
+            <button onClick={() => prev() }>Prev</button>
+            { createPaginationNumeration(currentPage, totalPages) }
+            <button onClick={() => next() }>Next</button>
+            <button onClick={() => last() }>Last</button>
         </div>
-    )
+    );
+
+    // return (
+    //     <div className={className}>
+    //         <button onClick={() => searchResultsDispatcher({ type: "first" }) }>First</button>
+    //         <button onClick={() => searchResultsDispatcher({ type: "prev" }) }>Prev</button>
+    //         { createPaginationNumeration(searchResultsState.currentPage, searchResultsState.totalPages) }
+    //         <button onClick={() => searchResultsDispatcher({ type: "next" })}>Next</button>
+    //         <button onClick={() => searchResultsDispatcher({ type: "last" })}>Last</button>
+    //     </div>
+    // )
 }
 
 ListPaginatorComponent.propTypes = {

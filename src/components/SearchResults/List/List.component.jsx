@@ -1,14 +1,15 @@
-import React, {useContext} from 'react'
 import ListCard from 'components/SearchResults/List/ListCard/ListCard.styles';
 import ListPaginator from './ListPaginator/ListPaginator.styles';
 import useSearch from 'hooks/useSearch';
-import SearchResultsContext from 'state/SearchResultsContext';
 import PropTypes from 'prop-types';
 
-const ListComponent = ({className, searchTerm, noElementsCustomMessage}) => {
-    const {searchResultsState} = useContext(SearchResultsContext);
+import { useSelector } from "react-redux";
 
-    const [{parsedData, isLoading}] = useSearch({pageSize: 20, searchTerm: searchTerm, page: searchResultsState.currentPage});
+
+const ListComponent = ({className, searchTerm, noElementsCustomMessage}) => {
+    
+    const { currentPage, totalPages } = useSelector((state) => state.searchResults);
+    const [{parsedData, isLoading}] = useSearch({pageSize: 20, searchTerm: searchTerm, page: currentPage});
 
     if(isLoading)
         return(<h3>Loading...</h3>);
@@ -19,7 +20,7 @@ const ListComponent = ({className, searchTerm, noElementsCustomMessage}) => {
     return (
         <div className={className}>
             {
-                (searchResultsState.totalPages > 1) ? <ListPaginator /> : null
+                (totalPages > 1) ? <ListPaginator /> : null
             }
             <div className="list-cards">
                 {
@@ -29,7 +30,7 @@ const ListComponent = ({className, searchTerm, noElementsCustomMessage}) => {
                 }
             </div>
             {
-                (searchResultsState.totalPages > 1) ? <ListPaginator /> : null
+                (totalPages > 1) ? <ListPaginator /> : null
             }
         </div>
     )
