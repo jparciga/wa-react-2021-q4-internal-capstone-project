@@ -9,8 +9,8 @@ import SwiperCore, { FreeMode, Navigation, Thumbs } from "swiper";
 SwiperCore.use([FreeMode, Navigation, Thumbs]);
 
 export default function Gallery({ images }) {
-  const slides = images.map(({ alt, image: { url } }, index) => (
-    <SwiperSlide key={index}>
+  const slides = images.map(({ alt, image: { url } }) => (
+    <SwiperSlide key={url}>
       <img src={url} alt={alt} />
     </SwiperSlide>
   ));

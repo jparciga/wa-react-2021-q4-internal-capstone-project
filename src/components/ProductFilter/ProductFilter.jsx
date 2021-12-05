@@ -40,7 +40,7 @@ export default function ProductFilter({ categories, products }) {
       return (
         <React.Fragment key={id}>
           <FilterButton
-            key={id}
+            key={`button${id}`}
             to={NAVIGATION.SHOP}
             state={state}
             active={filter.includes(id) ? 1 : undefined}
@@ -62,9 +62,9 @@ export default function ProductFilter({ categories, products }) {
       categoryNames = { ...categoryNames, [id]: name };
     });
 
-    productsList = products.data.results.map(({ id, data: product }, index) => (
+    productsList = products.data.results.map(({ id, data: product }) => (
       <ProductCard
-        key={index}
+        key={id}
         productId={id}
         image={product.mainimage.url}
         category={categoryNames[product.category.id]}
