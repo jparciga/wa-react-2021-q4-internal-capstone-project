@@ -11,7 +11,7 @@ import { shoppingCartActionCreators } from "state/index";
 
 const ProductDetailComponent = ({ className }) => {
   const {productId} = useParams();
-  const [{parsedData, isLoading}] = useProductById(productId);
+  const [{parsedData, isLoading}] = useProductById([productId]);
 
   const dispatch = useDispatch();
   const { addToCart } = bindActionCreators(shoppingCartActionCreators, dispatch);
@@ -61,7 +61,7 @@ const ProductDetailComponent = ({ className }) => {
                type="submit" 
                value="Add to Cart" 
                disabled={(stock === 0) ? true : false} 
-               onClick={() => { addToCart({id, quantity: parseInt(quantity), stock: parseInt(stock)}); }}/>
+               onClick={() => { addToCart({id, quantity: parseInt(quantity), price: price, stock: parseInt(stock)}); }}/>
       </div>
       <div className="product-detail-tags">
         <h5>Tags</h5>

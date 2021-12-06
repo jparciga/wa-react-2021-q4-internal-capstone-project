@@ -16,6 +16,15 @@ export const removeFromCart = (productId) => {
     }
 };
 
+export const changeQuantity = (productId, quantity) => {
+    return (dispatch) => {
+        dispatch({
+            type: "change_quantity",
+            payload: {productId, quantity}
+        });
+    }
+}
+
 export const checkout = () => {
     return (dispatch) => {
         dispatch({

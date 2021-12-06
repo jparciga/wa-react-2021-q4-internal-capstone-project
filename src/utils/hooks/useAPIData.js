@@ -1,8 +1,12 @@
 import { useState, useEffect } from 'react';
 import { API_BASE_URL } from '../constants';
 import { useLatestAPI } from './useLatestAPI';
+import { useSelector } from 'react-redux';
 
 export function useAPIData({queries, pageSize = 1, page = ''}, mapFunction) {
+   
+    const shoppingCart = useSelector(state => state.shoppingCart)
+  
     const { ref: apiRef, isLoading: isApiMetadataLoading } = useLatestAPI();
     const [pageNumber, setPageNumber] = useState(page);
     const [retrievedData, setRetrievedData] = useState(() => ({
@@ -58,7 +62,7 @@ export function useAPIData({queries, pageSize = 1, page = ''}, mapFunction) {
         return () => {
           controller.abort();
         };
-      }, [apiRef, isApiMetadataLoading, pageNumber]);
+      }, [apiRef, isApiMetadataLoading, pageNumber, shoppingCart.items]);
 
       return [retrievedData, pageNumber, setPageNumber];
 };

@@ -33,10 +33,20 @@ export default function shoppingCartReducer(state = SEARCH_RESULTS_INITIAL_STATE
             {
                 return { 
                     amountItems: state.amountItems - 1,
-                    items: state.filters.filter(x => x.id !== action.payload)
+                    items: state.items.filter(x => x.id !== action.payload)
                 }
             }
             return state;
+        }
+        case "change_quantity": {
+            const elementIndex = state.items.findIndex((item) => item.id === action.payload.productId);
+            let newArray = [...state.items];
+            newArray[elementIndex] = { ...newArray[elementIndex], quantity: action.payload.quantity }
+
+            return { 
+                amountItems: state.amountItems,
+                items: newArray
+            }
         }
         case "checkout":
         case "clear_cart":
