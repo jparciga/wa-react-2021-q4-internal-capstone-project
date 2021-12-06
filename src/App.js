@@ -34,7 +34,6 @@ const App = () => {
           </Link>
         </Search>
         <ShoppingCartIcon/>
-
       </Header>
       <Content>
         <PageRouter />

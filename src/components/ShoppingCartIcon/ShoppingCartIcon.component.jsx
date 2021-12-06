@@ -2,13 +2,16 @@ import React from 'react'
 import ShoppingCartIconSvg from 'images/shopping-cart.svg';
 import styled from 'styled-components';
 import { useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
 
 const ShoppingCartIcon = () => {
     const amountItems = useSelector(({shoppingCart: { amountItems } }) => amountItems);
-    
+
     return (
         <ShoppingCartContainer>
-            <img src={ShoppingCartIconSvg}  alt="shoppingcart"></img>
+            <Link to="/cart">
+              <img src={ShoppingCartIconSvg}  alt="shoppingcart"></img>
+            </Link>
             { (amountItems > 0) ? <span style={{textAlign: "center"}}>{amountItems}</span> : null}       
         </ShoppingCartContainer>
     )

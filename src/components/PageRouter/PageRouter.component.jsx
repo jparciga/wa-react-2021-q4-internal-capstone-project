@@ -4,6 +4,7 @@ import Home from "components/Home/Home";
 import ProductList from "components/ProductList/ProductList.styles";
 import ProductDetail from "components/ProductDetail/ProductDetail.styles";
 import SearchResults from 'components/SearchResults/SearchResults.styles';
+import ShoppingCart from 'components/ShoppingCart/ShoppingCart.styles';
 
 const PageRouter = () => {
     const [currentPage, setCurrentPage] = useState("Home");
@@ -19,6 +20,7 @@ const PageRouter = () => {
         <Route exact path="/products" component={ProductList} />
         <Route exact path="/product/:productId" component={ProductDetail} />
         <Route exact path='/search' component={SearchResults} />
+        <Route exact path='/cart' component={ShoppingCart} />
         <Route path="*">
           <span>404 Not Found.</span>
         </Route>
