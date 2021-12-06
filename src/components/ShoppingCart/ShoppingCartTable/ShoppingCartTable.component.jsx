@@ -2,6 +2,7 @@ import React from 'react'
 import { useSelector } from 'react-redux';
 import ShoppingCartCard from './ShoppingCartCard/ShoppingCartCard.styles';
 import useProductById from 'hooks/useProductById';
+import PropTypes from 'prop-types';
 
 const ShoppingCartTableComponent = ({className}) => {
 
@@ -28,5 +29,10 @@ const ShoppingCartTableComponent = ({className}) => {
         </div>
     )
 }
+
+ShoppingCartTableComponent.propTypes = {
+    className: PropTypes.string
+};
+
 
 export default ShoppingCartTableComponent;

@@ -12,8 +12,8 @@ const useProducts = ({pageSize }) => {
         queries.push(filterQuery);
     }
 
-    const mapFunction = ({id, data: {name, mainimage: { url }, category: { slug }, price }}) => {
-        return { id, url, name, "category": slug, price };
+    const mapFunction = ({id, data: {name, mainimage: { url }, category: { slug }, price, stock }}) => {
+        return { id, url, name, "category": slug, price, stock };
     };
 
     const [productCategories] = useProductListAPIData({queries, pageSize, mapFunction});

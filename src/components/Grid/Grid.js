@@ -18,7 +18,7 @@ const GridComponent = ( {
         <>
             <div className="grid-container">
                 {
-                    parsedData.map(({ id, url, name, category, price }) => { return ( 
+                    parsedData.map(({ id, url, name, category, price,stock }) => { return ( 
                         <GridCard 
                             key={id}
                             cardId={id} 
@@ -26,6 +26,7 @@ const GridComponent = ( {
                             name={name}
                             category={category}
                             price={price}
+                            stock={stock}
                         />) 
                     }) 
                 }

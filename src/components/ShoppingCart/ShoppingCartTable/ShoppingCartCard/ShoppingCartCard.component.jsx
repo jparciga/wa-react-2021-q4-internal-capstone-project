@@ -2,11 +2,12 @@ import React from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import {shoppingCartActionCreators} from 'state/index';
+import PropTypes from 'prop-types';
 
 const ShoppingCartCardComponent = ({className, data: { id, name, url, price, quantity2, stock } }) => {
     
     const { items } = useSelector((state) => state.shoppingCart);
-    const {quantity} = items.find((item) => item.id === id);
+    const {quantity} = items.find((item) => item.id === id) || { quantity: 0};
 
     const dispatch = useDispatch();
     const { removeFromCart, changeQuantity } = bindActionCreators(shoppingCartActionCreators, dispatch);
@@ -30,6 +31,17 @@ const ShoppingCartCardComponent = ({className, data: { id, name, url, price, qua
             <button onClick={() => removeFromCart(id)}>Remove from Cart</button>
         </div>
     )
+}
+
+ShoppingCartCardComponent.propTypes = {
+    className: PropTypes.string, 
+    data: PropTypes.shape({ 
+        id: PropTypes.string, 
+        name: PropTypes.string, 
+        url: PropTypes.string, 
+        price: PropTypes.number, 
+        stock: PropTypes.number
+    })
 }
 
 export default ShoppingCartCardComponent;

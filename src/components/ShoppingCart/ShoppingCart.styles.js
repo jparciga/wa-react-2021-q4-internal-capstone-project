@@ -2,7 +2,7 @@ import styled from "styled-components";
 import ShoppingCartComponent from './ShoppingCart.component';
 
 const ShoppingCart = styled(ShoppingCartComponent)`
-    height: 70vh;
+    
     width: 90vw;    
 
     display: grid;

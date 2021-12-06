@@ -3,7 +3,6 @@ import ShoppingCartTableComponent from "./ShoppingCartTable.component";
 
 const ShoppingCartTable = styled(ShoppingCartTableComponent)`
     
-    width: 100hw;
     display: grid;
     grid-auto-rows: 1fr;
     padding:1em;

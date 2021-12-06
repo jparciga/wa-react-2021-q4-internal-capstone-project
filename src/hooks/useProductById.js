@@ -42,8 +42,8 @@ const useProductById = (productIds = [], pageSize) => {
     
 
     const [product] = useAPIData({queries, pageSize}, mapFunction);
-    if(productIds.length === 0) 
-        product.parsedData = [];
+    // if(productIds.length === 0) 
+    //     product.parsedData = [];
     return [product];
 };
 
