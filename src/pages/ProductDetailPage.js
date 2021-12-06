@@ -71,7 +71,9 @@ export default function ProductDetailPage() {
 
           <ProductActions>
             <InStock>{`In Stock (${product?.data?.stock} pieces) `} </InStock>
-            <AddToCart productId={product?.id} />
+            {product?.data?.stock > 0 && (
+              <AddToCart maxQuantity={product?.data?.stock} product={product} />
+            )}
           </ProductActions>
         </ProductDetailPageContent>
       )}

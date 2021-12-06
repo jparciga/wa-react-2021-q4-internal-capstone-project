@@ -46,3 +46,4 @@ export function useProductApi(documentId, elementsPerPage, page) {
 
   return response;
 }
+export default useProductApi;

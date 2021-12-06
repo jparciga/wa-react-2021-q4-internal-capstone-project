@@ -10,7 +10,6 @@ const useProductDetail = () => {
 
   useEffect(() => {
     if (!response.isLoading) {
-      console.log(response);
       setProduct(response?.data?.results[0]);
       setImages(
         response?.data?.results[0].data?.images.map(({ image }) => ({

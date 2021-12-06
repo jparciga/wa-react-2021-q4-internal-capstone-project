@@ -8,11 +8,13 @@ import {
 } from './Header.styles';
 import SearchInput from './SearchInput';
 import ThemeContext from '../context/ThemeContext';
+import CartContext from '../context/CartContext';
 import { HiShoppingCart } from 'react-icons/hi';
 import { ImMenu } from 'react-icons/im';
 import { Link } from 'react-router-dom';
 export default function Header() {
   const { changeShowMenu } = useContext(ThemeContext);
+  const { productQuantity } = useContext(CartContext);
   return (
     <HeaderContainer>
       <HeaderMenu>
@@ -26,7 +28,9 @@ export default function Header() {
           <SearchInput />
         </MenuItem>
         <MenuItem>
-          <HiShoppingCart />
+          <Link to={'/cart'}>
+            <HiShoppingCart /> ({productQuantity})
+          </Link>
         </MenuItem>
       </HeaderMenu>
     </HeaderContainer>

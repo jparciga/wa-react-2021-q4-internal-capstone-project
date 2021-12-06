@@ -1,7 +1,6 @@
 import styled from 'styled-components';
 export const HeaderContainer = styled.nav`
   background-color: #222529;
-  padding: 0 15px;
   color: white;
   z-index: 100;
   position: fixed;
@@ -31,6 +30,13 @@ export const MenuItem = styled.li`
   margin: 0px;
   @media (max-width: 768px) {
     display: none;
+  }
+  a {
+    color: white;
+    text-decoration: none;
+  }
+  a:hover {
+    color: white;
   }
 `;
 export const MenuLogo = styled.li`
