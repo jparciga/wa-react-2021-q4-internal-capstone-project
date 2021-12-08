@@ -12,6 +12,7 @@ import Shop from "./pages/Shop";
 import About from "./pages/About/About";
 import Details from "./pages/Details";
 import Search from "./pages/Search";
+import Cart from "./pages/Cart/Cart";
 
 const nothingFound = (
   <h1
@@ -40,6 +41,7 @@ ReactDOM.render(
               <Route path={URL_PARAMS.PRODUCT_ID} element={<Details />} />
             </Route>
             <Route path={NAVIGATION.SEARCH} element={<Search />} />
+            <Route path={NAVIGATION.CART} element={<Cart />} />
             <Route path={NAVIGATION.ABOUT} element={<About />} />
             <Route path="*" element={nothingFound} />
           </Route>
