@@ -21,15 +21,12 @@ export default function Search() {
       categoryNames = { ...categoryNames, [id]: name };
     });
 
-    productsList = productData.data.results.map(({ id, data: product }) => (
+    productsList = productData.data.results.map((product) => (
       <ProductCard
-        key={id}
-        productId={id}
-        image={product.mainimage.url}
-        category={categoryNames[product.category.id]}
-        name={product.name}
-        price={product.price}
-        description={product.short_description}
+        key={product.id}
+        product={product}
+        category={categoryNames[product.data.category.id]}
+        large
       />
     ));
   }

@@ -1,3 +1,4 @@
+import { useCart } from "../../contexts/CartContext";
 import { NAVIGATION } from "../../utils/constants";
 import {
   ProductImage,
@@ -11,14 +12,10 @@ import {
   ContentRight,
 } from "./ProductCard.styled";
 
-export default function ProductCard({
-  productId,
-  image,
-  name,
-  price,
-  category,
-  description = "",
-}) {
+export default function ProductCard({ product, category, large = false }) {
+  const { addItem } = useCart();
+  const { id, data } = product;
+
   const formatter = Intl.NumberFormat("en-US", {
     style: "currency",
     currency: "USD",
@@ -26,18 +23,18 @@ export default function ProductCard({
 
   return (
     <div>
-      <ProductContent to={`${NAVIGATION.SHOP}/${productId}`}>
+      <ProductContent to={`${NAVIGATION.SHOP}/${id}`}>
         <ContentLeft>
-          <ProductImage src={image} alt={name} />
+          <ProductImage src={data.mainimage.url} alt={data.name} />
           <ProductInfo>
             <ProductCategory>{category}</ProductCategory>
-            <ProductName>{name}</ProductName>
-            <ProductPrice>{formatter.format(price)}</ProductPrice>
+            <ProductName>{data.name}</ProductName>
+            <ProductPrice>{formatter.format(data.price)}</ProductPrice>
           </ProductInfo>
         </ContentLeft>
-        {description !== "" && <ContentRight>{description}</ContentRight>}
+        {large && <ContentRight>{data.short_description}</ContentRight>}
       </ProductContent>
-      <AddToCart>Add to Cart</AddToCart>
+      <AddToCart onClick={() => addItem(product, 1)}>Add to Cart</AddToCart>
     </div>
   );
 }

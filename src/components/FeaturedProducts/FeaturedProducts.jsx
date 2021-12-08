@@ -44,19 +44,17 @@ export default function FeaturedProducts({
     categoryNames = { ...categoryNames, [id]: name };
   });
 
-  const productsList = products
+  const productsList = products.data.results
     .filter(
-      ({ typeId }) =>
-        activeCategoryId === typeId || activeCategoryId === ALL_CATEGORY_ID
+      ({ data }) =>
+        activeCategoryId === data.category.id ||
+        activeCategoryId === ALL_CATEGORY_ID
     )
-    .map(({ id, image, typeId, name, price }) => (
+    .map((product) => (
       <ProductCard
-        key={id}
-        productId={id}
-        image={image}
-        category={categoryNames[typeId]}
-        name={name}
-        price={price}
+        key={product.id}
+        product={product}
+        category={categoryNames[product.data.category.id]}
       />
     ));
 

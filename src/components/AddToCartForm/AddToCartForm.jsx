@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useCart } from "../../contexts/CartContext";
 import {
   AddToCartButton,
   AddToCartContainer,
@@ -9,8 +10,9 @@ import {
   InputText,
 } from "./AddToCartForm.styled";
 
-export default function AddToCartForm() {
+export default function AddToCartForm({ product }) {
   const [quantity, setQuantity] = useState(1);
+  const { addItem } = useCart();
 
   function handleQuantityChange(e) {
     let newValue = e.target.value;
@@ -44,7 +46,9 @@ export default function AddToCartForm() {
           </InputButton>
         </InputControls>
       </AddToCartInput>
-      <AddToCartButton>Add to Cart</AddToCartButton>
+      <AddToCartButton onClick={() => addItem(product, quantity)}>
+        Add to Cart
+      </AddToCartButton>
     </AddToCartContainer>
   );
 }

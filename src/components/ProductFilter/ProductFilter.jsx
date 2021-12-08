@@ -62,14 +62,11 @@ export default function ProductFilter({ categories, products }) {
       categoryNames = { ...categoryNames, [id]: name };
     });
 
-    productsList = products.data.results.map(({ id, data: product }) => (
+    productsList = products.data.results.map((product) => (
       <ProductCard
-        key={id}
-        productId={id}
-        image={product.mainimage.url}
-        category={categoryNames[product.category.id]}
-        name={product.name}
-        price={product.price}
+        key={product.id}
+        product={product}
+        category={categoryNames[product.data.category.id]}
       />
     ));
   }

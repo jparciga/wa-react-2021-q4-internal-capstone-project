@@ -79,7 +79,7 @@ export default function Details() {
               <tbody>{specs}</tbody>
             </Specs>
             <Price>{formatter.format(product.data.price)}</Price>
-            <AddToCartForm />
+            <AddToCartForm product={product} />
           </ProductInformation>
         </>
       )}
