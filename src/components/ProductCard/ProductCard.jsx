@@ -13,13 +13,16 @@ import {
 } from "./ProductCard.styled";
 
 export default function ProductCard({ product, category, large = false }) {
-  const { addItem } = useCart();
+  const { cart, addItem } = useCart();
   const { id, data } = product;
 
   const formatter = Intl.NumberFormat("en-US", {
     style: "currency",
     currency: "USD",
   });
+
+  const cartItem = cart.find(({ item }) => item.id === product.id);
+  const disabledButton = cartItem?.quantity >= cartItem?.item.data.stock;
 
   return (
     <div>
@@ -34,7 +37,9 @@ export default function ProductCard({ product, category, large = false }) {
         </ContentLeft>
         {large && <ContentRight>{data.short_description}</ContentRight>}
       </ProductContent>
-      <AddToCart onClick={() => addItem(product, 1)}>Add to Cart</AddToCart>
+      <AddToCart disabled={disabledButton} onClick={() => addItem(product, 1)}>
+        Add to Cart
+      </AddToCart>
     </div>
   );
 }

@@ -47,4 +47,8 @@ export const AddToCartButton = styled.button`
   border: none;
   color: ${({ theme }) => theme.light};
   background-color: ${({ theme }) => theme.accentWeak};
+
+  :disabled {
+    background-color: ${({ theme }) => theme.disabled};
+  }
 `;

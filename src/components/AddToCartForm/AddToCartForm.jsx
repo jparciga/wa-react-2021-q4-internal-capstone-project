@@ -12,7 +12,7 @@ import {
 
 export default function AddToCartForm({ product }) {
   const [quantity, setQuantity] = useState(1);
-  const { addItem } = useCart();
+  const { cart, addItem } = useCart();
 
   function handleQuantityChange(e) {
     let newValue = e.target.value;
@@ -21,6 +21,9 @@ export default function AddToCartForm({ product }) {
     }
     setQuantity(parseInt(newValue));
   }
+
+  const cartItem = cart.find(({ item }) => item.id === product.id);
+  const disabledButton = cartItem?.quantity >= cartItem?.item.data.stock;
 
   return (
     <AddToCartContainer>
@@ -46,7 +49,10 @@ export default function AddToCartForm({ product }) {
           </InputButton>
         </InputControls>
       </AddToCartInput>
-      <AddToCartButton onClick={() => addItem(product, quantity)}>
+      <AddToCartButton
+        disabled={disabledButton}
+        onClick={() => addItem(product, quantity)}
+      >
         Add to Cart
       </AddToCartButton>
     </AddToCartContainer>
