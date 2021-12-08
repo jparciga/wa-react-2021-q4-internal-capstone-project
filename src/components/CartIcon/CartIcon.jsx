@@ -1,16 +1,20 @@
-import { useContext } from "react";
-import { CartContext } from "../../contexts/CartContext";
+import { useCart } from "../../contexts/CartContext";
 import CartSVG from "../../images/cart.svg";
 import { CartIconContainer } from "./CartIcon.styled";
 
 export default function CartIcon() {
-  const { cart } = useContext(CartContext);
+  const { cart } = useCart();
+
+  let itemsQuantity = 0;
+  cart.forEach(({ quantity }) => {
+    itemsQuantity += quantity;
+  });
 
   return (
     <CartIconContainer>
       <img src={CartSVG} alt="Cart" />
-      {cart.length === 0 || (
-        <span id="badge">{cart.length < 100 ? cart.length : "99+"}</span>
+      {itemsQuantity === 0 || (
+        <span id="badge">{itemsQuantity < 100 ? itemsQuantity : "99+"}</span>
       )}
     </CartIconContainer>
   );
