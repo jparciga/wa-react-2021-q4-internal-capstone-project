@@ -4,7 +4,7 @@ import { CartIconContainer } from "./CartIcon.styled";
 
 export default function CartIcon() {
   const { cart } = useCart();
-  console.log(cart);
+
   let itemsQuantity = 0;
   cart.forEach(({ quantity }) => {
     itemsQuantity += quantity;
