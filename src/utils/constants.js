@@ -3,6 +3,7 @@ export const NAVIGATION = {
   HOME: "/home",
   SHOP: "/products",
   SEARCH: "/search",
+  CART: "/cart",
   ABOUT: "/about",
 };
 export const URL_PARAMS = {
