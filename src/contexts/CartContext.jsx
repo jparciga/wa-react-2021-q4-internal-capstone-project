@@ -15,11 +15,22 @@ function cartReducer(state, action) {
   switch (action.type) {
     case "add":
       if (itemIndex < 0) {
+        payload.quantity =
+          payload.quantity > payload.item.data.stock
+            ? payload.item.data.stock
+            : payload.quantity;
+
         return [...state, payload];
       } else {
         return state.map(({ item, quantity }) =>
           item.id === payload.item.id
-            ? { item, quantity: quantity + payload.quantity }
+            ? {
+                item,
+                quantity:
+                  quantity + payload.quantity > item.data.stock
+                    ? item.data.stock
+                    : quantity + payload.quantity,
+              }
             : { item, quantity }
         );
       }
