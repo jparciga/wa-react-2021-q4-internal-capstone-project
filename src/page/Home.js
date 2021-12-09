@@ -14,10 +14,11 @@ const productsWithCategory = function () {
 
 export default function Home() {
     const { data: banners, isLoading: bannersLoading } = useFeaturedBanners();
+    const sliderEntries = banners?.results ?? [];
     
     return (
         <div className="home-wrapper">
-            { bannersLoading ? null : <Slider entries={banners?.results ?? []} /> }
+            { bannersLoading ? null : <Slider entries={sliderEntries} /> }
             <h2>Categories</h2>
             <CategoryGrid entries={categories.results} />
             <h2>Featured Products</h2>

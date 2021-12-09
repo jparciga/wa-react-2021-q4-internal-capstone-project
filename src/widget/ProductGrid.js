@@ -1,4 +1,3 @@
-import './Widget.css';
 import Product from './card/Product';
 import Grid from './Grid';
 

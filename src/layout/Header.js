@@ -1,15 +1,52 @@
-import './Layout.css';
 import {ReactComponent as CartIcon} from './icon/cart.svg';
+import styled from 'styled-components';
+
+//#region Styled Components
+const Wrapper = styled.header`
+    background-color: #282c34;
+    width: 100%;
+    padding: 2rem 2rem;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    color: white;
+    box-sizing: border-box;
+
+    @media screen and (max-width: 640px) {
+        flex-direction: column;
+    }    
+`;
+
+const Title = styled.h1`
+    margin: 0;
+    text-align: left;
+    flex-grow: 1;
+`;
+
+const SearchForm = styled.form`
+    margin: 0;
+`;
+
+const Icon = styled(CartIcon)`
+    height: 1.7em;
+    padding: 0;
+    border: none;
+    background: none;
+    color: inherit;
+`;
+//#endregion
 
 export default function Header() {
     return (
-        <header className="header-wrapper">
-            <h1 className="page-title">Consumerist</h1>
-            <form className="search-bar">
+        <Wrapper>
+            <Title>Consumerist</Title>
+            <SearchForm>
                 <input type="text" placeholder="I'm looking for..." name="search" disabled />
                 <input type="submit" value="Search" disabled />
-            </form>
-            <CartIcon className="cart-icon" title="Shopping Cart" alt="Shopping Cart" />
-        </header>
+            </SearchForm>
+            <Icon title="Shopping Cart" alt="Shopping Cart" />
+        </Wrapper>
     );
 }
