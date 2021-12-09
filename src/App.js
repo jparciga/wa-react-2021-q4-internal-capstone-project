@@ -1,7 +1,9 @@
 import Header from './layout/Header';
 import Footer from './layout/Footer';
-import Home from './page/Home'
+import Home from './page/Home';
 import styled from 'styled-components';
+import { PageContext } from './utils/context/PageContext';
+import { useState } from 'react';
 
 //#region Styled Components
 const Wrapper = styled.div`
@@ -22,13 +24,18 @@ const Content = styled.div`
 //#endregion
 
 function App() {
+  const [CurrentPage, setPage] = useState(() => Home);
+  const contextData = { page: CurrentPage, navigate: setPage };
+
   return (
     <Wrapper>
-      <Header />
-      <Content>
-        <Home />
-      </Content>
-      <Footer />
+      <PageContext.Provider value={contextData}>
+        <Header />
+        <Content>
+          <CurrentPage />
+        </Content>
+        <Footer />
+      </PageContext.Provider>
     </Wrapper>
   );
 }

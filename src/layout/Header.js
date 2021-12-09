@@ -1,5 +1,8 @@
 import {ReactComponent as CartIcon} from './icon/cart.svg';
 import styled from 'styled-components';
+import { useContext } from 'react';
+import { PageContext } from '../utils/context/PageContext';
+import Home from '../page/Home';
 
 //#region Styled Components
 const Wrapper = styled.header`
@@ -23,6 +26,7 @@ const Title = styled.h1`
     margin: 0;
     text-align: left;
     flex-grow: 1;
+    cursor: pointer;
 `;
 
 const SearchForm = styled.form`
@@ -39,9 +43,12 @@ const Icon = styled(CartIcon)`
 //#endregion
 
 export default function Header() {
+    const {navigate} = useContext(PageContext);
+    const navigateHome = () => {navigate(() => Home)};
+
     return (
         <Wrapper>
-            <Title>Consumerist</Title>
+            <Title onClick={navigateHome}>Consumerist</Title>
             <SearchForm>
                 <input type="text" placeholder="I'm looking for..." name="search" disabled />
                 <input type="submit" value="Search" disabled />
