@@ -56,7 +56,7 @@ export default function Navigation() {
           >
             <img src={SearchSVG} alt="Search" />
           </Icon>
-          <Icon to={`${NAVIGATION.CART}`}>
+          <Icon to={NAVIGATION.CART}>
             <CartIcon />
           </Icon>
           <img src={UserSVG} alt="User" />

@@ -4,6 +4,7 @@ export const NAVIGATION = {
   SHOP: "/products",
   SEARCH: "/search",
   CART: "/cart",
+  CHECKOUT: "/checkout",
   ABOUT: "/about",
 };
 export const URL_PARAMS = {

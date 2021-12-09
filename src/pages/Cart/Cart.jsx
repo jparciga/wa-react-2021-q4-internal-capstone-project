@@ -1,7 +1,16 @@
 import QuantitySelector from "../../components/QuantitySelector";
 import Table from "../../components/Table";
 import { useCart } from "../../contexts/CartContext";
-import { CartContainer, RemoveButton, Thumbnail } from "./Cart.styled";
+import { NAVIGATION } from "../../utils/constants";
+import {
+  CartContainer,
+  CheckoutButton,
+  CheckoutSection,
+  RemoveButton,
+  Thumbnail,
+  TotalLabel,
+  TotalPrice,
+} from "./Cart.styled";
 
 export default function Cart() {
   const { cart, addItem, removeItem } = useCart();
@@ -36,12 +45,25 @@ export default function Cart() {
     <RemoveButton onClick={() => removeItem(id, quantity)}>X</RemoveButton>,
   ]);
 
+  const totalPrice = cart.reduce((previous, current) => {
+    return previous + current.item.data.price * current.quantity;
+  }, 0);
+
   return (
     <CartContainer>
       <Table
         header={["Image", "Name", "Price", "Quantity", "Subtotal", ""]}
         data={cartArray}
       />
+      {cart.length > 0 && (
+        <CheckoutSection>
+          <TotalLabel>Total:</TotalLabel>
+          <TotalPrice>{formatter.format(totalPrice)}</TotalPrice>
+          <CheckoutButton to={NAVIGATION.CHECKOUT}>
+            Go to Checkout
+          </CheckoutButton>
+        </CheckoutSection>
+      )}
     </CartContainer>
   );
 }
