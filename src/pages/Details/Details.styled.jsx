@@ -34,19 +34,6 @@ export const Info = styled.p`
   font-size: 0.875rem;
 `;
 
-export const Specs = styled.table`
-  background: ${({ theme }) => theme.accentWeak};
-  width: 100%;
-  border-collapse: collapse;
-  border-radius: 4px;
-  margin-bottom: 15px;
-`;
-
-export const AccentRow = styled.tr`
-  background: ${({ theme }) => theme.light};
-  border-color: ${({ theme }) => theme.light};
-`;
-
 export const Price = styled.p`
   font-size: 1.875rem;
   font-weight: 700;
