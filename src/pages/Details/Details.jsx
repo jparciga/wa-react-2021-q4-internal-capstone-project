@@ -3,6 +3,7 @@ import AddToCartForm from "../../components/AddToCartForm";
 import Gallery from "../../components/Gallery";
 import Loading from "../../components/Loading";
 import Table from "../../components/Table";
+import { PRICE_FORMATTER } from "../../utils/constants";
 import { useCategories } from "../../utils/hooks/useCategories";
 import { useProduct } from "../../utils/hooks/useProduct";
 import {
@@ -38,11 +39,6 @@ export default function Details() {
       spec_value,
     ]);
 
-  const formatter = Intl.NumberFormat("en-US", {
-    style: "currency",
-    currency: "USD",
-  });
-
   return (
     <>
       {productData.isLoading || categoriesData.isLoading ? (
@@ -67,7 +63,7 @@ export default function Details() {
             </Data>
             <Data>{product.data.short_description}</Data>
             <Table data={specsArray} />
-            <Price>{formatter.format(product.data.price)}</Price>
+            <Price>{PRICE_FORMATTER.format(product.data.price)}</Price>
             <AddToCartForm product={product} />
           </ProductInformation>
         </DetailsContainer>

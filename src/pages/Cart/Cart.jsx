@@ -1,7 +1,7 @@
 import QuantitySelector from "../../components/QuantitySelector";
 import Table from "../../components/Table";
 import { useCart } from "../../contexts/CartContext";
-import { NAVIGATION } from "../../utils/constants";
+import { NAVIGATION, PRICE_FORMATTER } from "../../utils/constants";
 import {
   CartContainer,
   CheckoutButton,
@@ -14,11 +14,6 @@ import {
 
 export default function Cart() {
   const { cart, addItem, removeItem } = useCart();
-
-  const formatter = Intl.NumberFormat("en-US", {
-    style: "currency",
-    currency: "USD",
-  });
 
   function handleQuantityChange(id, newValue) {
     const changedItem = cart.find(({ item }) => item.id === id);
@@ -33,7 +28,7 @@ export default function Cart() {
   const cartArray = cart.map(({ item: { id, data }, quantity }) => [
     <Thumbnail src={data.mainimage.url} alt={data.name} />,
     data.name,
-    formatter.format(data.price),
+    PRICE_FORMATTER.format(data.price),
     <QuantitySelector
       defaultValue={quantity}
       minValue={1}
@@ -41,7 +36,7 @@ export default function Cart() {
       onChange={(newValue) => handleQuantityChange(id, newValue)}
       dark
     />,
-    formatter.format(data.price * quantity),
+    PRICE_FORMATTER.format(data.price * quantity),
     <RemoveButton onClick={() => removeItem(id, quantity)}>X</RemoveButton>,
   ]);
 
@@ -58,7 +53,7 @@ export default function Cart() {
       {cart.length > 0 && (
         <CheckoutSection>
           <TotalLabel>Total:</TotalLabel>
-          <TotalPrice>{formatter.format(totalPrice)}</TotalPrice>
+          <TotalPrice>{PRICE_FORMATTER.format(totalPrice)}</TotalPrice>
           <CheckoutButton to={NAVIGATION.CHECKOUT}>
             Go to Checkout
           </CheckoutButton>

@@ -1,5 +1,5 @@
 import { useCart } from "../../contexts/CartContext";
-import { NAVIGATION } from "../../utils/constants";
+import { NAVIGATION, PRICE_FORMATTER } from "../../utils/constants";
 import {
   ProductImage,
   ProductName,
@@ -16,11 +16,6 @@ export default function ProductCard({ product, category, large = false }) {
   const { cart, addItem } = useCart();
   const { id, data } = product;
 
-  const formatter = Intl.NumberFormat("en-US", {
-    style: "currency",
-    currency: "USD",
-  });
-
   const cartItem = cart.find(({ item }) => item.id === product.id);
   const disabledButton = cartItem?.quantity >= cartItem?.item.data.stock;
 
@@ -32,7 +27,7 @@ export default function ProductCard({ product, category, large = false }) {
           <ProductInfo>
             <ProductCategory>{category}</ProductCategory>
             <ProductName>{data.name}</ProductName>
-            <ProductPrice>{formatter.format(data.price)}</ProductPrice>
+            <ProductPrice>{PRICE_FORMATTER.format(data.price)}</ProductPrice>
           </ProductInfo>
         </ContentLeft>
         {large && <ContentRight>{data.short_description}</ContentRight>}
