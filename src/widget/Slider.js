@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { ReactComponent as LeftArrow } from './icon/double-chevron-left.svg';
+import { ReactComponent as RightArrow } from './icon/double-chevron-right.svg';
 import styled, { css } from 'styled-components/macro';
 
 //#region Styled Components
@@ -24,8 +25,8 @@ const SliderContainer = styled.ul`
 const SliderItem = styled.li`
     flex: 1 0 100%;
     transition: margin 0.5s;
-    ${({hide}) => hide && css`
-    visibility: collapse;
+    ${({hidden}) => hidden && css`
+    display: none;
     `}
 `;
 
@@ -36,9 +37,8 @@ const Image = styled.img`
     margin-right: auto;
 `;
 
-const ControlArrow = styled.span`
+const controlArrow = css`
     position: absolute;
-    display: flex;
     background-color: rgba(0, 0, 0, 0.7);
     width: 3em;
     height: 10%;
@@ -46,16 +46,18 @@ const ControlArrow = styled.span`
     top: 45%;
     color: white;
     text-align: center;
-    ${({hide}) => hide && css`
+    ${({hidden}) => hidden && css`
     visibility: collapse;
     `}
 `;
 
-const PrevControl = styled(ControlArrow)`
+const PrevControl = styled(LeftArrow)`
+    ${controlArrow}
     left: 0;
 `;
 
-const NextControl = styled(ControlArrow)`
+const NextControl = styled(RightArrow)`
+    ${controlArrow}
     right: 0;
 `;
 //#endregion
@@ -72,15 +74,15 @@ export default function Slider({ entries }) {
         <Wrapper>
             <SliderContainer>
                 {entries.map(({id, data: {main_image: image, title}}, index) => 
-                <SliderItem key={id} hide={index !== current}>
+                <SliderItem key={id} hidden={index !== current}>
                     <Image src={image.url} alt={image.alt} title={title} />
                 </SliderItem>
                 )}
             </SliderContainer>
             {entries.length === 1 ? null :
             <>
-                <PrevControl hide={current === 0} onClick={previousSlide}><LeftArrow /></PrevControl>
-                <NextControl hide={current === last} onClick={nextSlide}><LeftArrow style={{"transform": "rotate(180deg)"}} /></NextControl>
+                <PrevControl hidden={current === 0} onClick={previousSlide} />
+                <NextControl hidden={current === last} onClick={nextSlide} />
             </>}
         </Wrapper>
     );
