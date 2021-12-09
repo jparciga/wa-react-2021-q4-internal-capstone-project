@@ -70,8 +70,8 @@ function useCart() {
     [dispatch]
   );
   const removeItem = useCallback(
-    (item, quantity) => {
-      dispatch({ type: "remove", payload: { item, quantity } });
+    (id, quantity) => {
+      dispatch({ type: "remove", payload: { item: { id }, quantity } });
     },
     [dispatch]
   );
