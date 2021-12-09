@@ -9,10 +9,11 @@ import reportWebVitals from "./reportWebVitals";
 import { NAVIGATION, URL_PARAMS } from "./utils/constants";
 import Home from "./pages/Home";
 import Shop from "./pages/Shop";
-import About from "./pages/About/About";
+import About from "./pages/About";
 import Details from "./pages/Details";
 import Search from "./pages/Search";
-import Cart from "./pages/Cart/Cart";
+import Cart from "./pages/Cart";
+import Checkout from "./pages/Checkout";
 
 const nothingFound = (
   <h1
@@ -42,6 +43,7 @@ ReactDOM.render(
             </Route>
             <Route path={NAVIGATION.SEARCH} element={<Search />} />
             <Route path={NAVIGATION.CART} element={<Cart />} />
+            <Route path={NAVIGATION.CHECKOUT} element={<Checkout />} />
             <Route path={NAVIGATION.ABOUT} element={<About />} />
             <Route path="*" element={nothingFound} />
           </Route>
