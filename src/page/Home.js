@@ -1,20 +1,14 @@
-import { useFeaturedBanners } from '../utils/hooks/useFeaturedBanners';
-import Slider from '../widget/Slider';
-import CategoryGrid from '../widget/CategoryGrid';
-import ProductGrid from '../widget/ProductGrid';
 import categories from 'mocks/en-us/product-categories.json';
 import products from 'mocks/en-us/featured-products.json';
 import Products from './Products';
+import { useFeaturedBanners } from '../utils/hooks/useFeaturedBanners';
+import useProductsWithCategories from '../utils/hooks/useProductsWithCategory';
 import { useContext } from 'react';
 import { PageContext } from '../utils/context/PageContext';
+import Slider from '../widget/Slider';
+import CategoryGrid from '../widget/CategoryGrid';
+import ProductGrid from '../widget/ProductGrid';
 import styled from 'styled-components';
-
-const productsWithCategory = function () {
-    const categoryDictionary = new Map();
-    categories.results.map(({id, data: {name}})=> categoryDictionary.set(id, name));
-
-    return products.results.map((product) => { return { department: categoryDictionary.get(product.data.category.id), ...product }; });
-}();
 
 const FeaturedProducts = styled.section`
     box-sizing: border-box;
@@ -33,6 +27,7 @@ const ActionButton = styled.button`
 export default function Home() {
     const { data: banners, isLoading: bannersLoading } = useFeaturedBanners();
     const { navigate } = useContext(PageContext);
+    const productsWithCategory = useProductsWithCategories(products.results, categories.results);
     const sliderEntries = banners?.results ?? [];
     const goToProducts = () => {navigate(() => Products)};
     

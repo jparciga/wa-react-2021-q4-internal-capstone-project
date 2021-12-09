@@ -14,14 +14,14 @@ const Image = styled.img`
 `;
 //#endregion
 
-export default function Product({department, data: {mainimage: image, name, price}}) {
+export default function Product({data: {mainimage: image, name, price, category}}) {
     return (
     <Link alt={image.alt} >
         <Image src={image.url} alt={image.alt} />
         <p>
             {name}<br/>
             $ {price}<br/>
-            in {department}
+            in {category.name}
         </p>
     </Link>);
 }

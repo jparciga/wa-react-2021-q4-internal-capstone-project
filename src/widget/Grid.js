@@ -23,7 +23,7 @@ const GridContainer = styled.ul`
 
 const GridItem = styled.li`
     flex: 0 0 20%;
-    min-width: 320px;
+    min-width: 240px;
     position: relative;
 `;
 //#endregion
