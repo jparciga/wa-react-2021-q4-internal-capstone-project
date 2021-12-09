@@ -1,6 +1,14 @@
 import { AccentRow, TableContainer } from "./Table.styled";
 
-export default function Table({ data }) {
+export default function Table({ header = [], data }) {
+  const headerCells = (
+    <tr>
+      {header.map((name) => (
+        <th>{name}</th>
+      ))}
+    </tr>
+  );
+
   const rows = data.map((row, index) => {
     const cells = row.map((value, index) => <td key={index}>{value}</td>);
     return index % 2 === 0 ? (
@@ -12,6 +20,7 @@ export default function Table({ data }) {
 
   return (
     <TableContainer>
+      {header.length > 0 && <thead>{headerCells}</thead>}
       <tbody>{rows}</tbody>
     </TableContainer>
   );
