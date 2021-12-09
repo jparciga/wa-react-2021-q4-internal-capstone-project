@@ -1,14 +1,20 @@
 import styled from "styled-components";
 
+export const DetailsContainer = styled.div`
+  grid-column: 2 / span 4;
+  margin-bottom: 30px;
+  display: flex;
+  justify-content: center;
+`;
+
 export const GalleryContainer = styled.div`
-  grid-column: 2 / span 2;
-  justify-self: right;
   width: 500px;
+  margin: 15px;
 `;
 
 export const ProductInformation = styled.div`
-  grid-column: 4 / span 2;
   width: 500px;
+  margin: 15px;
 `;
 
 export const Header = styled.div`

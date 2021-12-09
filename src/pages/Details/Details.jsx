@@ -7,6 +7,7 @@ import { useCategories } from "../../utils/hooks/useCategories";
 import { useProduct } from "../../utils/hooks/useProduct";
 import {
   Data,
+  DetailsContainer,
   GalleryContainer,
   Header,
   Info,
@@ -47,7 +48,7 @@ export default function Details() {
       {productData.isLoading || categoriesData.isLoading ? (
         <Loading />
       ) : (
-        <>
+        <DetailsContainer>
           <GalleryContainer>
             <Gallery images={product.data.images} />
           </GalleryContainer>
@@ -69,7 +70,7 @@ export default function Details() {
             <Price>{formatter.format(product.data.price)}</Price>
             <AddToCartForm product={product} />
           </ProductInformation>
-        </>
+        </DetailsContainer>
       )}
     </>
   );
