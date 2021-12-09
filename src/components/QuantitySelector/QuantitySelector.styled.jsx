@@ -1,5 +1,12 @@
 import styled from "styled-components";
 
+export const Container = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 50px;
+`;
+
 export const Input = styled.input`
   height: 100%;
   width: 60px;
@@ -18,6 +25,10 @@ export const Controls = styled.div`
 export const Button = styled.button`
   height: 49%;
   width: 25px;
-  background: ${({ theme }) => theme.accentWeak};
+  font-weight: 700;
+  color: ${({ theme }) => theme.light};
+  background: ${({ dark, theme }) =>
+    dark ? theme.darkWeak : theme.accentWeak};
   border: none;
+  border-radius: 2px;
 `;

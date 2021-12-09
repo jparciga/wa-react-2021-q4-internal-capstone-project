@@ -1,11 +1,12 @@
 import { useEffect, useState } from "react";
-import { Button, Controls, Input } from "./QuantitySelector.styled";
+import { Button, Container, Controls, Input } from "./QuantitySelector.styled";
 
 export default function QuantitySelector({
   defaultValue = 1,
   minValue = 1,
   maxValue = Infinity,
   onChange = () => {},
+  dark = false,
 }) {
   const [quantity, setQuantity] = useState(defaultValue);
 
@@ -14,6 +15,7 @@ export default function QuantitySelector({
   }, [onChange, defaultValue]);
 
   function changeQuantity(newValue) {
+    newValue = parseInt(newValue);
     if (isNaN(newValue)) {
       newValue = quantity;
     } else if (newValue > maxValue) {
@@ -22,14 +24,14 @@ export default function QuantitySelector({
       newValue = minValue;
     }
     if (newValue !== quantity) {
-      const integerValue = parseInt(newValue);
+      const integerValue = newValue;
       setQuantity(integerValue);
       onChange(integerValue);
     }
   }
 
   return (
-    <>
+    <Container>
       <Input
         value={quantity}
         onChange={(e) => changeQuantity(e.target.value)}
@@ -38,9 +40,13 @@ export default function QuantitySelector({
         id="item_quantity"
       />
       <Controls>
-        <Button onClick={() => changeQuantity(quantity + 1)}>+</Button>
-        <Button onClick={() => changeQuantity(quantity - 1)}>-</Button>
+        <Button dark={dark} onClick={() => changeQuantity(quantity + 1)}>
+          +
+        </Button>
+        <Button dark={dark} onClick={() => changeQuantity(quantity - 1)}>
+          -
+        </Button>
       </Controls>
-    </>
+    </Container>
   );
 }

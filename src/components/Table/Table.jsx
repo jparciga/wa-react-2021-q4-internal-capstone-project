@@ -3,8 +3,8 @@ import { AccentRow, TableContainer } from "./Table.styled";
 export default function Table({ header = [], data }) {
   const headerCells = (
     <tr>
-      {header.map((name) => (
-        <th>{name}</th>
+      {header.map((name, index) => (
+        <th key={index}>{name}</th>
       ))}
     </tr>
   );
