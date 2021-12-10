@@ -3,19 +3,15 @@ import { useSelector, useDispatch } from "react-redux";
 import { bindActionCreators } from 'redux';
 import { productListActionCreators } from 'state/index';
 
+import { usePagination } from 'utils/hooks/usePagination';
+
 const GridPaginator = ({ totalPages }) => {
     const currentPage = useSelector(({productList: { currentPage} }) => currentPage);
     const dispatch = useDispatch();
 
-    const { first, prev, next, last, setCurrentPage } = bindActionCreators(productListActionCreators, dispatch);
+    const { createPaginationNumeration }=  usePagination("productList");
+    const { first, prev, next, last } = bindActionCreators(productListActionCreators, dispatch);
 
-    const createPaginationNumeration = (page, totalPages) => {
-        let content = [];
-        for (let i = 1; i <= totalPages; i++) {
-            content.push(<button style={ (page === i) ? { color: "red" } : {}} key={`number${i}}`} onClick={() => setCurrentPage(i)}>{i}</button>);
-        }
-        return content;
-    };
 
     return (
         <div className="grid-paginator">
