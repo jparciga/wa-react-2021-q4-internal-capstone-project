@@ -1,10 +1,29 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { useSelector } from 'react-redux';
+
+import { checkoutActionCreators } from 'state/index';
+import { bindActionCreators } from 'redux';
+import { useDispatch } from 'react-redux';
+import { useHistory } from "react-router-dom";
+
+
+//checkout data:
+// const checkoutDataModel = {
+//     orderSummary: [{ name, quantity, subtotal }, ...]
+//     total
+// };
 
 const CheckoutComponent = ({ className }) => {
 
+    const { orderSummary, total } = useSelector((state) => state.checkout);
+    const dispatch = useDispatch()
+    const { clearCheckoutSummary } = bindActionCreators(checkoutActionCreators, dispatch);
+
+    const history = useHistory();
+
     const handleOnSubmit = () => {
-        alert('haha');
+        history.push("/home");
     };
 
 
@@ -32,22 +51,26 @@ const CheckoutComponent = ({ className }) => {
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                <td>Sofa</td>
-                <td>1</td>
-                <td>$417</td>
-                </tr>
+                {
+                    orderSummary.map(({ name, quantity, subtotal}) => 
+                            <tr>
+                                <td>{name}</td>
+                                <td>{quantity}</td>
+                                <td>${subtotal}</td>
+                            </tr>
+                    )
+
+                }
             </tbody>
             <tfoot>
                 <tr>
-                <td>Total:</td>
-                <td>$417</td>
+                <td>Total: ${total}</td>
                 </tr>
             </tfoot>
             </table>
 
             <div className="checkout-actions">
-            <Link to="/cart"><button>Go back</button></Link>
+            <Link to="/cart"><button onClick={clearCheckoutSummary}>Go back</button></Link>
             <button type="submit">Place Order</button>
             </div>
         

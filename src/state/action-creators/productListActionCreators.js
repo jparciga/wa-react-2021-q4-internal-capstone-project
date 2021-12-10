@@ -1,4 +1,3 @@
-//Product List action creators
 export const setInitialState = () => {
     return (dispatch) => {
         dispatch({

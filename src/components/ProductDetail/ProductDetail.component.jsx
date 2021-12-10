@@ -19,7 +19,7 @@ const ProductDetailComponent = ({ className }) => {
   const [quantity, setQuantity] = useState(0);
 
   const handleOnClick = () => {
-    addToCart({id, quantity, price, stock}); 
+    addToCart({id, name, quantity, price, stock}); 
   }
 
   if(isLoading || parsedData.length === 0)

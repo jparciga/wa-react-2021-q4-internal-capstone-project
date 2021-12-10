@@ -3,14 +3,37 @@ import PropTypes from 'prop-types';
 
 import ShoppingCartTable from './ShoppingCartTable/ShoppingCartTable.styles';
 import { useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
+
+import { checkoutActionCreators } from 'state/index';
+import { bindActionCreators } from 'redux';
+import { useDispatch } from 'react-redux';
 
 const ShoppingCartComponent = ({className}) => {
     const { items } = useSelector((state) => state.shoppingCart);
+    const dispatch = useDispatch()
+    const { setCheckoutSummary } = bindActionCreators(checkoutActionCreators, dispatch);
+    const history = useHistory();
 
     const calculateTotalPrice = (items) => {
         const totalPrice = items.reduce( (previous, current) => previous + (current.price*current.quantity),0);
         return totalPrice;
+    }
+
+    const proceedToCheckout = (items) => {
+
+        const orderSummary = items.map(({ name, price, quantity }) => {
+            return {
+                name, 
+                quantity,
+                subtotal: price*quantity
+            }
+        });
+
+        const checkoutData = { orderSummary, total: calculateTotalPrice(items)}
+
+        setCheckoutSummary(checkoutData);
+        history.push("/checkout");
     }
 
     return (
@@ -20,9 +43,7 @@ const ShoppingCartComponent = ({className}) => {
             <ShoppingCartTable />
             <div></div>
             <div className="shoppingCart-total">Total: ${ calculateTotalPrice(items) }</div>
-           
-                <div className="shoppingCart-checkout"> <Link to="/checkout"><button>Checkout</button></Link></div>
-                   
+            <div className="shoppingCart-checkout"><button onClick={() => { proceedToCheckout(items) }}>Checkout</button></div>              
         </div>
     )
 }

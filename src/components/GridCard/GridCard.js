@@ -15,7 +15,8 @@ const GridCardComponent = ({className, cardId, url, name, category, price, stock
     const handleOnClick = () => {
         
         addToCart({
-            id: cardId, 
+            id: cardId,
+            name, 
             quantity: 1, 
             price, 
             stock

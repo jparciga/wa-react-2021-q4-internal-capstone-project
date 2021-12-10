@@ -9,7 +9,7 @@ const ListCardComponent = ({className, data: { id, url, name, category, price, s
     const { addToCart } = bindActionCreators(shoppingCartActionCreators, dispatch);
     
     const handleOnClick = () => {
-        addToCart({id, quantity: 1, price, stock: stock});
+        addToCart({id, name, quantity: 1, price, stock: stock});
     }
 
     return (
