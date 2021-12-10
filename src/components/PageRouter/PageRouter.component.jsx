@@ -5,6 +5,7 @@ import ProductList from "components/ProductList/ProductList.styles";
 import ProductDetail from "components/ProductDetail/ProductDetail.styles";
 import SearchResults from 'components/SearchResults/SearchResults.styles';
 import ShoppingCart from 'components/ShoppingCart/ShoppingCart.styles';
+import Checkout from 'components/Checkout/Checkout.styles';
 
 export const routes = [
   { path: "/home", component: Home, exact: true },
@@ -12,6 +13,7 @@ export const routes = [
   { path: "/product/:productId", component: ProductDetail, exact: true },
   { path: "/search", component: SearchResults, exact: true },
   { path: "/cart", component: ShoppingCart, exact: true },
+  { path: "/checkout", component: Checkout, exact: true}
 ];
 
 const PageRouter = () => {
@@ -22,7 +24,7 @@ const PageRouter = () => {
       <Switch>
         { 
           routes.map( ({exact, path, component}) => {
-            return (<Route exact={exact} path={path} component={component} />)
+            return (<Route key={path} exact={exact} path={path} component={component} />)
           })
         }
         <Route path="*">

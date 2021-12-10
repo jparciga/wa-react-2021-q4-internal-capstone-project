@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 
 import ShoppingCartTable from './ShoppingCartTable/ShoppingCartTable.styles';
 import { useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
 
 const ShoppingCartComponent = ({className}) => {
     const { items } = useSelector((state) => state.shoppingCart);
@@ -19,7 +20,9 @@ const ShoppingCartComponent = ({className}) => {
             <ShoppingCartTable />
             <div></div>
             <div className="shoppingCart-total">Total: ${ calculateTotalPrice(items) }</div>
-            <div className="shoppingCart-checkout"><button>Checkout</button></div>            
+           
+                <div className="shoppingCart-checkout"> <Link to="/checkout"><button>Checkout</button></Link></div>
+                   
         </div>
     )
 }
