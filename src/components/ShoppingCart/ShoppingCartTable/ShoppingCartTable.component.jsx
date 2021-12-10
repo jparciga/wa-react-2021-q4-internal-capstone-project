@@ -15,7 +15,7 @@ const ShoppingCartTableComponent = ({className}) => {
     const parsedDataWithQuantity = parsedData.map(element => {
         const id = element.id;
         const itemFound = items.find((item) => item.id === id);
-        return (typeof(itemFound) !== 'undefined') ? { ...element, quantity: itemFound.quantity } : { ...element};
+        return itemFound ? { ...element, quantity: itemFound.quantity } : { ...element};
     });
 
     return (
