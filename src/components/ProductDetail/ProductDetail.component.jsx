@@ -61,7 +61,7 @@ const ProductDetailComponent = ({ className }) => {
                type="submit" 
                value="Add to Cart" 
                disabled={(stock === 0) ? true : false} 
-               onClick={() => { addToCart({id, quantity: parseInt(quantity), price: price, stock: parseInt(stock)}); }}/>
+               onClick={() => { addToCart({id, quantity, price, stock}); }}/>
       </div>
       <div className="product-detail-tags">
         <h5>Tags</h5>
