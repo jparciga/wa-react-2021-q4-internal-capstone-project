@@ -4,7 +4,7 @@ import { bindActionCreators } from 'redux';
 import {shoppingCartActionCreators} from 'state/index';
 import PropTypes from 'prop-types';
 
-const ShoppingCartCardComponent = ({className, data: { id, name, url, price, quantity2, stock } }) => {
+const ShoppingCartCardComponent = ({className, data: { id, name, url, price, stock } }) => {
     
     const { items } = useSelector((state) => state.shoppingCart);
     const {quantity} = items.find((item) => item.id === id) || { quantity: 0};
