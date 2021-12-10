@@ -11,6 +11,18 @@ const GridCardComponent = ({className, cardId, url, name, category, price, stock
     const dispatch = useDispatch();
     const { addToCart } = bindActionCreators(shoppingCartActionCreators, dispatch);
 
+
+    const handleOnClick = () => {
+        
+        addToCart({
+            id: cardId, 
+            quantity: 1, 
+            price, 
+            stock
+        });
+
+    };
+
     return (
         <div className={className}>
             <Link to={`/product/${cardId}`}>
@@ -23,7 +35,7 @@ const GridCardComponent = ({className, cardId, url, name, category, price, stock
                 className="addToCart" 
                 type="submit" 
                 value="Add to Cart"
-                onClick={() => { addToCart({id: cardId, quantity: parseInt(1), price: price, stock: parseInt(stock)}); }}></input>
+                onClick={handleOnClick}></input>
         </div>
     )
 };
