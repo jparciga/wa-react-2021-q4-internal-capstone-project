@@ -6,37 +6,29 @@ import ProductDetail from "components/ProductDetail/ProductDetail.styles";
 import SearchResults from 'components/SearchResults/SearchResults.styles';
 import ShoppingCart from 'components/ShoppingCart/ShoppingCart.styles';
 
+export const routes = [
+  { path: "/home", component: Home, exact: true },
+  { path: "/products", component: ProductList, exact: true },
+  { path: "/product/:productId", component: ProductDetail, exact: true },
+  { path: "/search", component: SearchResults, exact: true },
+  { path: "/cart", component: ShoppingCart, exact: true },
+];
+
 const PageRouter = () => {
-    const [currentPage, setCurrentPage] = useState("Home");
 
-    const handleNavigation = () => {
-        setCurrentPage((currentPage === "Home") ? "ProductList" : "Home");
-      };
-
+  
   return (
     <>
       <Switch>
-        <Route exact path="/home" component={Home} />
-        <Route exact path="/products" component={ProductList} />
-        <Route exact path="/product/:productId" component={ProductDetail} />
-        <Route exact path='/search' component={SearchResults} />
-        <Route exact path='/cart' component={ShoppingCart} />
+        { 
+          routes.map( ({exact, path, component}) => {
+            return (<Route exact={exact} path={path} component={component} />)
+          })
+        }
         <Route path="*">
           <span>404 Not Found.</span>
         </Route>
       </Switch>
-      <Link to={currentPage === "Home" ? "/products" : "/home"}>
-        <button id="btnChangePage" onClick={handleNavigation}>
-          View All Products
-        </button>
-      </Link>
-
-      <Redirect
-        exact
-        from="/wa-react-2021-q4-internal-capstone-project"
-        to="/home"
-      />
-      <Redirect exact from="/" to="/home" />
     </>
   );
 }
