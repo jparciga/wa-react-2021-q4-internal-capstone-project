@@ -8,20 +8,16 @@ import { useSelector } from "react-redux";
 
 const ListComponent = ({className, searchTerm, noElementsCustomMessage}) => {
     
-    const { currentPage, totalPages } = useSelector((state) => state.searchResults);
+    const { currentPage } = useSelector((state) => state.searchResults);
     const [{parsedData, isLoading}] = useSearch({pageSize: 20, searchTerm: searchTerm, page: currentPage});
 
     if(isLoading)
         return(<h3>Loading...</h3>);
 
-    if(parsedData.length === 0)
-        return(<h4 style={{textAlign: "center"}}>{noElementsCustomMessage}</h4>)
-
     return (
+        parsedData.length > 0 ? 
         <div className={className}>
-            {
-                (totalPages > 1) ? <ListPaginator /> : null
-            }
+            <ListPaginator />
             <div className="list-cards">
                 {
                     parsedData.map((data) => {
@@ -29,10 +25,10 @@ const ListComponent = ({className, searchTerm, noElementsCustomMessage}) => {
                     })
                 }
             </div>
-            {
-                (totalPages > 1) ? <ListPaginator /> : null
-            }
+            <ListPaginator />         
         </div>
+        :
+        <h4 style={{textAlign: "center"}}>{noElementsCustomMessage}</h4>
     )
 }
 
