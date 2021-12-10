@@ -14,6 +14,10 @@ const ShoppingCartCardComponent = ({className, data: { id, name, url, price, sto
 
 
     const quantityOptions = Array.from(Array(stock).keys());
+
+    const handleQuantityonInput = (e) => {
+        changeQuantity(id, parseInt(e.target.value))
+    }
     
     return (
         <div className={className}>
@@ -21,7 +25,7 @@ const ShoppingCartCardComponent = ({className, data: { id, name, url, price, sto
             <span>{name}</span>
             <span>Price: ${price}</span>
             <span>Qty: 
-                <select defaultValue={quantity} onInput={(e) => changeQuantity(id, parseInt(e.target.value))}>
+                <select defaultValue={quantity} onInput={handleQuantityonInput}>
                     {
                         quantityOptions.map((num) => { return (<option key={id+num} value={num+1}>{num+1}</option>)})
                     }     
