@@ -8,6 +8,10 @@ const ListCardComponent = ({className, data: { id, url, name, category, price, s
     const dispatch = useDispatch();
     const { addToCart } = bindActionCreators(shoppingCartActionCreators, dispatch);
     
+    const handleOnClick = () => {
+        addToCart({id, quantity: 1, price, stock: stock});
+    }
+
     return (
         <div className={className}>
             <img src={url} alt="haha"></img>
@@ -21,7 +25,7 @@ const ListCardComponent = ({className, data: { id, url, name, category, price, s
                 className="addToCart" 
                 type="submit" 
                 value="Add to Cart"
-                onClick={() => { addToCart({id, quantity: parseInt(1), price: price, stock: parseInt(stock)}); }}></input>
+                onClick={handleOnClick}></input>
         </div>
     )
 }

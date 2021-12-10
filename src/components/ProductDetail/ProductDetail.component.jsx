@@ -18,6 +18,10 @@ const ProductDetailComponent = ({ className }) => {
 
   const [quantity, setQuantity] = useState(0);
 
+  const handleOnClick = () => {
+    addToCart({id, quantity, price, stock}); 
+  }
+
   if(isLoading || parsedData.length === 0)
     return (<h1>Loading...</h1>);
 
@@ -61,7 +65,7 @@ const ProductDetailComponent = ({ className }) => {
                type="submit" 
                value="Add to Cart" 
                disabled={(stock === 0) ? true : false} 
-               onClick={() => { addToCart({id, quantity, price, stock}); }}/>
+               onClick={handleOnClick}/>
       </div>
       <div className="product-detail-tags">
         <h5>Tags</h5>
