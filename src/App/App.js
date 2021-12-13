@@ -2,11 +2,12 @@ import Header from 'Components/Header';
 import Footer from 'Components/Footer';
 import Home from 'Components/Pages/Home';
 import PageContext from 'Utils/Context/PageContext';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Wrapper, Content } from './App.styles';
 
 function App() {
   const [CurrentPage, setPage] = useState(() => Home);
+  useEffect(() => window.scrollTo(0, 0), [CurrentPage]);
   const contextData = { page: CurrentPage, navigate: setPage };
 
   return (
