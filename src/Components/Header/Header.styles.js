@@ -1,5 +1,6 @@
 import {ReactComponent as CartIcon} from './assets/cart.svg';
 import styled from "styled-components";
+import { Link } from 'react-router-dom';
 
 export const Wrapper = styled.header`
     background-color: #282c34;
@@ -21,8 +22,6 @@ export const Wrapper = styled.header`
 export const Title = styled.h1`
     margin: 0;
     text-align: left;
-    flex-grow: 1;
-    cursor: pointer;
 `;
 
 export const SearchForm = styled.form`
@@ -35,4 +34,10 @@ export const Icon = styled(CartIcon)`
     border: none;
     background: none;
     color: inherit;
+`;
+
+export const ActionLink = styled(Link)`
+    text-decoration: none;
+    color: inherit;
+    flex-grow: 1;
 `;
