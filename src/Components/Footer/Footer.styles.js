@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-const Content = styled.footer`
+export const Footer = styled.footer`
     background-color: #282c34;
     width: 100%;
     padding: 2rem 2rem;
@@ -12,11 +12,3 @@ const Content = styled.footer`
     color: white;
     box-sizing: border-box;
 `;
-
-export default function Footer() {
-    return (
-        <Content>
-            <p>Ecommerce created during Wizeline’s Academy React Bootcamp</p>
-        </Content>
-    );
-}

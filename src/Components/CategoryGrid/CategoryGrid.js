@@ -1,5 +1,5 @@
-import Category from './card/Category';
-import Grid from './Grid';
+import Category from './Category';
+import Grid from 'Components/Grid';
 
 export default function CategoryGrid({ entries }) {
     return (

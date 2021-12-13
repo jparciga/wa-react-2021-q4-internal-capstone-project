@@ -1,5 +1,5 @@
-import Product from './card/Product';
-import Grid from './Grid';
+import Product from './Product/Product';
+import Grid from 'Components/Grid';
 
 export default function ProductGrid({ entries }) {
     return (

@@ -1,28 +1,14 @@
 import categories from 'mocks/en-us/product-categories.json';
 import products from 'mocks/en-us/featured-products.json';
-import Products from './Products';
-import { useFeaturedBanners } from '../utils/hooks/useFeaturedBanners';
-import useProductsWithCategories from '../utils/hooks/useProductsWithCategory';
+import Products from '../Products';
+import { useFeaturedBanners } from 'Utils/Hooks/useFeaturedBanners';
+import useProductsWithCategories from 'Utils/Hooks/useProductsWithCategory';
 import { useContext } from 'react';
-import { PageContext } from '../utils/context/PageContext';
-import Slider from '../widget/Slider';
-import CategoryGrid from '../widget/CategoryGrid';
-import ProductGrid from '../widget/ProductGrid';
-import styled from 'styled-components';
-
-const FeaturedProducts = styled.section`
-    box-sizing: border-box;
-    padding-bottom: 2em;
-`;
-
-const ActionButton = styled.button`
-    border: none;
-    font-weight: bold;
-    color: white;
-    background-color: #282c34;
-    padding: 0.5em 0.75em;
-    cursor: pointer;
-`;
+import PageContext from 'Utils/Context/PageContext';
+import Slider from 'Components/Slider';
+import CategoryGrid from 'Components/CategoryGrid';
+import ProductGrid from 'Components/ProductGrid';
+import { FeaturedProducts, ActionButton } from './Home.styles';
 
 export default function Home() {
     const { data: banners, isLoading: bannersLoading } = useFeaturedBanners();

@@ -1,6 +1,8 @@
 import { createContext } from "react";
 
-export const PageContext = createContext({
+const PageContext = createContext({
     current: null,
     navigate: () => {}
 });
+
+export default PageContext;

@@ -1,18 +1,4 @@
-import styled from "styled-components";
-
-//#region Styled Components
-const Link = styled.a`
-    display: inline-block;
-    padding: 0;
-    margin: 0;
-    border: 0;
-    text-decoration: none;
-`;
-
-const Image = styled.img`
-    width: 100%;
-`;
-//#endregion
+import { Link, Image } from './Product.styles';
 
 export default function Product({data: {mainimage: image, name, price, category}}) {
     return (
