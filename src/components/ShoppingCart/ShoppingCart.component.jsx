@@ -15,12 +15,12 @@ const ShoppingCartComponent = ({className}) => {
     const { setCheckoutSummary } = bindActionCreators(checkoutActionCreators, dispatch);
     const history = useHistory();
 
-    const calculateTotalPrice = (items) => {
+    const calculateTotalPrice = () => {
         const totalPrice = items.reduce( (previous, current) => previous + (current.price*current.quantity),0);
         return totalPrice;
     }
 
-    const proceedToCheckout = (items) => {
+    const proceedToCheckout = () => {
 
         const orderSummary = items.map(({ name, price, quantity }) => {
             return {
@@ -42,8 +42,8 @@ const ShoppingCartComponent = ({className}) => {
             <div></div>
             <ShoppingCartTable />
             <div></div>
-            <div className="shoppingCart-total">Total: ${ calculateTotalPrice(items) }</div>
-            <div className="shoppingCart-checkout"><button onClick={() => { proceedToCheckout(items) }}>Checkout</button></div>              
+            <div className="shoppingCart-total">Total: ${ calculateTotalPrice }</div>
+            <div className="shoppingCart-checkout"><button onClick={ proceedToCheckout }>Checkout</button></div>              
         </div>
     )
 }
