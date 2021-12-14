@@ -2,7 +2,7 @@ import './App.css';
 import { Container, Logo, Header, Search,  Content, Footer} from './App.style';
 import ShoppingCartIcon from 'components/ShoppingCartIcon/ShoppingCartIcon.component';
 
-import PageRouter from 'components/PageRouter/PageRouter.component';
+import AppRouter from 'components/AppRouter/AppRouter.component';
 
 import LogoImg from 'images/image.png';
 
@@ -44,7 +44,7 @@ const App = () => {
         <ShoppingCartIcon />
       </Header>
       <Content>
-        <PageRouter />
+        <AppRouter />
         <Link to={currentPage === "Home" ? "/products" : "/home"}>
           <button id="btnChangePage" onClick={handleNavigation}>
             View All Products

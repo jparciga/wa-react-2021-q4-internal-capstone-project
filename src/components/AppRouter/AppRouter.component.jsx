@@ -16,7 +16,7 @@ export const routes = [
   { path: "/checkout", component: Checkout, exact: true}
 ];
 
-const PageRouter = () => {
+const AppRouter = () => {
 
   
   return (
@@ -35,4 +35,4 @@ const PageRouter = () => {
   );
 }
 
-export default PageRouter;
+export default AppRouter;
