@@ -5,7 +5,6 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { ThemeProvider } from "styled-components";
 import { GlobalStyle } from "./globalStyle";
 import { defaultTheme } from "./styles/themes";
-import reportWebVitals from "./reportWebVitals";
 import { NAVIGATION, URL_PARAMS } from "./utils/constants";
 import Home from "./pages/Home";
 import Shop from "./pages/Shop";

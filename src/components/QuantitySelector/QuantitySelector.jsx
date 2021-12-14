@@ -7,6 +7,8 @@ export default function QuantitySelector({
   maxValue = Infinity,
   onChange = () => {},
   dark = false,
+  inputName = "quantity_input",
+  inputID = "quantity_input",
 }) {
   const [quantity, setQuantity] = useState(defaultValue);
 
@@ -36,8 +38,8 @@ export default function QuantitySelector({
         value={quantity}
         onChange={(e) => changeQuantity(e.target.value)}
         type="text"
-        name="item_quantity"
-        id="item_quantity"
+        name={inputName}
+        id={inputID}
       />
       <Controls>
         <Button dark={dark} onClick={() => changeQuantity(quantity + 1)}>

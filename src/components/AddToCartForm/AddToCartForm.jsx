@@ -20,6 +20,8 @@ export default function AddToCartForm({ product }) {
       <AddToCartInput>
         <InputLabel htmlFor="item_quantity">Qty.:</InputLabel>
         <QuantitySelector
+          inputName="item_quantity"
+          inputID="item_quantity"
           maxValue={product.data.stock}
           onChange={setQuantity}
         />
