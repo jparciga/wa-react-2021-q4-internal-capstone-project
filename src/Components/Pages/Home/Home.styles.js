@@ -12,7 +12,10 @@ export const ActionLink = styled(Link)`
     color: white;
     background-color: #282c34;
     padding: 0.5em 0.75em;
+    margin-top: 1em;
     cursor: pointer;
-    text-decoration: none;
+    text-decoration: none;  
+    box-sizing: border-box;
+    display: inline-block;
 `;
 

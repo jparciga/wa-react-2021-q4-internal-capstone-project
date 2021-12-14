@@ -1,6 +1,6 @@
 import { useMemo } from "react";
 
-export default function useProductsWithCategories(products, categories) {
+export default function useProductsWithCategory(products, categories) {
     const categoryNames = useMemo(() => {
         const map = new Map();
         categories.map(({id, data})=> map.set(id, data.name));

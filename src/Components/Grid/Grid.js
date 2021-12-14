@@ -4,8 +4,8 @@ export default function Grid({ entries, Card }) {
     return (
         <Wrapper>
             <GridContainer>
-                {entries.map(({id, ...entry}) => 
-                <GridItem key={id}>
+                {entries.map((entry) => 
+                <GridItem key={entry.id}>
                     <Card {...entry} />
                 </GridItem>)}
             </GridContainer>

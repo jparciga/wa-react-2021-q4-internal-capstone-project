@@ -10,4 +10,5 @@ export const Link = styled.a`
 
 export const Image = styled.img`
     width: 100%;
+    align-content: bottom;
 `;
