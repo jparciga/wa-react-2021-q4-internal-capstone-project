@@ -32,6 +32,7 @@ export const GlobalStyle = createGlobalStyle`
       repeat(4, minmax(50px, 1fr))
       minmax(60px, 150px);
     grid-column-gap: 30px;
+    grid-auto-rows: min-content;
     height: 100vh;
   }
 

@@ -27,14 +27,14 @@ export default function FeaturedProducts({
     ...categories,
   ];
 
-  const categoryControls = categoryControlList.map((category) => {
+  const categoryControls = categoryControlList.map(({ id, name }) => {
     return (
       <FeaturedProductsOption
-        key={category.id}
-        onClick={() => setActiveCategoryId(category.id)}
-        active={category.id === activeCategoryId}
+        key={id}
+        onClick={() => setActiveCategoryId(id)}
+        active={id === activeCategoryId}
       >
-        {category.name}
+        {name}
       </FeaturedProductsOption>
     );
   });
@@ -44,19 +44,17 @@ export default function FeaturedProducts({
     categoryNames = { ...categoryNames, [id]: name };
   });
 
-  const productsList = products
+  const productsList = products.data.results
     .filter(
-      ({ typeId }) =>
-        activeCategoryId === typeId || activeCategoryId === ALL_CATEGORY_ID
+      ({ data }) =>
+        activeCategoryId === data.category.id ||
+        activeCategoryId === ALL_CATEGORY_ID
     )
-    .map((product, index) => (
+    .map((product) => (
       <ProductCard
-        key={`product${index}`}
-        productId={product.id}
-        image={product.image}
-        category={categoryNames[product.typeId]}
-        name={product.name}
-        price={product.price}
+        key={product.id}
+        product={product}
+        category={categoryNames[product.data.category.id]}
       />
     ));
 

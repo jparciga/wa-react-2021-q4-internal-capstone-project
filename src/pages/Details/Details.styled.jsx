@@ -1,14 +1,20 @@
 import styled from "styled-components";
 
+export const DetailsContainer = styled.div`
+  grid-column: 2 / span 4;
+  margin-bottom: 30px;
+  display: flex;
+  justify-content: center;
+`;
+
 export const GalleryContainer = styled.div`
-  grid-column: 2 / span 2;
-  justify-self: right;
   width: 500px;
+  margin: 15px;
 `;
 
 export const ProductInformation = styled.div`
-  grid-column: 4 / span 2;
   width: 500px;
+  margin: 15px;
 `;
 
 export const Header = styled.div`
@@ -32,19 +38,6 @@ export const Data = styled.p`
 export const Info = styled.p`
   font-style: italic;
   font-size: 0.875rem;
-`;
-
-export const Specs = styled.table`
-  background: ${({ theme }) => theme.accentWeak};
-  width: 100%;
-  border-collapse: collapse;
-  border-radius: 4px;
-  margin-bottom: 15px;
-`;
-
-export const AccentRow = styled.tr`
-  background: ${({ theme }) => theme.light};
-  border-color: ${({ theme }) => theme.light};
 `;
 
 export const Price = styled.p`

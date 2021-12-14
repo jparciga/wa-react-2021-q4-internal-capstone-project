@@ -11,9 +11,9 @@ import {
 } from "./Navigation.styled";
 import LogoSVG from "../../images/logo.svg";
 import SearchSVG from "../../images/search.svg";
-import CartSVG from "../../images/cart.svg";
 import UserSVG from "../../images/user.svg";
 import { useState } from "react";
+import CartIcon from "../CartIcon";
 
 export default function Navigation() {
   const [searchTerm, setSearchTerm] = useState("");
@@ -56,7 +56,9 @@ export default function Navigation() {
           >
             <img src={SearchSVG} alt="Search" />
           </Icon>
-          <img src={CartSVG} alt="Cart" />
+          <Icon to={NAVIGATION.CART}>
+            <CartIcon />
+          </Icon>
           <img src={UserSVG} alt="User" />
         </Icons>
       </nav>

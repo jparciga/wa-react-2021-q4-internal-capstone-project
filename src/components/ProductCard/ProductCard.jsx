@@ -1,4 +1,5 @@
-import { NAVIGATION } from "../../utils/constants";
+import { useCart } from "../../contexts/CartContext";
+import { NAVIGATION, PRICE_FORMATTER } from "../../utils/constants";
 import {
   ProductImage,
   ProductName,
@@ -11,33 +12,29 @@ import {
   ContentRight,
 } from "./ProductCard.styled";
 
-export default function ProductCard({
-  productId,
-  image,
-  name,
-  price,
-  category,
-  description = "",
-}) {
-  const formatter = Intl.NumberFormat("en-US", {
-    style: "currency",
-    currency: "USD",
-  });
+export default function ProductCard({ product, category, large = false }) {
+  const { cart, addItem } = useCart();
+  const { id, data } = product;
+
+  const cartItem = cart.find(({ item }) => item.id === product.id);
+  const disabledButton = cartItem?.quantity >= cartItem?.item.data.stock;
 
   return (
     <div>
-      <ProductContent to={`${NAVIGATION.SHOP}/${productId}`}>
+      <ProductContent to={`${NAVIGATION.SHOP}/${id}`}>
         <ContentLeft>
-          <ProductImage src={image} alt={name} />
+          <ProductImage src={data.mainimage.url} alt={data.name} />
           <ProductInfo>
             <ProductCategory>{category}</ProductCategory>
-            <ProductName>{name}</ProductName>
-            <ProductPrice>{formatter.format(price)}</ProductPrice>
+            <ProductName>{data.name}</ProductName>
+            <ProductPrice>{PRICE_FORMATTER.format(data.price)}</ProductPrice>
           </ProductInfo>
         </ContentLeft>
-        {description !== "" && <ContentRight>{description}</ContentRight>}
+        {large && <ContentRight>{data.short_description}</ContentRight>}
       </ProductContent>
-      <AddToCart>Add to Cart</AddToCart>
+      <AddToCart disabled={disabledButton} onClick={() => addItem(product, 1)}>
+        Add to Cart
+      </AddToCart>
     </div>
   );
 }

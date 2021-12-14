@@ -5,13 +5,14 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { ThemeProvider } from "styled-components";
 import { GlobalStyle } from "./globalStyle";
 import { defaultTheme } from "./styles/themes";
-import reportWebVitals from "./reportWebVitals";
 import { NAVIGATION, URL_PARAMS } from "./utils/constants";
 import Home from "./pages/Home";
 import Shop from "./pages/Shop";
-import About from "./pages/About/About";
+import About from "./pages/About";
 import Details from "./pages/Details";
 import Search from "./pages/Search";
+import Cart from "./pages/Cart";
+import Checkout from "./pages/Checkout";
 
 const nothingFound = (
   <h1
@@ -40,6 +41,8 @@ ReactDOM.render(
               <Route path={URL_PARAMS.PRODUCT_ID} element={<Details />} />
             </Route>
             <Route path={NAVIGATION.SEARCH} element={<Search />} />
+            <Route path={NAVIGATION.CART} element={<Cart />} />
+            <Route path={NAVIGATION.CHECKOUT} element={<Checkout />} />
             <Route path={NAVIGATION.ABOUT} element={<About />} />
             <Route path="*" element={nothingFound} />
           </Route>
@@ -49,8 +52,3 @@ ReactDOM.render(
   </React.StrictMode>,
   document.getElementById("root")
 );
-
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
