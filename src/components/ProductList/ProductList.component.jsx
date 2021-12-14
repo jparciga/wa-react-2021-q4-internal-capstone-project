@@ -1,4 +1,4 @@
-import React, {useContext} from 'react';
+import React from 'react';
 import Grid from 'components/Grid/Grid.styles'
 
 import Sidebar from 'components/Sidebar/Sidebar.component';
@@ -6,18 +6,20 @@ import useProductCategories from 'hooks/useProductCategories';
 import useProducts from 'hooks/useProducts';
 
 import {useQuery} from 'hooks/useQuery';
-import ProductListContext from 'state/ProductListContext';
 import PropTypes from 'prop-types';
 
-export const ProductListComponent = ({className}) => {
+import { useDispatch } from "react-redux";
+import { bindActionCreators } from 'redux';
+import { productListActionCreators } from 'state/index';
 
-    const { productListState, productListDispatcher} = useContext(ProductListContext);
+export const ProductListComponent = ({className}) => {
+    const { addQueryString } = bindActionCreators(productListActionCreators, useDispatch());
 
     let query = useQuery();
     const queryString = query.get("category");
     if(queryString)
     {   
-         productListDispatcher({ type: "add_querystring", categoryId: queryString});
+        addQueryString(queryString);
          query.delete('category');
     }   
     const [productCategories] = useProductCategories();
@@ -29,14 +31,12 @@ export const ProductListComponent = ({className}) => {
         isLoading: products.isLoading
     };
 
-    return (
-        <ProductListContext.Provider value={{productListState, productListDispatcher}}>
+    return (  
         <div className={className}>
             <Sidebar data={productCategories} 
                      title={`Categories`} />
             <Grid data={gridData} pagination />
         </div>
-        </ProductListContext.Provider>
     )
 };
 

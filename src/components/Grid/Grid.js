@@ -14,11 +14,13 @@ const GridComponent = ( {
         if(isLoading)
             return (<h1>Loading...</h1>);
 
+        const showPagination = pagination && totalPages > 1;
+
         const filledGrid = (               
         <>
             <div className="grid-container">
                 {
-                    parsedData.map(({ id, url, name, category, price }) => { return ( 
+                    parsedData.map(({ id, url, name, category, price, stock }) => { return ( 
                         <GridCard 
                             key={id}
                             cardId={id} 
@@ -26,15 +28,13 @@ const GridComponent = ( {
                             name={name}
                             category={category}
                             price={price}
+                            stock={stock}
                         />) 
                     }) 
                 }
             </div>
             {
-                pagination &&
-                <GridPaginator 
-                    totalPages={totalPages} 
-                />
+                showPagination && <GridPaginator totalPages={totalPages} />
             }
 
         </>);

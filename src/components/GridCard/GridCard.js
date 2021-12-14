@@ -3,7 +3,27 @@ import styled from 'styled-components'
 import {Link} from 'react-router-dom';
 import PropTypes from 'prop-types';
 
-const GridCardComponent = ({className, cardId, url, name, category, price}) => {
+import { useDispatch } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import { shoppingCartActionCreators } from 'state/index';
+
+const GridCardComponent = ({className, cardId, url, name, category, price, stock}) => {
+    const dispatch = useDispatch();
+    const { addToCart } = bindActionCreators(shoppingCartActionCreators, dispatch);
+
+
+    const handleOnClick = () => {
+        
+        addToCart({
+            id: cardId,
+            name, 
+            quantity: 1, 
+            price, 
+            stock
+        });
+
+    };
+
     return (
         <div className={className}>
             <Link to={`/product/${cardId}`}>
@@ -12,7 +32,11 @@ const GridCardComponent = ({className, cardId, url, name, category, price}) => {
             <span>{name}</span>
             <span>{category}</span>
             <span>{`$${price}`}</span>
-            <button>Add to cart</button>
+            <input 
+                className="addToCart" 
+                type="submit" 
+                value="Add to Cart"
+                onClick={handleOnClick}></input>
         </div>
     )
 };

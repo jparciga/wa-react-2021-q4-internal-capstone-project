@@ -42,14 +42,6 @@ export const Search = styled.div`
   align-items: center;
 `;
 
-export const ShoppingCart = styled.div`
-  grid-area: shoppingcart;
-
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-`;
 
 export const Content = styled.div`
   background-color: gold;

@@ -1,7 +1,17 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { useDispatch } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import { shoppingCartActionCreators } from 'state/index';
 
-const ListCardComponent = ({className, data: { id, url, name, category, price, shortDescription }}) => {
+const ListCardComponent = ({className, data: { id, url, name, category, price, shortDescription, stock }}) => {
+    const dispatch = useDispatch();
+    const { addToCart } = bindActionCreators(shoppingCartActionCreators, dispatch);
+    
+    const handleOnClick = () => {
+        addToCart({id, name, quantity: 1, price, stock: stock});
+    }
+
     return (
         <div className={className}>
             <img src={url} alt="haha"></img>
@@ -11,7 +21,11 @@ const ListCardComponent = ({className, data: { id, url, name, category, price, s
                 <span>{`$${price}`}</span>
                 <p>{shortDescription}</p>
             </div>
-            <input className="addToCart" type="submit" value="Add to Cart"></input>
+            <input 
+                className="addToCart" 
+                type="submit" 
+                value="Add to Cart"
+                onClick={handleOnClick}></input>
         </div>
     )
 }

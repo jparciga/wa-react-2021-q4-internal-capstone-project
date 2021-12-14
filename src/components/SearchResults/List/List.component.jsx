@@ -1,26 +1,23 @@
-import React, {useContext} from 'react'
 import ListCard from 'components/SearchResults/List/ListCard/ListCard.styles';
 import ListPaginator from './ListPaginator/ListPaginator.styles';
 import useSearch from 'hooks/useSearch';
-import SearchResultsContext from 'state/SearchResultsContext';
 import PropTypes from 'prop-types';
 
-const ListComponent = ({className, searchTerm, noElementsCustomMessage}) => {
-    const {searchResultsState} = useContext(SearchResultsContext);
+import { useSelector } from "react-redux";
 
-    const [{parsedData, isLoading}] = useSearch({pageSize: 20, searchTerm: searchTerm, page: searchResultsState.currentPage});
+
+const ListComponent = ({className, searchTerm, noElementsCustomMessage}) => {
+    
+    const { currentPage } = useSelector((state) => state.searchResults);
+    const [{parsedData, isLoading}] = useSearch({pageSize: 20, searchTerm: searchTerm, page: currentPage});
 
     if(isLoading)
         return(<h3>Loading...</h3>);
 
-    if(parsedData.length === 0)
-        return(<h4 style={{textAlign: "center"}}>{noElementsCustomMessage}</h4>)
-
     return (
+        parsedData.length > 0 ? 
         <div className={className}>
-            {
-                (searchResultsState.totalPages > 1) ? <ListPaginator /> : null
-            }
+            <ListPaginator />
             <div className="list-cards">
                 {
                     parsedData.map((data) => {
@@ -28,10 +25,10 @@ const ListComponent = ({className, searchTerm, noElementsCustomMessage}) => {
                     })
                 }
             </div>
-            {
-                (searchResultsState.totalPages > 1) ? <ListPaginator /> : null
-            }
+            <ListPaginator />         
         </div>
+        :
+        <h4 style={{textAlign: "center"}}>{noElementsCustomMessage}</h4>
     )
 }
 

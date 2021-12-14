@@ -1,27 +1,35 @@
-import React, {useContext} from 'react';
-import ProductListContext from 'state/ProductListContext';
 import PropTypes from 'prop-types';
+import { useSelector, useDispatch } from "react-redux";
+import { bindActionCreators } from 'redux';
+import { productListActionCreators } from 'state/index';
+
+import { usePagination } from 'utils/hooks/usePagination';
 
 const GridPaginator = ({ totalPages }) => {
+    const currentPage = useSelector(({productList: { currentPage} }) => currentPage);
+    const dispatch = useDispatch();
 
-    const { productListState, productListDispatcher } = useContext(ProductListContext);
+    const { createPaginationNumeration }=  usePagination("productList");
+    const { first, prev, next, last } = bindActionCreators(productListActionCreators, dispatch);
 
-    const createPaginationNumeration = (page, totalPages) => {
-        let content = [];
-        for (let i = 1; i <= totalPages; i++) {
-            content.push(<button style={ (page === i) ? { color: "red" } : {}} key={`number${i}}`} onClick={() => productListDispatcher({ type: "set_current_page", currentPage: i})}>{i}</button>);
-        }
-
-        return content;
-    };
 
     return (
         <div className="grid-paginator">
-            <button onClick={() => productListDispatcher({ type: "first" }) }>First</button>
-            <button onClick={() => productListDispatcher({ type: "prev" }) }>Prev</button>
-            { createPaginationNumeration(productListState.currentPage, totalPages) }
-            <button onClick={() => productListDispatcher({ type: "next" })}>Next</button>
-            <button onClick={() => productListDispatcher({ type: "last" })}>Last</button>
+            {   
+                (currentPage !== 1) &&
+                <>
+                    <button onClick={() => first() }>First</button> 
+                    <button onClick={() => prev() }>Prev</button>
+                </>           
+            }
+            { createPaginationNumeration(currentPage, totalPages) }
+            {   
+                (currentPage !== totalPages) &&
+                <>
+                    <button onClick={() => next() }>Next</button>
+                    <button onClick={() => last() }>Last</button> 
+                </>
+            }
         </div>
     )
 }
