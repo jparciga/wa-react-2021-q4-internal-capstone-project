@@ -26,9 +26,8 @@ export default function QuantitySelector({
       newValue = minValue;
     }
     if (newValue !== quantity) {
-      const integerValue = newValue;
-      setQuantity(integerValue);
-      onChange(integerValue);
+      setQuantity(newValue);
+      onChange(newValue);
     }
   }
 
