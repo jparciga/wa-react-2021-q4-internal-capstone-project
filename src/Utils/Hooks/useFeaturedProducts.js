@@ -1,9 +1,8 @@
 import useExternalApiResource from './useExternalApiResource';
-
-const resourceSpec = { type: "product", tags: ["Featured"] };
+import { resourceSpecs } from 'Utils/constants';
 
 export default function useFeaturedProducts() {
-  const [response] = useExternalApiResource(resourceSpec, 16);
+  const [response] = useExternalApiResource(resourceSpecs.featuredProduct, 16);
 
   return response;
 }

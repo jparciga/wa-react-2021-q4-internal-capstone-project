@@ -39,7 +39,7 @@ export const Gallery = styled.div`
 
 export const Tags = styled.ul`
     padding: 0;
-    margin: 1em 0em;
+    margin: 1em 0;
     list-style-type: none;
     display: flex;
     flex-flow: row;
@@ -53,7 +53,7 @@ export const Tags = styled.ul`
 export const Tag = styled.li`
     width: auto;
     padding: 0.25em 1em;
-    margin: 0 0.25em;
+    margin: 0.25em;
     background-color: #282c34;
     color: white;
     border-radius: 50px;

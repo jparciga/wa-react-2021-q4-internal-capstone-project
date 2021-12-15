@@ -7,10 +7,10 @@ import { Wrapper, BasicInformation, DetailedInformation, Gallery, Overview, Tags
 export default function ProductDetail() {
     const params = useParams();
     const { data: productData } = useApiDocument(params.productId);
-    const categoryId = productData.results ? productData.results[0].data.category.id : null;
+    const categoryId = productData.results?.length ? productData.results[0].data.category.id : null;
     const { data: categoryData } = useApiDocument(categoryId);
 
-    if (!(productData.results)) {
+    if (!productData.results?.length) {
         return null;
     }
 
@@ -47,6 +47,7 @@ export default function ProductDetail() {
             </Overview>
         </BasicInformation>
         <DetailedInformation>
+            <h3>More about it</h3>
             <p>{product.description[0].text}</p>
             <hr />
             <h4>Specs</h4>

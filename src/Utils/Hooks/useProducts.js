@@ -1,7 +1,6 @@
 import useExternalApiResource from './useExternalApiResource';
-
-const resourceSpec = { type: "product" };
+import { resourceSpecs } from 'Utils/constants';
 
 export default function useProducts() {
-  return useExternalApiResource(resourceSpec, 12);
+  return useExternalApiResource(resourceSpecs.product, 12);
 }

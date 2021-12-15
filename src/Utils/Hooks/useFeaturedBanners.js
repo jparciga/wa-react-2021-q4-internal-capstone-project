@@ -1,9 +1,8 @@
 import useExternalApiResource from './useExternalApiResource';
-
-const resourceSpec = { type: "banner" };
+import { resourceSpecs } from 'Utils/constants';
 
 export default function useFeaturedBanners() {
-  const [response] = useExternalApiResource(resourceSpec);
+  const [response] = useExternalApiResource(resourceSpecs.banner);
 
   return response;
 }

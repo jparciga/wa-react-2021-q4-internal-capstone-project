@@ -10,6 +10,7 @@ export default function useProductsWithCategory(products, categories) {
 
     const populatedProducts = useMemo(() => {
         return products.map((product) => {
+            console.log(product)
             return {...product, data: {...product.data, category: {...product.data.category, name: categoryNames.get(product.data.category.id)}}};
         });
     }, [products, categoryNames]);

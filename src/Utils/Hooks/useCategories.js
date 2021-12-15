@@ -1,9 +1,8 @@
 import useExternalApiResource from './useExternalApiResource';
-
-const resourceSpec = { type: "category" };
+import { resourceSpecs } from 'Utils/constants';
 
 export default function useCategories() {
-  const [response] = useExternalApiResource(resourceSpec, 30);
+  const [response] = useExternalApiResource(resourceSpecs.category, 30);
 
   return response;
 }

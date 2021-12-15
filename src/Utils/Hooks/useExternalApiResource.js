@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { API_BASE_URL } from '../constants';
+import { API_BASE_URL } from 'Utils/constants';
 import { useLatestAPI } from './useLatestAPI';
 
 export default function useExternalApiResource(resourceSpec, pageSize = 5) {
@@ -13,7 +13,7 @@ export default function useExternalApiResource(resourceSpec, pageSize = 5) {
 
 
   useEffect(() => {
-    if (!apiRef || isApiMetadataLoading || Object.values(resourceSpec).some((value) => !value)) {
+    if (!apiRef || isApiMetadataLoading || resourceSpec.length === 0) {
       return () => {};
     }
 
@@ -22,8 +22,8 @@ export default function useExternalApiResource(resourceSpec, pageSize = 5) {
     async function fetchData() {
       try {
         setDocuments({ data: {}, isLoading: true });
-        const query = Object.keys(resourceSpec).reduce((acc, key) => {
-            return acc + `&q=${encodeURIComponent(`[[at(document.${key}, ${JSON.stringify(resourceSpec[key])})]]`)}`;
+        const query = resourceSpec.reduce((acc, {operator, field, value}) => {
+            return acc + `&q=${encodeURIComponent(`[[${operator}(${field}, ${JSON.stringify(value)})]]`)}`;
         }, '');
 
         const pageParam = page ? `&page=${page}` : '';
