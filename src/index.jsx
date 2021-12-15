@@ -1,10 +1,10 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import App from "./App";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { ThemeProvider } from "styled-components";
-import { GlobalStyle } from "./globalStyle";
-import { defaultTheme } from "./styles/themes";
+import App from "./App";
+import GlobalStyle from "./globalStyle";
+import defaultTheme from "./styles/themes";
 import { NAVIGATION, URL_PARAMS } from "./utils/constants";
 import Home from "./pages/Home";
 import Shop from "./pages/Shop";
@@ -23,7 +23,7 @@ const nothingFound = (
       color: "red",
     }}
   >
-    There's nothing here!
+    There&apos;s nothing here!
   </h1>
 );
 
