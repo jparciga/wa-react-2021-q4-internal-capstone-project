@@ -12,7 +12,13 @@ export default function Home() {
     const { data: { results: banners = [] }, isLoading: bannersLoading } = useFeaturedBanners();
     const { data: { results: products = [] }, isLoading: productsLoading } = useFeaturedProducts();
     const productsWithCategory = useProductsWithCategory(products, categories);
-    const sliderEntries = banners;
+    const sliderEntries = banners.map(({data: { main_image: image, title }}) => { 
+        return {
+            src: image.url,
+            alt: image.alt,
+            title: title
+        };    
+    });
 
     return (
         <div className="home-wrapper">

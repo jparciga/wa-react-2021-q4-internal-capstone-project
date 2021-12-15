@@ -12,13 +12,13 @@ export default function Slider({ entries }) {
         entries.length === 0 ? null :
         <Wrapper>
             <SliderContainer>
-                {entries.map(({id, data: {main_image: image, title}}, index) => 
-                <SliderItem key={id} hidden={index !== current}>
-                    <Image src={image.url} alt={image.alt} title={title} />
+                {entries.map((imageProps, index) => 
+                <SliderItem key={index} hidden={index !== current}>
+                    <Image {...imageProps} />
                 </SliderItem>
                 )}
             </SliderContainer>
-            {entries.length === 1 ? null :
+            {entries.length > 1 &&
             <>
                 <PrevControl hidden={current === 0} onClick={previousSlide} />
                 <NextControl hidden={current === last} onClick={nextSlide} />

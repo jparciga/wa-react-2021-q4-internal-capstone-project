@@ -5,6 +5,7 @@ import styled from "styled-components";
 
 export const Wrapper = styled.div`    
     width: 100%;
+    height: 100%;
     padding: 0;
     margin: 0;
     position: relative;
@@ -18,11 +19,13 @@ export const SliderContainer = styled.ul`
     display: flex;
     flex-flow: row;
     width: 100%;
+    height: 100%;
     overflow: hidden;
 `;
 
 export const SliderItem = styled.li`
-    flex: 1 0 100%;
+    flex: 1 1 100%;
+    height: 100%;
     transition: margin 0.5s;
     ${({hidden}) => hidden && css`
     display: none;
@@ -30,10 +33,13 @@ export const SliderItem = styled.li`
 `;
 
 export const Image = styled.img`
-    max-width: 100vw;
+    max-width: 100%;
+    max-height: 100%;
+    box-sizing: border-box;
     display: block;
     margin-left: auto;
     margin-right: auto;
+    object-fit: contain;
 `;
 
 export const controlArrow = css`

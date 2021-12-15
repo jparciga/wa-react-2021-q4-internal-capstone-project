@@ -13,7 +13,7 @@ export default function useExternalApiResource(resourceSpec, pageSize = 5) {
 
 
   useEffect(() => {
-    if (!apiRef || isApiMetadataLoading) {
+    if (!apiRef || isApiMetadataLoading || Object.values(resourceSpec).some((value) => !value)) {
       return () => {};
     }
 
