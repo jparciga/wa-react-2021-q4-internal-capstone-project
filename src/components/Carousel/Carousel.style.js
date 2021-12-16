@@ -1,5 +1,5 @@
-import styled from 'styled-components';
-import CarouselComponent from './Carousel';
+import styled from 'styled-components'
+import CarouselComponent from './Carousel'
 
 const Carousel = styled(CarouselComponent)`
     display:grid;    
@@ -32,6 +32,6 @@ const Carousel = styled(CarouselComponent)`
         aspect-ratio: 16 / 9;
         object-fit: cover;
     }
-`;
+`
 
-export default Carousel;
+export default Carousel

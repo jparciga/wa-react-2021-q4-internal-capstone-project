@@ -1,21 +1,21 @@
-import './App.css';
-import { Container, Logo, Header, Search,  Content, Footer} from './App.style';
-import ShoppingCartIcon from 'components/ShoppingCartIcon/ShoppingCartIcon.component';
+import './App.css'
+import {Container, Logo, Header, Search, Content, Footer} from './App.style'
+import ShoppingCartIcon from 'components/ShoppingCartIcon/ShoppingCartIcon.component'
 
-import AppRouter from 'components/AppRouter/AppRouter.component';
+import AppRouter from 'components/AppRouter/AppRouter.component'
 
-import LogoImg from 'images/image.png';
+import LogoImg from 'images/image.png'
 
-import { Link, Redirect } from 'react-router-dom';
-import { useState } from 'react';
+import {Link, Redirect} from 'react-router-dom'
+import {useState} from 'react'
 
 const App = () => {
-  const [searchTerm, setSearchTerm] = useState('');
-  const [currentPage, setCurrentPage] = useState("Home");
+  const [searchTerm, setSearchTerm] = useState('')
+  const [currentPage, setCurrentPage] = useState('Home')
 
   const handleNavigation = () => {
-      setCurrentPage((currentPage === "Home") ? "ProductList" : "Home");
-    };
+    setCurrentPage(currentPage === 'Home' ? 'ProductList' : 'Home')
+  }
 
   return (
     <Container>
@@ -24,7 +24,7 @@ const App = () => {
           <Link to="/home">
             <img
               src={LogoImg}
-              style={{ cursor: "pointer" }}
+              style={{cursor: 'pointer'}}
               alt="logo"
               height="100%"
             ></img>
@@ -33,7 +33,7 @@ const App = () => {
         <Search>
           <input
             value={searchTerm}
-            onInput={(e) => setSearchTerm(e.target.value)}
+            onInput={e => setSearchTerm(e.target.value)}
             type="text"
             placeholder="Search products..."
           />
@@ -45,7 +45,7 @@ const App = () => {
       </Header>
       <Content>
         <AppRouter />
-        <Link to={currentPage === "Home" ? "/products" : "/home"}>
+        <Link to={currentPage === 'Home' ? '/products' : '/home'}>
           <button id="btnChangePage" onClick={handleNavigation}>
             View All Products
           </button>
@@ -61,7 +61,7 @@ const App = () => {
         Ecommerce created during Wizeline's Academy React Bootcamp.
       </Footer>
     </Container>
-  );
+  )
 }
 
-export default App;
+export default App

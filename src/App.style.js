@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from 'styled-components'
 
 export const Container = styled.div`
   height: 100vh;
@@ -9,12 +9,12 @@ export const Container = styled.div`
   grid-template-columns: 6fr;
 
   grid-template-areas:
-    "header"
-    "content"
-    "footer";
+    'header'
+    'content'
+    'footer';
 
   gap: 1em;
-`;
+`
 
 export const Logo = styled.div`
   grid-area: logo;
@@ -22,17 +22,16 @@ export const Logo = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-`;
+`
 
 export const Header = styled.header`
   background-color: orange;
   grid-area: header;
-  display:grid;
+  display: grid;
   grid-template-columns: 1fr 4fr 1fr;
-  grid-template-areas:
-    "logo search shoppingcart";
+  grid-template-areas: 'logo search shoppingcart';
   gap: 1em;
-`;
+`
 
 export const Search = styled.div`
   grid-area: search;
@@ -40,8 +39,7 @@ export const Search = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-`;
-
+`
 
 export const Content = styled.div`
   background-color: gold;
@@ -49,10 +47,10 @@ export const Content = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-`;
+`
 
 export const Footer = styled.div`
   background-color: lavender;
   grid-area: footer;
   text-align: center;
-`;
+`
