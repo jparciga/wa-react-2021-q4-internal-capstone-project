@@ -58,7 +58,7 @@ const App = () => {
         <Redirect exact from="/" to="/home" />
       </Content>
       <Footer>
-        Ecommerce created during Wizeline's Academy React Bootcamp.
+        Ecommerce created during Wizeline&apos;s Academy React Bootcamp.
       </Footer>
     </Container>
   )

@@ -100,6 +100,7 @@ const Slider = styled(SliderComponent)`
 `
 
 SliderComponent.propTypes = {
+  className: PropTypes.string,
   data: PropTypes.shape({
     parsedData: PropTypes.array,
     isLoading: PropTypes.bool,
