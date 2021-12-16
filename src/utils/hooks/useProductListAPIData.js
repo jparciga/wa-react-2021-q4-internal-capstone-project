@@ -6,6 +6,8 @@ import {useSelector, useDispatch} from 'react-redux'
 import {bindActionCreators} from 'redux'
 import {productListActionCreators} from 'state/index'
 
+import {concatenatePrismicQueries} from 'utils/utilityFunctions'
+
 export function useProductListAPIData({queries, pageSize, mapFunction}) {
   const productList = useSelector(state => state.productList)
   const {setValues} = bindActionCreators(
@@ -29,11 +31,7 @@ export function useProductListAPIData({queries, pageSize, mapFunction}) {
 
     async function getDataFromAPI() {
       try {
-        const queryString = queries
-          .map(query => {
-            return `q=${encodeURIComponent(`[[${query}]]`)}`
-          })
-          .join('&')
+        const queryString = concatenatePrismicQueries(queries)
 
         const response = await fetch(
           `${API_BASE_URL}/documents/search?ref=${apiRef}&${queryString}&lang=en-us&pageSize=${pageSize}&page=${productList.currentPage}`,

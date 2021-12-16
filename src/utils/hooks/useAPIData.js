@@ -2,6 +2,7 @@ import {useState, useEffect} from 'react'
 import {API_BASE_URL} from '../constants'
 import {useLatestAPI} from './useLatestAPI'
 import {useSelector} from 'react-redux'
+import {concatenatePrismicQueries} from 'utils/utilityFunctions'
 
 export function useAPIData({queries, pageSize = 1, page = ''}, mapFunction) {
   const shoppingCart = useSelector(state => state.shoppingCart)
@@ -31,11 +32,7 @@ export function useAPIData({queries, pageSize = 1, page = ''}, mapFunction) {
           isLoading: true,
         })
 
-        const queryString = queries
-          .map(query => {
-            return `q=${encodeURIComponent(`[[${query}]]`)}`
-          })
-          .join('&')
+        const queryString = concatenatePrismicQueries(queries)
 
         const response = await fetch(
           `${API_BASE_URL}/documents/search?ref=${apiRef}&${queryString}&lang=en-us&pageSize=${pageSize}${

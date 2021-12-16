@@ -6,6 +6,8 @@ import {useSelector, useDispatch} from 'react-redux'
 import {bindActionCreators} from 'redux'
 import {searchResultsActionCreators} from 'state/index'
 
+import {concatenatePrismicQueries} from 'utils/utilityFunctions'
+
 export function useSearchResultsAPIData({queries, pageSize, mapFunction}) {
   const searchResults = useSelector(state => state.searchResults)
   const {setValues} = bindActionCreators(
@@ -29,11 +31,7 @@ export function useSearchResultsAPIData({queries, pageSize, mapFunction}) {
 
     async function getDataFromAPI() {
       try {
-        const queryString = queries
-          .map(query => {
-            return `q=${encodeURIComponent(`[[${query}]]`)}`
-          })
-          .join('&')
+        const queryString = concatenatePrismicQueries(queries)
 
         const response = await fetch(
           `${API_BASE_URL}/documents/search?ref=${apiRef}&${queryString}&lang=en-us&pageSize=${pageSize}&page=${searchResults.currentPage}`,

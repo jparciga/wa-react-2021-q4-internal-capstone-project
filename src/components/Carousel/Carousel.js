@@ -21,7 +21,7 @@ const CarouselComponent = ({className, data: {parsedData = [], isLoading}}) => {
   return (
     <div data-testid="homeTest-carousel" className={className}>
       <div className="track" style={style}>
-        {parsedData.map(({id, name, url}) => {
+        {parsedData.map(({id, url}) => {
           return (
             <div key={id} id={id} className="card-container">
               <Link to={`/products?category=${id}`}>
@@ -43,7 +43,7 @@ const CarouselComponent = ({className, data: {parsedData = [], isLoading}}) => {
   )
 }
 
-PropTypes.propTypes = {
+CarouselComponent.propTypes = {
   className: PropTypes.string,
   data: PropTypes.shape({
     parsedData: PropTypes.array,
