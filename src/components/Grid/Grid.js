@@ -34,7 +34,7 @@ const GridComponent = ({
   )
 
   return (
-    <div className={className}>
+    <div data-testid="test-grid" className={className}>
       {parsedData.length > 0 ? (
         filledGrid
       ) : (

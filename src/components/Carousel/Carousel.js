@@ -19,7 +19,7 @@ const CarouselComponent = ({className, data: {parsedData = [], isLoading}}) => {
   if (isLoading) return <h1>Loading...</h1>
 
   return (
-    <div className={className}>
+    <div data-testid="homeTest-carousel" className={className}>
       <div className="track" style={style}>
         {parsedData.map(({id, name, url}) => {
           return (

@@ -31,7 +31,7 @@ const SliderComponent = ({className, data: {parsedData = [], isLoading}}) => {
   if (isLoading) return <h1>Loading...</h1>
 
   return (
-    <div className={className}>
+    <div data-testid="homeTest-slider" className={className}>
       {parsedData.map(({id, url}, index) => {
         return (
           <ImageSlider

@@ -1,36 +1,26 @@
+import ReactDOM from 'react-dom'
 import React from 'react'
+import Slider from 'components/Slider/Slider'
+import Carousel from 'components/Carousel/Carousel.style.js'
+import Grid from 'components/Grid/Grid.styles'
 import {render, screen} from '@testing-library/react'
-import Home from 'components/Home/Home.styles'
 
 describe('home page test suite', () => {
-  test('should display slider', () => {
-    render(<Home />)
+  test('test slider loading', () => {
+    render(<Slider data={{parsedData: [], isLoading: false}} />)
+    const sliderElement = screen.getByTestId('homeTest-slider')
+    expect(sliderElement).toBeInTheDocument()
   })
 
-  test('should display carousel', () => {
-    render(<Home />)
+  test('test carousel loading', () => {
+    render(<Carousel data={{parsedData: [], isLoading: false}} />)
+    const carouselElement = screen.getByTestId('homeTest-carousel')
+    expect(carouselElement).toBeInTheDocument()
   })
 
-  test('should display grid', () => {
-    render(<Home />)
-  })
-
-  //Matchers
-  test('toBe', () => {
-    expect(true).toBe(true)
-  })
-
-  test('toEqual', () => {
-    const data = {one: 1}
-    data['two'] = 2
-    expect(data).toEqual({one: 1, two: 2})
-  })
-
-  test('not', () => {
-    expect(true).not.toBe(false)
-  })
-
-  test('string', () => {
-    expect('team').not.toMatch(/I/)
+  test('test grid loading', () => {
+    render(<Grid data={{parsedData: [], isLoading: false}} />)
+    const gridElement = screen.getByTestId('test-grid')
+    expect(gridElement).toBeInTheDocument()
   })
 })
