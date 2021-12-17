@@ -23,7 +23,7 @@ const useFeaturedProducts = () => {
   return [productCategories]
 }
 
-const useFeaturedBanners = () => {
+export const useFeaturedBanners = () => {
   const queries = ['at(document.type, "banner")']
   const pageSize = 5
   const mapFunction = ({

@@ -1,4 +1,4 @@
-import Slider from 'components/Slider/Slider'
+import Slider from 'components/Slider/Slider.component'
 import Carousel from 'components/Carousel/Carousel.style.js'
 import Grid from 'components/Grid/Grid.styles'
 import {render, screen} from '@testing-library/react'

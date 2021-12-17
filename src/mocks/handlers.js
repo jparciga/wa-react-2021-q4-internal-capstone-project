@@ -1,14 +1,9 @@
-async function mockFetch(source) {
+export async function mockFetch(source) {
   switch (source) {
     case 'featuredProducts': {
-      const featuredProducts = await fetch(
-        'mocks/featured-banners.json',
-      ).resolve()
+      const featuredProducts = fetch('mocks/featured-banners.json').resolve()
 
-      return featuredProducts.result
+      return featuredProducts.results
     }
   }
 }
-
-beforeAll(() => jest.spyOn(window, 'fetch'))
-beforeEach(() => window.fetch.mockImplementation(mockFetch))

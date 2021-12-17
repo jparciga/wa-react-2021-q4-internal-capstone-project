@@ -19,15 +19,23 @@ const GridPaginator = ({totalPages}) => {
     <div className="grid-paginator">
       {currentPage !== 1 && (
         <>
-          <button onClick={() => first()}>First</button>
-          <button onClick={() => prev()}>Prev</button>
+          <button data-testid="first" onClick={() => first()}>
+            First
+          </button>
+          <button data-testid="prev" onClick={() => prev()}>
+            Prev
+          </button>
         </>
       )}
       {createPaginationNumeration(currentPage, totalPages)}
       {currentPage !== totalPages && (
         <>
-          <button onClick={() => next()}>Next</button>
-          <button onClick={() => last()}>Last</button>
+          <button data-testid="next" onClick={() => next()}>
+            Next
+          </button>
+          <button data-testid="last" onClick={() => last()}>
+            Last
+          </button>
         </>
       )}
     </div>
