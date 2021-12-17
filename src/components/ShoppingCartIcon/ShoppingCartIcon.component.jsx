@@ -1,22 +1,24 @@
-import React from 'react'
-import ShoppingCartIconSvg from 'images/shopping-cart.svg';
-import styled from 'styled-components';
-import { useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
+import ShoppingCartIconSvg from 'images/shopping-cart.svg'
+import styled from 'styled-components'
+import {useSelector} from 'react-redux'
+import {Link} from 'react-router-dom'
 
 const ShoppingCartIcon = () => {
-    const amountItems = useSelector(({shoppingCart: { amountItems } }) => amountItems);
+  const amountItems = useSelector(
+    ({shoppingCart: {amountItems}}) => amountItems,
+  )
 
-    return (
-        <ShoppingCartContainer>
-            <Link to="/cart">
-              <img src={ShoppingCartIconSvg}  alt="shoppingcart"></img>
-            </Link>
-            { (amountItems > 0) ? <span style={{textAlign: "center"}}>{amountItems}</span> : null}       
-        </ShoppingCartContainer>
-    )
+  return (
+    <ShoppingCartContainer>
+      <Link to="/cart">
+        <img src={ShoppingCartIconSvg} alt="shoppingcart"></img>
+      </Link>
+      {amountItems > 0 ? (
+        <span style={{textAlign: 'center'}}>{amountItems}</span>
+      ) : null}
+    </ShoppingCartContainer>
+  )
 }
-
 
 export const ShoppingCartContainer = styled.div`
   grid-area: shoppingcart;
@@ -35,6 +37,6 @@ export const ShoppingCartContainer = styled.div`
     font-weight: bold;
     transform: translate(-1em, +1em);
   }
-`;
+`
 
-export default ShoppingCartIcon;
+export default ShoppingCartIcon

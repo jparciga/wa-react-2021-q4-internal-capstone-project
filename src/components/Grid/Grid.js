@@ -1,4 +1,3 @@
-import React from 'react'
 import GridCard from 'components/GridCard/GridCard'
 import GridPaginator from 'components/GridPaginator/GridPaginator.component'
 import PropTypes from 'prop-types'
@@ -44,7 +43,7 @@ const GridComponent = ({
   )
 }
 
-PropTypes.propTypes = {
+GridComponent.propTypes = {
   className: PropTypes.string,
   data: PropTypes.shape({
     totalPages: PropTypes.number,
@@ -52,7 +51,7 @@ PropTypes.propTypes = {
     isLoading: PropTypes.bool,
   }),
   pagination: PropTypes.bool,
-  setPageNumber: PropTypes.funct,
+  setPageNumber: PropTypes.func,
 }
 
 export default GridComponent

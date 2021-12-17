@@ -1,7 +1,6 @@
-import React from 'react'
 import styled from 'styled-components'
 
-import Slider from 'components/Slider/Slider'
+import Slider from 'components/Slider/Slider.component'
 import Carousel from 'components/Carousel/Carousel.style'
 import Grid from 'components/Grid/Grid.styles'
 

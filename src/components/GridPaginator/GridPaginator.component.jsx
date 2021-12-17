@@ -35,12 +35,7 @@ const GridPaginator = ({totalPages}) => {
 }
 
 GridPaginator.propTypes = {
-  className: PropTypes.string,
-  cardId: PropTypes.string,
-  url: PropTypes.string,
-  name: PropTypes.string,
-  category: PropTypes.string,
-  price: PropTypes.number,
+  totalPages: PropTypes.number,
 }
 
 export default GridPaginator

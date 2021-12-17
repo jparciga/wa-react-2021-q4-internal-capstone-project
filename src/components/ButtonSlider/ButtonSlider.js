@@ -1,4 +1,3 @@
-import React from 'react'
 import leftArrow from 'images/left_arrow.svg'
 import rightArrow from 'images/right_arrow.svg'
 import PropTypes from 'prop-types'

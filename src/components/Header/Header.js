@@ -1,4 +1,3 @@
-import React from 'react'
 import img from './image.png'
 
 import styled from 'styled-components'

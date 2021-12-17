@@ -1,8 +1,6 @@
-import styled from 'styled-components';
-import ListPaginatorComponent from 'components/SearchResults/List/ListPaginator/ListPaginator.component';
+import styled from 'styled-components'
+import ListPaginatorComponent from 'components/SearchResults/List/ListPaginator/ListPaginator.component'
 
-const List = styled(ListPaginatorComponent)`
-`;
+const List = styled(ListPaginatorComponent)``
 
-
-export default List;
+export default List

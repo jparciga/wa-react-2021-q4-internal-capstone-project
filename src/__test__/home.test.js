@@ -1,4 +1,3 @@
-import React from 'react'
 import Slider from 'components/Slider/Slider'
 import Carousel from 'components/Carousel/Carousel.style.js'
 import Grid from 'components/Grid/Grid.styles'
