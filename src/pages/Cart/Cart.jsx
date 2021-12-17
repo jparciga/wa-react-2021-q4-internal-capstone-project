@@ -6,6 +6,7 @@ import {
   CartContainer,
   CheckoutButton,
   CheckoutSection,
+  NotFound,
   RemoveButton,
   Thumbnail,
   TotalLabel,
@@ -59,18 +60,23 @@ export default function Cart() {
 
   return (
     <CartContainer>
-      <Table
-        header={["Image", "Name", "Price", "Quantity", "Subtotal", ""]}
-        content={cartArray}
-      />
-      {cart.length > 0 && (
-        <CheckoutSection>
-          <TotalLabel>Total:</TotalLabel>
-          <TotalPrice>{PRICE_FORMATTER.format(totalPrice)}</TotalPrice>
-          <CheckoutButton to={NAVIGATION.CHECKOUT}>
-            Go to Checkout
-          </CheckoutButton>
-        </CheckoutSection>
+      {cart.length === 0 ? (
+        <NotFound>The Cart is Empty</NotFound>
+      ) : (
+        <>
+          <Table
+            header={["Image", "Name", "Price", "Quantity", "Subtotal", ""]}
+            content={cartArray}
+          />
+
+          <CheckoutSection>
+            <TotalLabel>Total:</TotalLabel>
+            <TotalPrice>{PRICE_FORMATTER.format(totalPrice)}</TotalPrice>
+            <CheckoutButton to={NAVIGATION.CHECKOUT}>
+              Go to Checkout
+            </CheckoutButton>
+          </CheckoutSection>
+        </>
       )}
     </CartContainer>
   );
