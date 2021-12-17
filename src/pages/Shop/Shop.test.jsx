@@ -1,4 +1,5 @@
 import userEvent from "@testing-library/user-event";
+import { MemoryRouter } from "react-router";
 import {
   render,
   screen,
@@ -7,7 +8,11 @@ import {
 import Shop from "./Shop";
 
 async function renderShop() {
-  render(<Shop />);
+  render(
+    <MemoryRouter>
+      <Shop />
+    </MemoryRouter>
+  );
   await waitForElementToBeRemoved(() => screen.queryAllByText(/loading/i));
 }
 

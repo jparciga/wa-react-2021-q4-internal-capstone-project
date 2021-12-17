@@ -1,3 +1,4 @@
+import { MemoryRouter } from "react-router";
 import {
   render,
   screen,
@@ -6,7 +7,11 @@ import {
 import Home from "./Home";
 
 async function renderHome() {
-  render(<Home />);
+  render(
+    <MemoryRouter>
+      <Home />
+    </MemoryRouter>
+  );
   await waitForElementToBeRemoved(() => screen.queryAllByText(/loading/i));
 }
 
