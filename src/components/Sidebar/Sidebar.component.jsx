@@ -17,12 +17,13 @@ const Sidebar = ({data: {parsedData = [], isLoading}, title}) => {
   if (isLoading) return <h1>Loading...</h1>
 
   return (
-    <div>
+    <div data-testid="sidebar">
       <h2>{title}</h2>
-      <ul style={{listStyle: 'none'}}>
+      <ul aria-label="categories" style={{listStyle: 'none'}}>
         {parsedData.map(({id, name}) => {
           return (
             <li
+              data-testid="category"
               key={id}
               className={`${filters.includes(id) ? 'enabled' : 'disabled'}`}
               onClick={() => modifyFilter(id)}

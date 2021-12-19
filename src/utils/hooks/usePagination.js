@@ -17,6 +17,7 @@ export const usePagination = sliceSelector => {
     for (let i = 1; i <= totalPages; i++) {
       content.push(
         <button
+          data-testid="pageNumbers"
           style={page === i ? {color: 'red'} : {}}
           key={`number${i}}`}
           onClick={() => setCurrentPage(i)}
