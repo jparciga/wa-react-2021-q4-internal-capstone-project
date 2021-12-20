@@ -17,7 +17,7 @@ const ShoppingCartTableComponent = ({className}) => {
   })
 
   return (
-    <div className={className}>
+    <div data-testid="shopping-cart-table" className={className}>
       {parsedDataWithQuantity.map(data => {
         return <ShoppingCartCard key={data.id} data={data} />
       })}

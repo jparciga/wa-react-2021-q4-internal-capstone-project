@@ -46,7 +46,9 @@ const ShoppingCartComponent = ({className}) => {
       <div></div>
       <ShoppingCartTable />
       <div></div>
-      <div className="shoppingCart-total">Total: ${calculateTotalPrice}</div>
+      <div className="shoppingCart-total" data-testid="shopping-cart-total">
+        Total: ${calculateTotalPrice}
+      </div>
       <div className="shoppingCart-checkout">
         <button onClick={proceedToCheckout}>Checkout</button>
       </div>

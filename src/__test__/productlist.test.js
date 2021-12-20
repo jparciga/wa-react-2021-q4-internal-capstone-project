@@ -66,6 +66,7 @@ describe('productList test suite', () => {
   })
   afterEach(() => {
     useSelector.mockClear()
+    bindActionCreators.mockClear()
   })
 
   test('test product category sidebar', () => {

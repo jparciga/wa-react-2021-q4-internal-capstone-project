@@ -23,8 +23,8 @@ const ShoppingCartCardComponent = ({
   }
 
   return (
-    <div className={className}>
-      <img src={url} alt="caca"></img>
+    <div data-testid="shopping-cart-card" className={className}>
+      <img src={url} alt="althaha"></img>
       <span>{name}</span>
       <span>Price: ${price}</span>
       <span>
