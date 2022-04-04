@@ -1,0 +1,60 @@
+.mainNavbar{
+    display: flex;
+    justify-content: space-around;
+    padding: '10px'
+}
+  
+.navStart{
+    width: '50%';
+    display: contents;
+}
+  
+.navbarEnd {
+    width: '30%';
+    display: flex;
+    justify-content: flex-end;
+}
+  
+.cart {
+    margin-left: '10px';
+    width:'50px';
+    height: auto;
+    display: 'inline-block';
+    align-items: 'left';
+    aspect-ratio: 1/1;
+}
+  
+.navbarEnd input{
+    border: 2px solid #8019c8;
+    border-radius: 4px;
+    padding: 5px;
+    color: #8019c8;
+}
+  
+.navbarEnd input:focus {
+    border: 2px solid #8019c8;
+    border-radius: 4px;
+}
+
+.burguerMenu{
+    width: 0;
+    visibility: hidden;
+}
+
+@media only screen and (max-width: 650px){
+    .burguerMenu{
+        width: 50px;
+        aspect-ratio: 1/1;
+        visibility: visible;
+    }
+
+    .navbarEnd{
+        width: 0;
+        visibility: hidden;
+    }
+
+    .navStart{
+        width: 100%;
+        display: contents;
+    }
+}
