@@ -1,6 +1,6 @@
 import React from "react";
 import { FlatList, Text, StyleSheet, SafeAreaView, Image, ScrollView } from "react-native-web";
-import categories from './../../mocks/en-us/product-categories.json';
+import categories from '../../mocks/en-us/product-categories.json';
 
 const styles = StyleSheet.create({
     container:{
